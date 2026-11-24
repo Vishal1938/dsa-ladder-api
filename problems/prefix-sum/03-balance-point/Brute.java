@@ -1,0 +1,13 @@
+import java.util.*;
+
+class Solution {
+    public int balancePoint(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            long l = 0, r = 0;
+            for (int j = 0; j < i; j++) l += nums[j];
+            for (int j = i + 1; j < nums.length; j++) r += nums[j];
+            if (l == r) return i;
+        }
+        return -1;
+    }
+}

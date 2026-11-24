@@ -1,0 +1,25 @@
+{
+ "slug": "running-total",
+ "topic": "prefix-sum",
+ "stage": 0,
+ "order": 1,
+ "title": "Running Total",
+ "difficulty": "Easy",
+ "whatsNew": "The base idea: each total is the previous total plus one number.",
+ "function": {
+  "name": "runningTotal",
+  "returns": "long[]",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "If you already know the total of the first i numbers, how much work is the total of the first i + 1?",
+  "total[i] = total[i − 1] + nums[i]. Use a long so large sums can't overflow."
+ ],
+ "trigger": "“Total so far” at every position → one pass, carry the running sum."
+}

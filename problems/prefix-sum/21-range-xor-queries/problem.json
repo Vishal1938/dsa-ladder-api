@@ -1,0 +1,29 @@
+{
+ "slug": "range-xor-queries",
+ "topic": "prefix-sum",
+ "stage": 4,
+ "order": 21,
+ "title": "Range XOR Queries",
+ "difficulty": "Easy",
+ "whatsNew": "Prefix sums work for any operation you can undo. XOR undoes itself: x ^ x = 0.",
+ "function": {
+  "name": "rangeXor",
+  "returns": "int[]",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   },
+   {
+    "name": "queries",
+    "type": "int[][]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "For sums you subtracted two prefixes. What operation undoes an XOR?",
+  "px[i + 1] = px[i] ^ nums[i]; the answer is px[r + 1] ^ px[l], because the shared part cancels."
+ ],
+ "trigger": "Range queries of an invertible operation (sum, XOR) → prefix + inverse."
+}

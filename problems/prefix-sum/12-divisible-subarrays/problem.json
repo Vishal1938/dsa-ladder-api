@@ -1,0 +1,30 @@
+{
+ "slug": "divisible-subarrays",
+ "topic": "prefix-sum",
+ "stage": 1,
+ "order": 12,
+ "title": "Subarrays Divisible by k",
+ "difficulty": "Medium",
+ "whatsNew": "Parity was “mod 2”. Generalise to mod k, and handle negative remainders.",
+ "function": {
+  "name": "countDivisible",
+  "returns": "long",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   },
+   {
+    "name": "k",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "In Even-Sum Subarrays you matched prefixes with the same remainder mod 2. What changes for mod k?",
+  "Two prefixes with the same remainder mod k give a sum divisible by k. Count remainders in an array of size k.",
+  "In Java, −7 % 5 is −2. Use Math.floorMod(prefix, k) (or ((p % k) + k) % k) so negative prefixes land in 0..k−1."
+ ],
+ "trigger": "Subarray sum divisible by k → count equal prefix remainders (fix negative mods)."
+}

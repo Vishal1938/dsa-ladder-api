@@ -1,0 +1,26 @@
+{
+ "slug": "even-vowels-longest",
+ "topic": "prefix-sum",
+ "stage": 4,
+ "order": 23,
+ "title": "Longest Substring With Even Vowels",
+ "difficulty": "Hard",
+ "whatsNew": "Track five parities at once in a 5-bit mask. Equal masks mean every vowel appears an even number of times in between.",
+ "function": {
+  "name": "longestEvenVowels",
+  "returns": "int",
+  "params": [
+   {
+    "name": "s",
+    "type": "String"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "You only care whether each vowel count is even or odd so far. How many different “parity states” are there?",
+  "Store the state as 5 bits; seeing a vowel flips its bit (XOR). When is the substring between two positions good?",
+  "Same mask at i and j → every vowel count between them is even. Store the first index of each mask (seed mask 0 at −1)."
+ ],
+ "trigger": "“Every X appears an even number of times” → XOR parity mask + first index of each mask."
+}

@@ -1,0 +1,29 @@
+{
+ "slug": "shuttle-capacity",
+ "topic": "prefix-sum",
+ "stage": 3,
+ "order": 20,
+ "title": "Shuttle Capacity",
+ "difficulty": "Medium",
+ "whatsNew": "Same difference-array idea with weights: groups board at one stop and leave at another.",
+ "function": {
+  "name": "canCarry",
+  "returns": "boolean",
+  "params": [
+   {
+    "name": "trips",
+    "type": "int[][]"
+   },
+   {
+    "name": "capacity",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "How many people are on board between stop s and s + 1? Think of each trip as a range update.",
+  "+count at from, −count at to. Walk the stops with a running sum and compare with capacity."
+ ],
+ "trigger": "Load over time from many start/end events → difference array."
+}

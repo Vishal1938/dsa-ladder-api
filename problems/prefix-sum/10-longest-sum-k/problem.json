@@ -1,0 +1,30 @@
+{
+ "slug": "longest-sum-k",
+ "topic": "prefix-sum",
+ "stage": 1,
+ "order": 10,
+ "title": "Longest Subarray With Sum k",
+ "difficulty": "Medium",
+ "whatsNew": "Counting needed how many times a prefix appeared. Longest needs where it appeared first.",
+ "function": {
+  "name": "longestSumK",
+  "returns": "int",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   },
+   {
+    "name": "k",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "For a subarray ending at j to be as long as possible, which earlier prefix with value (prefix − k) do you want: the first one or the last one?",
+  "Store the FIRST index at which each prefix value appears. Never overwrite it.",
+  "Seed the map with {0: −1} so subarrays starting at index 0 work."
+ ],
+ "trigger": "Longest subarray with sum k → map prefix → first index."
+}

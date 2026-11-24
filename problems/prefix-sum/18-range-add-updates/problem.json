@@ -1,0 +1,30 @@
+{
+ "slug": "range-add-updates",
+ "topic": "prefix-sum",
+ "stage": 3,
+ "order": 18,
+ "title": "Range Add Updates",
+ "difficulty": "Medium",
+ "whatsNew": "Reverse the idea: instead of reading ranges, write them. Mark the start and one-past-the-end, then take a prefix sum.",
+ "function": {
+  "name": "applyUpdates",
+  "returns": "long[]",
+  "params": [
+   {
+    "name": "n",
+    "type": "int"
+   },
+   {
+    "name": "updates",
+    "type": "int[][]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Adding v to a whole range costs up to n steps per update. Could you record each update in O(1) and fix everything at the end?",
+  "Write +v at index l and −v at index r + 1 of a helper array. What does a running sum of that helper array give you?",
+  "diff has length n + 1. The answer is the running sum of diff[0..n−1]."
+ ],
+ "trigger": "Many range updates, one read at the end → difference array + prefix sum."
+}

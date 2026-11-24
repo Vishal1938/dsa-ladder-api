@@ -1,0 +1,30 @@
+{
+ "slug": "grid-region-sums",
+ "topic": "prefix-sum",
+ "stage": 2,
+ "order": 15,
+ "title": "Grid Region Sums",
+ "difficulty": "Medium",
+ "whatsNew": "Range sums in 2D: P[r][c] covers the rectangle from the top-left corner. Combine four corners.",
+ "function": {
+  "name": "regionSums",
+  "returns": "long[]",
+  "params": [
+   {
+    "name": "grid",
+    "type": "int[][]"
+   },
+   {
+    "name": "queries",
+    "type": "int[][]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Let P[r][c] be the sum of everything above and to the left: rows 0..r−1 and columns 0..c−1. How do you build P from its neighbours?",
+  "P[r+1][c+1] = grid[r][c] + P[r][c+1] + P[r+1][c] − P[r][c] (the overlap was added twice).",
+  "Rectangle = P[r2+1][c2+1] − P[r1][c2+1] − P[r2+1][c1] + P[r1][c1]."
+ ],
+ "trigger": "Many sub-rectangle sums → 2D prefix sums with inclusion–exclusion."
+}

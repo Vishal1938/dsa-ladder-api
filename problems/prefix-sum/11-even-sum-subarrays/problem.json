@@ -1,0 +1,26 @@
+{
+ "slug": "even-sum-subarrays",
+ "topic": "prefix-sum",
+ "stage": 1,
+ "order": 11,
+ "title": "Even-Sum Subarrays",
+ "difficulty": "Medium",
+ "whatsNew": "You don't need the exact prefix, only its parity. Two prefixes with the same parity give an even sum.",
+ "function": {
+  "name": "countEvenSum",
+  "returns": "long",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "sum(i..j) = prefix[j+1] − prefix[i]. When is a difference of two numbers even?",
+  "Only the parity of each prefix matters. Count how many prefixes so far were even and how many odd.",
+  "Start with evenCount = 1 (the empty prefix). For each new prefix, add the count of earlier prefixes with the same parity."
+ ],
+ "trigger": "Subarray sum divisible by 2 → count prefix parities."
+}

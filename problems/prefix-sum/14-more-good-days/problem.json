@@ -1,0 +1,26 @@
+{
+ "slug": "more-good-days",
+ "topic": "prefix-sum",
+ "stage": 1,
+ "order": 14,
+ "title": "More Good Days Than Bad",
+ "difficulty": "Hard",
+ "whatsNew": "Same ±1 transform, but now the sum must be positive. You only need to look one step down: prefix − 1.",
+ "function": {
+  "name": "longestPositive",
+  "returns": "int",
+  "params": [
+   {
+    "name": "scores",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Map good days to +1 and bad days to −1. What does “more good than bad” mean for the sum of a stretch?",
+  "If the running sum p is positive, the whole prefix works. Otherwise, a stretch ending here works when an earlier prefix is smaller than p.",
+  "Because the sum moves by ±1, the earliest prefix smaller than p is the first time it was p − 1. Store first indexes."
+ ],
+ "trigger": "Longest subarray with positive ±1 sum → first index of prefix − 1."
+}

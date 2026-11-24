@@ -1,0 +1,30 @@
+{
+ "slug": "largest-square-budget",
+ "topic": "prefix-sum",
+ "stage": 2,
+ "order": 17,
+ "title": "Largest Square Within Budget",
+ "difficulty": "Hard",
+ "whatsNew": "Combine 2D prefix sums with a search: for each size, every square's sum is one O(1) lookup.",
+ "function": {
+  "name": "largestSquare",
+  "returns": "int",
+  "params": [
+   {
+    "name": "grid",
+    "type": "int[][]"
+   },
+   {
+    "name": "budget",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "With 2D prefix sums, what does it cost to get the sum of one k × k square?",
+  "Costs are non-negative: if some square of side k fits the budget, does some square of side k − 1 fit too?",
+  "So the answer is monotone. Either binary search k, or grow k while some square of the next size fits."
+ ],
+ "trigger": "Largest square/rectangle under a sum limit → 2D prefix + monotone search over the size."
+}

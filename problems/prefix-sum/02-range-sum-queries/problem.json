@@ -1,0 +1,30 @@
+{
+ "slug": "range-sum-queries",
+ "topic": "prefix-sum",
+ "stage": 0,
+ "order": 2,
+ "title": "Range Sum Queries",
+ "difficulty": "Easy",
+ "whatsNew": "Many questions about the same array: pay once to build prefix sums, then answer each question in O(1).",
+ "function": {
+  "name": "rangeSums",
+  "returns": "long[]",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   },
+   {
+    "name": "queries",
+    "type": "int[][]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Adding each range costs up to n steps per question. What could you compute once, before reading any question?",
+  "If prefix[i] is the sum of the first i numbers, how do you get the sum of nums[l..r] from two prefix values?",
+  "Make prefix one longer than nums with prefix[0] = 0. Then sum(l..r) = prefix[r + 1] − prefix[l]."
+ ],
+ "trigger": "Many range-sum questions on a fixed array → build prefix sums once."
+}

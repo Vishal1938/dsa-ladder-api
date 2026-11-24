@@ -1,0 +1,26 @@
+{
+ "slug": "balance-point",
+ "topic": "prefix-sum",
+ "stage": 0,
+ "order": 3,
+ "title": "Balance Point",
+ "difficulty": "Easy",
+ "whatsNew": "Left sum comes from the running prefix; right sum = total − left − current. No second pass needed.",
+ "function": {
+  "name": "balancePoint",
+  "returns": "int",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "For each i you need two numbers: the sum on the left and the sum on the right. Which one can you keep updating as you walk?",
+  "If you know the total of the whole array, can you get the right side from the left side?",
+  "right = total − left − nums[i]. Check left == right, then add nums[i] to left."
+ ],
+ "trigger": "Compare left part with right part at every index → total + running prefix."
+}

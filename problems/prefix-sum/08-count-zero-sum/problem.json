@@ -1,0 +1,26 @@
+{
+ "slug": "count-zero-sum",
+ "topic": "prefix-sum",
+ "stage": 1,
+ "order": 8,
+ "title": "Count Zero-Sum Stretches",
+ "difficulty": "Medium",
+ "whatsNew": "From “does one exist?” to “how many?”: replace the set with a map of counts.",
+ "function": {
+  "name": "countZeroSum",
+  "returns": "long",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "In the previous problem one repeat was enough. Now, if the current prefix value has appeared 3 times before, how many zero-sum subarrays end here?",
+  "Keep a HashMap from prefix value to how many times you've seen it. Start with {0: 1}.",
+  "For each new prefix p: add count[p] to the answer, then increment count[p]. Use long for the answer."
+ ],
+ "trigger": "Count subarrays with sum 0 → HashMap of prefix counts, seed {0:1}."
+}

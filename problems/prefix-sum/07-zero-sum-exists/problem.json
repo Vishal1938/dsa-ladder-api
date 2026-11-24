@@ -1,0 +1,26 @@
+{
+ "slug": "zero-sum-exists",
+ "topic": "prefix-sum",
+ "stage": 1,
+ "order": 7,
+ "title": "Does a Zero-Sum Stretch Exist?",
+ "difficulty": "Easy",
+ "whatsNew": "New idea: two equal prefix sums mean the numbers between them add up to 0. A set remembers the prefixes you've seen.",
+ "function": {
+  "name": "hasZeroSum",
+  "returns": "boolean",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Write prefix sums for [4, 2, −3, 1, 6]: 0, 4, 6, 3, 4, 10. Do you notice a repeated value? What does the repeat mean?",
+  "If prefix[i] == prefix[j] (i < j), then nums[i..j−1] sums to 0.",
+  "Keep a HashSet of prefix sums seen so far, starting with 0. A repeat means yes."
+ ],
+ "trigger": "“Some subarray sums to 0” → a repeated prefix sum (HashSet)."
+}

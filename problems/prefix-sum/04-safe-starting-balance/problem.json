@@ -1,0 +1,26 @@
+{
+ "slug": "safe-starting-balance",
+ "topic": "prefix-sum",
+ "stage": 0,
+ "order": 4,
+ "title": "Safe Starting Balance",
+ "difficulty": "Easy",
+ "whatsNew": "The answer depends only on the lowest point the running sum ever reaches.",
+ "function": {
+  "name": "minStart",
+  "returns": "long",
+  "params": [
+   {
+    "name": "changes",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "After k changes your balance is x + (sum of the first k changes). When is that most at risk?",
+  "Only the minimum running sum matters. Call it m. What does x need to be so that x + m >= 1?",
+  "x = max(1, 1 − m), where m is the smallest running sum (if every running sum is positive, x = 1)."
+ ],
+ "trigger": "“Never drop below a level” → look at the minimum of the running sum."
+}

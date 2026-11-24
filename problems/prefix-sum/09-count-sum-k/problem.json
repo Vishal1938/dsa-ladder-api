@@ -1,0 +1,30 @@
+{
+ "slug": "count-sum-k",
+ "topic": "prefix-sum",
+ "stage": 1,
+ "order": 9,
+ "title": "Count Subarrays With Sum k",
+ "difficulty": "Medium",
+ "whatsNew": "Sum 0 was “find the same prefix”. Sum k is “find prefix − k”.",
+ "function": {
+  "name": "countSumK",
+  "returns": "long",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   },
+   {
+    "name": "k",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "A subarray ending at j has sum prefix[j+1] − prefix[i]. When does that equal k?",
+  "You need earlier prefixes equal to (current prefix − k). How do you count those quickly?",
+  "Map of prefix counts seeded with {0:1}. For each prefix p: answer += count[p − k]; then count[p]++."
+ ],
+ "trigger": "Count subarrays with sum k, negatives allowed → prefix + HashMap (look up prefix − k)."
+}

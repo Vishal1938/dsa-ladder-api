@@ -1,0 +1,29 @@
+{
+ "slug": "best-k-window",
+ "topic": "prefix-sum",
+ "stage": 0,
+ "order": 6,
+ "title": "Best Window of Length k",
+ "difficulty": "Easy",
+ "whatsNew": "A window sum is just prefix[i + k] − prefix[i], the range-sum trick applied to every window.",
+ "function": {
+  "name": "bestWindow",
+  "returns": "long",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   },
+   {
+    "name": "k",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Every window is a range [i, i + k − 1]. Which formula from Range Sum Queries gives a range sum in O(1)?",
+  "With prefix sums the window starting at i has sum prefix[i + k] − prefix[i]. Try every i."
+ ],
+ "trigger": "Sums of all windows of a fixed length → prefix differences (or slide the window)."
+}

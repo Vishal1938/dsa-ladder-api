@@ -1,0 +1,3637 @@
+[
+ {
+  "id": "hashing",
+  "name": "Arrays & Hashing",
+  "idea": "Trade memory for time: remember what you have already seen so you never search for it twice.",
+  "triggers": [
+   "\"have I seen X before?\" → hash set",
+   "\"how many of each?\" → frequency map",
+   "\"find a pair that adds to T\" → store complements",
+   "values in 1..n → use the array itself as the hash table"
+  ],
+  "stages": [
+   {
+    "name": "Remember what you've seen",
+    "exam": [
+     {
+      "id": 1,
+      "title": "Two Sum",
+      "slug": "two-sum",
+      "rating": 0,
+      "note": "For each number, the partner you need is target − x. Ask the map, don't search."
+     },
+     {
+      "id": 217,
+      "title": "Contains Duplicate",
+      "slug": "contains-duplicate",
+      "rating": 0,
+      "note": "Plain set membership. The smallest possible version of \"seen before?\"."
+     },
+     {
+      "id": 242,
+      "title": "Valid Anagram",
+      "slug": "valid-anagram",
+      "rating": 0,
+      "note": "Compare two frequency maps. Counting replaces sorting."
+     },
+     {
+      "id": 383,
+      "title": "Ransom Note",
+      "slug": "ransom-note",
+      "rating": 0,
+      "note": "One map, decrement while you consume. Counting with a budget."
+     },
+     {
+      "id": 387,
+      "title": "First Unique Character in a String",
+      "slug": "first-unique-character-in-a-string",
+      "rating": 0,
+      "note": "Two passes: count first, then scan in order."
+     },
+     {
+      "id": 1512,
+      "title": "Number of Good Pairs",
+      "slug": "number-of-good-pairs",
+      "rating": 1161,
+      "note": "Count pairs as you go: each new x pairs with every earlier x."
+     },
+     {
+      "id": 2215,
+      "title": "Find the Difference of Two Arrays",
+      "slug": "find-the-difference-of-two-arrays",
+      "rating": 1208,
+      "note": "Two sets, set difference both ways."
+     }
+    ]
+   },
+   {
+    "name": "Group by a key",
+    "exam": [
+     {
+      "id": 49,
+      "title": "Group Anagrams",
+      "slug": "group-anagrams",
+      "rating": 0,
+      "note": "The key is the sorted word (or its letter count). Same key → same group."
+     },
+     {
+      "id": 205,
+      "title": "Isomorphic Strings",
+      "slug": "isomorphic-strings",
+      "rating": 0,
+      "note": "Map characters both ways. One-directional mapping is the trap."
+     },
+     {
+      "id": 290,
+      "title": "Word Pattern",
+      "slug": "word-pattern",
+      "rating": 0,
+      "note": "Same two-way mapping as 205, but words instead of characters."
+     },
+     {
+      "id": 347,
+      "title": "Top K Frequent Elements",
+      "slug": "top-k-frequent-elements",
+      "rating": 0,
+      "note": "Count, then bucket by frequency so you avoid an O(n log n) sort."
+     },
+     {
+      "id": 451,
+      "title": "Sort Characters By Frequency",
+      "slug": "sort-characters-by-frequency",
+      "rating": 0,
+      "note": "Same counting, then output in frequency order."
+     },
+     {
+      "id": 2352,
+      "title": "Equal Row and Column Pairs",
+      "slug": "equal-row-and-column-pairs",
+      "rating": 1286,
+      "note": "The key is a whole row/column turned into a tuple."
+     }
+    ]
+   },
+   {
+    "name": "The array is the hash table",
+    "exam": [
+     {
+      "id": 448,
+      "title": "Find All Numbers Disappeared in an Array",
+      "slug": "find-all-numbers-disappeared-in-an-array",
+      "rating": 0,
+      "note": "Values are 1..n: mark index v−1 as negative to say \"v appeared\"."
+     },
+     {
+      "id": 442,
+      "title": "Find All Duplicates in an Array",
+      "slug": "find-all-duplicates-in-an-array",
+      "rating": 0,
+      "note": "Same marking trick. A second visit means a duplicate."
+     },
+     {
+      "id": 41,
+      "title": "First Missing Positive",
+      "slug": "first-missing-positive",
+      "rating": 0,
+      "note": "Put every value v at index v−1 (cyclic placement). Then the first wrong slot is the answer."
+     },
+     {
+      "id": 287,
+      "title": "Find the Duplicate Number",
+      "slug": "find-the-duplicate-number",
+      "rating": 0,
+      "note": "Values in 1..n with one repeat: treat it as a linked list and find the cycle."
+     },
+     {
+      "id": 128,
+      "title": "Longest Consecutive Sequence",
+      "slug": "longest-consecutive-sequence",
+      "rating": 0,
+      "note": "A set plus \"only start counting from the beginning of a run\" (x−1 not in set)."
+     }
+    ]
+   },
+   {
+    "name": "Transform, then count pairs",
+    "exam": [
+     {
+      "id": 1010,
+      "title": "Pairs of Songs With Total Durations Divisible by 60",
+      "slug": "pairs-of-songs-with-total-durations-divisible-by-60",
+      "rating": 1377,
+      "note": "Store remainders: the partner of r is (60 − r) % 60."
+     },
+     {
+      "id": 2364,
+      "title": "Count Number of Bad Pairs",
+      "slug": "count-number-of-bad-pairs",
+      "rating": 1622,
+      "note": "Rewrite j − i != nums[j] − nums[i] as nums[i] − i. Count the equal ones, subtract."
+     },
+     {
+      "id": 1814,
+      "title": "Count Nice Pairs in an Array",
+      "slug": "count-nice-pairs-in-an-array",
+      "rating": 1738,
+      "note": "Same transform idea: x − rev(x) is the key."
+     },
+     {
+      "id": 454,
+      "title": "4Sum II",
+      "slug": "4sum-ii",
+      "rating": 0,
+      "note": "Split 4 arrays into 2+2: hash all sums of the first pair."
+     },
+     {
+      "id": 2342,
+      "title": "Max Sum of a Pair With Equal Sum of Digits",
+      "slug": "max-sum-of-a-pair-with-equal-sum-of-digits",
+      "rating": 1309,
+      "note": "Group by digit sum, keep the two largest in each group."
+     }
+    ]
+   },
+   {
+    "name": "Arrays in place",
+    "exam": [
+     {
+      "id": 238,
+      "title": "Product of Array Except Self",
+      "slug": "product-of-array-except-self",
+      "rating": 0,
+      "note": "Product = everything on the left × everything on the right. Two passes."
+     },
+     {
+      "id": 169,
+      "title": "Majority Element",
+      "slug": "majority-element",
+      "rating": 0,
+      "note": "Boyer–Moore voting: a majority survives cancellation."
+     },
+     {
+      "id": 229,
+      "title": "Majority Element II",
+      "slug": "majority-element-ii",
+      "rating": 0,
+      "note": "Voting with two candidates (anything above n/3)."
+     },
+     {
+      "id": 189,
+      "title": "Rotate Array",
+      "slug": "rotate-array",
+      "rating": 0,
+      "note": "Reverse all, then reverse both parts."
+     },
+     {
+      "id": 48,
+      "title": "Rotate Image",
+      "slug": "rotate-image",
+      "rating": 0,
+      "note": "Rotation = transpose + reverse each row."
+     },
+     {
+      "id": 54,
+      "title": "Spiral Matrix",
+      "slug": "spiral-matrix",
+      "rating": 0,
+      "note": "Walk the boundary and shrink it four sides at a time."
+     },
+     {
+      "id": 73,
+      "title": "Set Matrix Zeroes",
+      "slug": "set-matrix-zeroes",
+      "rating": 0,
+      "note": "Use the first row/column as your marker storage."
+     },
+     {
+      "id": 36,
+      "title": "Valid Sudoku",
+      "slug": "valid-sudoku",
+      "rating": 0,
+      "note": "Three families of sets: rows, columns, boxes (box = r//3, c//3)."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "two-pointers",
+  "name": "Two Pointers",
+  "idea": "When the data is sorted or has a direction, two indexes moving with a rule replace a nested loop.",
+  "triggers": [
+   "sorted array + pair/triple → pointers from both ends",
+   "\"in place\", \"remove\", \"compact\" → slow writer + fast reader",
+   "comparing two sequences → one pointer each",
+   "\"max area between two lines\" → move the weaker side"
+  ],
+  "stages": [
+   {
+    "name": "Opposite ends",
+    "exam": [
+     {
+      "id": 344,
+      "title": "Reverse String",
+      "slug": "reverse-string",
+      "rating": 0,
+      "note": "Swap ends, move inward. The template."
+     },
+     {
+      "id": 125,
+      "title": "Valid Palindrome",
+      "slug": "valid-palindrome",
+      "rating": 0,
+      "note": "Same, but skip characters that are not letters or digits."
+     },
+     {
+      "id": 977,
+      "title": "Squares of a Sorted Array",
+      "slug": "squares-of-a-sorted-array",
+      "rating": 1130,
+      "note": "The largest square is at one of the two ends. Fill the answer from the back."
+     },
+     {
+      "id": 167,
+      "title": "Two Sum II - Input Array Is Sorted",
+      "slug": "two-sum-ii-input-array-is-sorted",
+      "rating": 0,
+      "note": "Sum too small → move left up, too big → move right down. Why is that safe?"
+     },
+     {
+      "id": 680,
+      "title": "Valid Palindrome II",
+      "slug": "valid-palindrome-ii",
+      "rating": 0,
+      "note": "At the first mismatch, try skipping one side or the other."
+     }
+    ]
+   },
+   {
+    "name": "Reader & writer (same direction)",
+    "exam": [
+     {
+      "id": 27,
+      "title": "Remove Element",
+      "slug": "remove-element",
+      "rating": 0,
+      "note": "Writer index keeps everything you want to keep."
+     },
+     {
+      "id": 26,
+      "title": "Remove Duplicates from Sorted Array",
+      "slug": "remove-duplicates-from-sorted-array",
+      "rating": 0,
+      "note": "Keep x if it differs from the last kept value."
+     },
+     {
+      "id": 80,
+      "title": "Remove Duplicates from Sorted Array II",
+      "slug": "remove-duplicates-from-sorted-array-ii",
+      "rating": 0,
+      "note": "Keep x if it differs from the value two slots back in the kept part."
+     },
+     {
+      "id": 283,
+      "title": "Move Zeroes",
+      "slug": "move-zeroes",
+      "rating": 0,
+      "note": "Writer collects non-zeros, then fill the rest with zeros."
+     },
+     {
+      "id": 88,
+      "title": "Merge Sorted Array",
+      "slug": "merge-sorted-array",
+      "rating": 0,
+      "note": "Merge from the back so you never overwrite unread data."
+     },
+     {
+      "id": 392,
+      "title": "Is Subsequence",
+      "slug": "is-subsequence",
+      "rating": 0,
+      "note": "One pointer per string. Advance the small one only on a match."
+     },
+     {
+      "id": 2486,
+      "title": "Append Characters to String to Make Subsequence",
+      "slug": "append-characters-to-string-to-make-subsequence",
+      "rating": 1363,
+      "note": "Same as 392, then count what's left over."
+     }
+    ]
+   },
+   {
+    "name": "Sort first, then pointers",
+    "exam": [
+     {
+      "id": 15,
+      "title": "3Sum",
+      "slug": "3sum",
+      "rating": 0,
+      "note": "Fix one number, run 167 on the rest. Skip duplicates at both levels."
+     },
+     {
+      "id": 16,
+      "title": "3Sum Closest",
+      "slug": "3sum-closest",
+      "rating": 0,
+      "note": "Same as 3Sum, but track the closest sum instead of exact matches."
+     },
+     {
+      "id": 18,
+      "title": "4Sum",
+      "slug": "4sum",
+      "rating": 0,
+      "note": "One more fixed loop on top of 3Sum. The pattern generalises."
+     },
+     {
+      "id": 611,
+      "title": "Valid Triangle Number",
+      "slug": "valid-triangle-number",
+      "rating": 0,
+      "note": "Sort, fix the largest side, count pairs with two pointers."
+     },
+     {
+      "id": 881,
+      "title": "Boats to Save People",
+      "slug": "boats-to-save-people",
+      "rating": 1530,
+      "note": "Heaviest person goes with the lightest if they fit."
+     },
+     {
+      "id": 1679,
+      "title": "Max Number of K-Sum Pairs",
+      "slug": "max-number-of-k-sum-pairs",
+      "rating": 1346,
+      "note": "Sorted pairs summing to k, or a counting map."
+     },
+     {
+      "id": 2824,
+      "title": "Count Pairs Whose Sum is Less than Target",
+      "slug": "count-pairs-whose-sum-is-less-than-target",
+      "rating": 1166,
+      "note": "Count pairs with sum < target: when it fits, all pairs between the pointers count."
+     }
+    ]
+   },
+   {
+    "name": "Moving by a greedy rule",
+    "exam": [
+     {
+      "id": 11,
+      "title": "Container With Most Water",
+      "slug": "container-with-most-water",
+      "rating": 0,
+      "note": "Move the shorter wall. The taller one can't help while the short one limits you."
+     },
+     {
+      "id": 42,
+      "title": "Trapping Rain Water",
+      "slug": "trapping-rain-water",
+      "rating": 0,
+      "note": "The water at i depends on min(maxLeft, maxRight). Move the side with the smaller max."
+     },
+     {
+      "id": 75,
+      "title": "Sort Colors",
+      "slug": "sort-colors",
+      "rating": 0,
+      "note": "Three pointers: low zone, unknown zone, high zone (Dutch flag)."
+     },
+     {
+      "id": 31,
+      "title": "Next Permutation",
+      "slug": "next-permutation",
+      "rating": 0,
+      "note": "From the right, find the first dip, swap with the next larger, reverse the tail."
+     },
+     {
+      "id": 2337,
+      "title": "Move Pieces to Obtain a String",
+      "slug": "move-pieces-to-obtain-a-string",
+      "rating": 1693,
+      "note": "Pieces can only move one way: match the non-blank characters with two pointers."
+     }
+    ]
+   },
+   {
+    "name": "Two sequences",
+    "exam": [
+     {
+      "id": 844,
+      "title": "Backspace String Compare",
+      "slug": "backspace-string-compare",
+      "rating": 1228,
+      "note": "Walk both strings from the back, counting backspaces."
+     },
+     {
+      "id": 986,
+      "title": "Interval List Intersections",
+      "slug": "interval-list-intersections",
+      "rating": 1542,
+      "note": "Intersect the current pair, then advance whichever ends first."
+     },
+     {
+      "id": 925,
+      "title": "Long Pressed Name",
+      "slug": "long-pressed-name",
+      "rating": 1271,
+      "note": "Group runs of each character on both sides."
+     },
+     {
+      "id": 1855,
+      "title": "Maximum Distance Between a Pair of Values",
+      "slug": "maximum-distance-between-a-pair-of-values",
+      "rating": 1515,
+      "note": "Pointer per array; widen j while the condition holds."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "sliding-window",
+  "name": "Sliding Window",
+  "idea": "A contiguous subarray/substring whose condition can be updated in O(1) as you add the right element or drop the left one.",
+  "triggers": [
+   "\"contiguous subarray/substring\" + longest/shortest/count → window",
+   "fixed size k → slide by one",
+   "\"at most K distinct/zeros/changes\" → expand right, shrink left while invalid",
+   "\"exactly K\" → atMost(K) − atMost(K−1)"
+  ],
+  "stages": [
+   {
+    "name": "Fixed-size window",
+    "exam": [
+     {
+      "id": 643,
+      "title": "Maximum Average Subarray I",
+      "slug": "maximum-average-subarray-i",
+      "rating": 0,
+      "note": "Add the new element, drop the old one. Never recompute the sum."
+     },
+     {
+      "id": 1456,
+      "title": "Maximum Number of Vowels in a Substring of Given Length",
+      "slug": "maximum-number-of-vowels-in-a-substring-of-given-length",
+      "rating": 1263,
+      "note": "Same slide, but you're counting vowels."
+     },
+     {
+      "id": 1343,
+      "title": "Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold",
+      "slug": "number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold",
+      "rating": 1317,
+      "note": "Fixed window + compare with threshold × k."
+     },
+     {
+      "id": 2379,
+      "title": "Minimum Recolors to Get K Consecutive Black Blocks",
+      "slug": "minimum-recolors-to-get-k-consecutive-black-blocks",
+      "rating": 1360,
+      "note": "Count the whites in each window of size k."
+     },
+     {
+      "id": 1423,
+      "title": "Maximum Points You Can Obtain from Cards",
+      "slug": "maximum-points-you-can-obtain-from-cards",
+      "rating": 1574,
+      "note": "Taking from both ends = leaving a middle window of n−k. Minimise that."
+     },
+     {
+      "id": 438,
+      "title": "Find All Anagrams in a String",
+      "slug": "find-all-anagrams-in-a-string",
+      "rating": 0,
+      "note": "A fixed window of letter counts, compared with the target's counts."
+     },
+     {
+      "id": 567,
+      "title": "Permutation in String",
+      "slug": "permutation-in-string",
+      "rating": 0,
+      "note": "The same as 438, but stop at the first match."
+     }
+    ]
+   },
+   {
+    "name": "Longest valid window",
+    "exam": [
+     {
+      "id": 3,
+      "title": "Longest Substring Without Repeating Characters",
+      "slug": "longest-substring-without-repeating-characters",
+      "rating": 0,
+      "note": "Expand right. While there's a repeat, shrink left. Record the max."
+     },
+     {
+      "id": 1004,
+      "title": "Max Consecutive Ones III",
+      "slug": "max-consecutive-ones-iii",
+      "rating": 1656,
+      "note": "Valid means \"at most k zeros inside\". Same expand/shrink loop."
+     },
+     {
+      "id": 1493,
+      "title": "Longest Subarray of 1's After Deleting One Element",
+      "slug": "longest-subarray-of-1s-after-deleting-one-element",
+      "rating": 1423,
+      "note": "1004 with k = 1, then subtract the deleted element."
+     },
+     {
+      "id": 2024,
+      "title": "Maximize the Confusion of an Exam",
+      "slug": "maximize-the-confusion-of-an-exam",
+      "rating": 1643,
+      "note": "Run 1004 twice: once treating T as good, once treating F as good."
+     },
+     {
+      "id": 904,
+      "title": "Fruit Into Baskets",
+      "slug": "fruit-into-baskets",
+      "rating": 1516,
+      "note": "Valid means \"at most 2 distinct types\". Needs a count map."
+     },
+     {
+      "id": 1695,
+      "title": "Maximum Erasure Value",
+      "slug": "maximum-erasure-value",
+      "rating": 1529,
+      "note": "Unique window (like problem 3) but you maximise the sum."
+     },
+     {
+      "id": 1208,
+      "title": "Get Equal Substrings Within Budget",
+      "slug": "get-equal-substrings-within-budget",
+      "rating": 1497,
+      "note": "Valid means \"the cost inside ≤ budget\"."
+     },
+     {
+      "id": 424,
+      "title": "Longest Repeating Character Replacement",
+      "slug": "longest-repeating-character-replacement",
+      "rating": 0,
+      "note": "Valid means windowLen − maxFreq ≤ k. Why can maxFreq stay stale?"
+     }
+    ]
+   },
+   {
+    "name": "Shortest valid window",
+    "exam": [
+     {
+      "id": 209,
+      "title": "Minimum Size Subarray Sum",
+      "slug": "minimum-size-subarray-sum",
+      "rating": 0,
+      "note": "Shrink while still valid, recording the min each time."
+     },
+     {
+      "id": 1658,
+      "title": "Minimum Operations to Reduce X to Zero",
+      "slug": "minimum-operations-to-reduce-x-to-zero",
+      "rating": 1817,
+      "note": "Removing from both ends = keep the longest middle window with sum total − x."
+     },
+     {
+      "id": 76,
+      "title": "Minimum Window Substring",
+      "slug": "minimum-window-substring",
+      "rating": 0,
+      "note": "Track how many required characters are satisfied. Shrink while all are."
+     }
+    ]
+   },
+   {
+    "name": "Counting windows",
+    "exam": [
+     {
+      "id": 713,
+      "title": "Subarray Product Less Than K",
+      "slug": "subarray-product-less-than-k",
+      "rating": 0,
+      "note": "Every valid window ending at right adds (right − left + 1) subarrays."
+     },
+     {
+      "id": 2302,
+      "title": "Count Subarrays With Score Less Than K",
+      "slug": "count-subarrays-with-score-less-than-k",
+      "rating": 1808,
+      "note": "Same count trick, with score = sum × length."
+     },
+     {
+      "id": 1358,
+      "title": "Number of Substrings Containing All Three Characters",
+      "slug": "number-of-substrings-containing-all-three-characters",
+      "rating": 1646,
+      "note": "Once the window is valid, every extension to the right is valid too."
+     },
+     {
+      "id": 2962,
+      "title": "Count Subarrays Where Max Element Appears at Least K Times",
+      "slug": "count-subarrays-where-max-element-appears-at-least-k-times",
+      "rating": 1701,
+      "note": "Count windows with at least k copies of the max element."
+     }
+    ]
+   },
+   {
+    "name": "Exactly K = atMost(K) − atMost(K−1)",
+    "exam": [
+     {
+      "id": 930,
+      "title": "Binary Subarrays With Sum",
+      "slug": "binary-subarrays-with-sum",
+      "rating": 1592,
+      "note": "\"Sum exactly goal\" is atMost(goal) − atMost(goal−1)."
+     },
+     {
+      "id": 1248,
+      "title": "Count Number of Nice Subarrays",
+      "slug": "count-number-of-nice-subarrays",
+      "rating": 1624,
+      "note": "Odd numbers act as 1, evens as 0. Then it's 930."
+     },
+     {
+      "id": 992,
+      "title": "Subarrays with K Different Integers",
+      "slug": "subarrays-with-k-different-integers",
+      "rating": 2210,
+      "note": "Exactly K distinct = atMost(K) − atMost(K−1)."
+     }
+    ]
+   },
+   {
+    "name": "Window + extra structure",
+    "exam": [
+     {
+      "id": 239,
+      "title": "Sliding Window Maximum",
+      "slug": "sliding-window-maximum",
+      "rating": 0,
+      "note": "Monotonic deque: keep candidates in decreasing order."
+     },
+     {
+      "id": 1438,
+      "title": "Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit",
+      "slug": "longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit",
+      "rating": 1672,
+      "note": "Two deques (max and min) so the window knows its range."
+     },
+     {
+      "id": 2398,
+      "title": "Maximum Number of Robots Within Budget",
+      "slug": "maximum-number-of-robots-within-budget",
+      "rating": 1917,
+      "note": "Deque for the max + running sum for the cost."
+     },
+     {
+      "id": 480,
+      "title": "Sliding Window Median",
+      "slug": "sliding-window-median",
+      "rating": 0,
+      "note": "Window median: two heaps or a sorted list with removals."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prefix-sum",
+  "name": "Prefix Sums",
+  "idea": "Any range total is prefix[r] − prefix[l]. Store prefixes in a map to count ranges with a property.",
+  "triggers": [
+   "many range-sum queries → prefix array",
+   "\"count subarrays with sum = k\" (negatives allowed) → prefix + hashmap",
+   "\"divisible by k\" → prefix mod k",
+   "many range updates, one read → difference array",
+   "2D sub-rectangle sums → 2D prefix"
+  ],
+  "stages": [
+   {
+    "name": "Prefix arrays",
+    "exam": [
+     {
+      "id": 1480,
+      "title": "Running Sum of 1d Array",
+      "slug": "running-sum-of-1d-array",
+      "rating": 1105,
+      "note": "Build the prefix array itself."
+     },
+     {
+      "id": 1732,
+      "title": "Find the Highest Altitude",
+      "slug": "find-the-highest-altitude",
+      "rating": 1257,
+      "note": "Running total, track the max."
+     },
+     {
+      "id": 724,
+      "title": "Find Pivot Index",
+      "slug": "find-pivot-index",
+      "rating": 0,
+      "note": "Left sum = prefix, right sum = total − prefix − x."
+     },
+     {
+      "id": 303,
+      "title": "Range Sum Query - Immutable",
+      "slug": "range-sum-query-immutable",
+      "rating": 0,
+      "note": "Answer each query in O(1) with prefix[r+1] − prefix[l]."
+     },
+     {
+      "id": 2574,
+      "title": "Left and Right Sum Differences",
+      "slug": "left-and-right-sum-differences",
+      "rating": 1206,
+      "note": "Left sum and right sum for every index."
+     },
+     {
+      "id": 1413,
+      "title": "Minimum Value to Get Positive Step by Step Sum",
+      "slug": "minimum-value-to-get-positive-step-by-step-sum",
+      "rating": 1212,
+      "note": "Find the lowest point of the prefix sum."
+     }
+    ]
+   },
+   {
+    "name": "Prefix + hashmap",
+    "exam": [
+     {
+      "id": 560,
+      "title": "Subarray Sum Equals K",
+      "slug": "subarray-sum-equals-k",
+      "rating": 0,
+      "note": "Count earlier prefixes equal to current − k. Seed the map with {0: 1}."
+     },
+     {
+      "id": 974,
+      "title": "Subarray Sums Divisible by K",
+      "slug": "subarray-sums-divisible-by-k",
+      "rating": 1676,
+      "note": "Same, but the key is prefix mod k (careful with negatives)."
+     },
+     {
+      "id": 523,
+      "title": "Continuous Subarray Sum",
+      "slug": "continuous-subarray-sum",
+      "rating": 0,
+      "note": "Store the first index of each remainder. You need length ≥ 2."
+     },
+     {
+      "id": 525,
+      "title": "Contiguous Array",
+      "slug": "contiguous-array",
+      "rating": 0,
+      "note": "Turn 0 into −1. Now it's \"longest subarray with sum 0\"."
+     },
+     {
+      "id": 1124,
+      "title": "Longest Well-Performing Interval",
+      "slug": "longest-well-performing-interval",
+      "rating": 1908,
+      "note": "Tiring day = +1, otherwise −1. Longest subarray with positive sum."
+     },
+     {
+      "id": 2845,
+      "title": "Count of Interesting Subarrays",
+      "slug": "count-of-interesting-subarrays",
+      "rating": 2073,
+      "note": "Mark matches as 1, then count prefix values mod m."
+     },
+     {
+      "id": 1371,
+      "title": "Find the Longest Substring Containing Vowels in Even Counts",
+      "slug": "find-the-longest-substring-containing-vowels-in-even-counts",
+      "rating": 2041,
+      "note": "The key is a bitmask of vowel parities."
+     },
+     {
+      "id": 1915,
+      "title": "Number of Wonderful Substrings",
+      "slug": "number-of-wonderful-substrings",
+      "rating": 2235,
+      "note": "Bitmask parity prefix, allowing one bit to differ."
+     }
+    ]
+   },
+   {
+    "name": "2D prefix",
+    "exam": [
+     {
+      "id": 304,
+      "title": "Range Sum Query 2D - Immutable",
+      "slug": "range-sum-query-2d-immutable",
+      "rating": 0,
+      "note": "P[r][c] = sum of the rectangle from (0,0). Inclusion–exclusion for queries."
+     },
+     {
+      "id": 1314,
+      "title": "Matrix Block Sum",
+      "slug": "matrix-block-sum",
+      "rating": 1484,
+      "note": "Each block query is one 304 query."
+     },
+     {
+      "id": 1074,
+      "title": "Number of Submatrices That Sum to Target",
+      "slug": "number-of-submatrices-that-sum-to-target",
+      "rating": 2189,
+      "note": "Fix two rows, squash the columns to 1D, then run 560."
+     }
+    ]
+   },
+   {
+    "name": "Difference arrays",
+    "exam": [
+     {
+      "id": 1094,
+      "title": "Car Pooling",
+      "slug": "car-pooling",
+      "rating": 1441,
+      "note": "+passengers at start, −passengers at end, then a running sum."
+     },
+     {
+      "id": 1109,
+      "title": "Corporate Flight Bookings",
+      "slug": "corporate-flight-bookings",
+      "rating": 1570,
+      "note": "The same as 1094 with bookings."
+     },
+     {
+      "id": 1854,
+      "title": "Maximum Population Year",
+      "slug": "maximum-population-year",
+      "rating": 1370,
+      "note": "Births +1, deaths −1, the max running sum."
+     },
+     {
+      "id": 2381,
+      "title": "Shifting Letters II",
+      "slug": "shifting-letters-ii",
+      "rating": 1793,
+      "note": "A difference array over shift amounts."
+     }
+    ]
+   },
+   {
+    "name": "Prefix of other operations",
+    "exam": [
+     {
+      "id": 1310,
+      "title": "XOR Queries of a Subarray",
+      "slug": "xor-queries-of-a-subarray",
+      "rating": 1460,
+      "note": "Prefix XOR: xor(l..r) = px[r+1] ^ px[l]."
+     },
+     {
+      "id": 1588,
+      "title": "Sum of All Odd Length Subarrays",
+      "slug": "sum-of-all-odd-length-subarrays",
+      "rating": 1409,
+      "note": "Prefix sums + count how many odd-length subarrays include each element."
+     },
+     {
+      "id": 1590,
+      "title": "Make Sum Divisible by P",
+      "slug": "make-sum-divisible-by-p",
+      "rating": 2039,
+      "note": "Remove the shortest subarray so total % p == 0. It's prefix mod + a map of last indexes."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "binary-search",
+  "name": "Binary Search",
+  "idea": "If you can say \"everything left of here is NO, everything right is YES\", you can find the boundary in log time. The array doesn't have to be sorted.",
+  "triggers": [
+   "sorted data → search directly",
+   "\"min possible max\" or \"max possible min\" → binary search on the answer",
+   "rotated/peak/bitonic → compare with mid's neighbour or an end",
+   "check(x) is monotonic → search over x"
+  ],
+  "stages": [
+   {
+    "name": "Classic search",
+    "exam": [
+     {
+      "id": 704,
+      "title": "Binary Search",
+      "slug": "binary-search",
+      "rating": 0,
+      "note": "lo/hi/mid. Decide your loop invariant and stick to it."
+     },
+     {
+      "id": 35,
+      "title": "Search Insert Position",
+      "slug": "search-insert-position",
+      "rating": 0,
+      "note": "Return lo when the loop ends: the first index ≥ target."
+     },
+     {
+      "id": 278,
+      "title": "First Bad Version",
+      "slug": "first-bad-version",
+      "rating": 0,
+      "note": "Find the first true in F F F T T T."
+     },
+     {
+      "id": 374,
+      "title": "Guess Number Higher or Lower",
+      "slug": "guess-number-higher-or-lower",
+      "rating": 0,
+      "note": "Same loop driven by an API."
+     },
+     {
+      "id": 69,
+      "title": "Sqrt(x)",
+      "slug": "sqrtx",
+      "rating": 0,
+      "note": "Search the answer space 0..x: the biggest m with m·m ≤ x."
+     },
+     {
+      "id": 367,
+      "title": "Valid Perfect Square",
+      "slug": "valid-perfect-square",
+      "rating": 0,
+      "note": "The same search with an exact check."
+     }
+    ]
+   },
+   {
+    "name": "Finding boundaries",
+    "exam": [
+     {
+      "id": 34,
+      "title": "Find First and Last Position of Element in Sorted Array",
+      "slug": "find-first-and-last-position-of-element-in-sorted-array",
+      "rating": 0,
+      "note": "Two searches: first ≥ target and first > target."
+     },
+     {
+      "id": 744,
+      "title": "Find Smallest Letter Greater Than Target",
+      "slug": "find-smallest-letter-greater-than-target",
+      "rating": 0,
+      "note": "First letter > target, wrap around."
+     },
+     {
+      "id": 1351,
+      "title": "Count Negative Numbers in a Sorted Matrix",
+      "slug": "count-negative-numbers-in-a-sorted-matrix",
+      "rating": 1139,
+      "note": "Per row, find the boundary of negatives."
+     },
+     {
+      "id": 2529,
+      "title": "Maximum Count of Positive Integer and Negative Integer",
+      "slug": "maximum-count-of-positive-integer-and-negative-integer",
+      "rating": 1196,
+      "note": "Count negatives and positives using two boundaries."
+     }
+    ]
+   },
+   {
+    "name": "Hidden order",
+    "exam": [
+     {
+      "id": 852,
+      "title": "Peak Index in a Mountain Array",
+      "slug": "peak-index-in-a-mountain-array",
+      "rating": 1182,
+      "note": "Compare mid with mid+1: going up or going down?"
+     },
+     {
+      "id": 162,
+      "title": "Find Peak Element",
+      "slug": "find-peak-element",
+      "rating": 0,
+      "note": "The same idea as 852. Some peak always exists in the uphill direction."
+     },
+     {
+      "id": 153,
+      "title": "Find Minimum in Rotated Sorted Array",
+      "slug": "find-minimum-in-rotated-sorted-array",
+      "rating": 0,
+      "note": "Compare mid with the right end to know which half is sorted."
+     },
+     {
+      "id": 33,
+      "title": "Search in Rotated Sorted Array",
+      "slug": "search-in-rotated-sorted-array",
+      "rating": 0,
+      "note": "Find the sorted half, then check whether target is in it."
+     },
+     {
+      "id": 81,
+      "title": "Search in Rotated Sorted Array II",
+      "slug": "search-in-rotated-sorted-array-ii",
+      "rating": 0,
+      "note": "Duplicates break the 153 rule. Shrink hi when equal."
+     },
+     {
+      "id": 540,
+      "title": "Single Element in a Sorted Array",
+      "slug": "dsingle-element-in-a-sorted-array",
+      "rating": 0,
+      "note": "Pairs line up on even indexes until the single element appears."
+     },
+     {
+      "id": 74,
+      "title": "Search a 2D Matrix",
+      "slug": "search-a-2d-matrix",
+      "rating": 0,
+      "note": "Treat the matrix as one sorted array: index → (i // cols, i % cols)."
+     },
+     {
+      "id": 240,
+      "title": "Search a 2D Matrix II",
+      "slug": "search-a-2d-matrix-ii",
+      "rating": 0,
+      "note": "Start at the top-right corner: each comparison removes a row or a column."
+     }
+    ]
+   },
+   {
+    "name": "Binary search on the answer",
+    "exam": [
+     {
+      "id": 875,
+      "title": "Koko Eating Bananas",
+      "slug": "koko-eating-bananas",
+      "rating": 1766,
+      "note": "Guess a speed. Can Koko finish? Faster is always ok, so search the speed."
+     },
+     {
+      "id": 1283,
+      "title": "Find the Smallest Divisor Given a Threshold",
+      "slug": "find-the-smallest-divisor-given-a-threshold",
+      "rating": 1542,
+      "note": "The same shape as Koko with divisors."
+     },
+     {
+      "id": 1011,
+      "title": "Capacity To Ship Packages Within D Days",
+      "slug": "capacity-to-ship-packages-within-d-days",
+      "rating": 1725,
+      "note": "Guess the capacity, simulate greedily in days."
+     },
+     {
+      "id": 1482,
+      "title": "Minimum Number of Days to Make m Bouquets",
+      "slug": "minimum-number-of-days-to-make-m-bouquets",
+      "rating": 1946,
+      "note": "Guess the day, count bouquets that are ready."
+     },
+     {
+      "id": 2226,
+      "title": "Maximum Candies Allocated to K Children",
+      "slug": "maximum-candies-allocated-to-k-children",
+      "rating": 1646,
+      "note": "Guess the pile size, count children served."
+     },
+     {
+      "id": 2064,
+      "title": "Minimized Maximum of Products Distributed to Any Store",
+      "slug": "minimized-maximum-of-products-distributed-to-any-store",
+      "rating": 1886,
+      "note": "Guess the max per store, count stores needed."
+     },
+     {
+      "id": 1552,
+      "title": "Magnetic Force Between Two Balls",
+      "slug": "magnetic-force-between-two-balls",
+      "rating": 1920,
+      "note": "Max-min: guess the gap, greedily place the balls."
+     },
+     {
+      "id": 410,
+      "title": "Split Array Largest Sum",
+      "slug": "split-array-largest-sum",
+      "rating": 0,
+      "note": "Guess the largest sum, greedily count pieces. (1011 in disguise.)"
+     },
+     {
+      "id": 1898,
+      "title": "Maximum Number of Removable Characters",
+      "slug": "maximum-number-of-removable-characters",
+      "rating": 1913,
+      "note": "Guess how many removals, then check the subsequence."
+     },
+     {
+      "id": 2141,
+      "title": "Maximum Running Time of N Computers",
+      "slug": "maximum-running-time-of-n-computers",
+      "rating": 2265,
+      "note": "Guess the running time, check total battery ≥ n × time."
+     }
+    ]
+   },
+   {
+    "name": "Harder searches",
+    "exam": [
+     {
+      "id": 378,
+      "title": "Kth Smallest Element in a Sorted Matrix",
+      "slug": "kth-smallest-element-in-a-sorted-matrix",
+      "rating": 0,
+      "note": "Search on value, count elements ≤ mid with the 240 walk."
+     },
+     {
+      "id": 668,
+      "title": "Kth Smallest Number in Multiplication Table",
+      "slug": "kth-smallest-number-in-multiplication-table",
+      "rating": 0,
+      "note": "Count numbers ≤ mid in the multiplication table: row by row."
+     },
+     {
+      "id": 719,
+      "title": "Find K-th Smallest Pair Distance",
+      "slug": "find-k-th-smallest-pair-distance",
+      "rating": 0,
+      "note": "Search on distance, count pairs with a sliding window."
+     },
+     {
+      "id": 4,
+      "title": "Median of Two Sorted Arrays",
+      "slug": "median-of-two-sorted-arrays",
+      "rating": 0,
+      "note": "Binary search on the partition of the smaller array."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "stack",
+  "name": "Stack & Monotonic Stack",
+  "idea": "A stack remembers the unfinished things, latest first. A monotonic stack keeps only candidates that could still be someone's answer.",
+  "triggers": [
+   "matching brackets / undo → stack",
+   "\"next greater/smaller element\" → monotonic stack",
+   "nested structure like 3[a2[c]] → stack of states",
+   "\"largest rectangle\", \"sum of subarray minimums\" → for each element, how far does it reach left and right"
+  ],
+  "stages": [
+   {
+    "name": "Matching & cancelling",
+    "exam": [
+     {
+      "id": 20,
+      "title": "Valid Parentheses",
+      "slug": "valid-parentheses",
+      "rating": 0,
+      "note": "Push openers, pop on closers. Top must match."
+     },
+     {
+      "id": 1047,
+      "title": "Remove All Adjacent Duplicates In String",
+      "slug": "remove-all-adjacent-duplicates-in-string",
+      "rating": 1286,
+      "note": "The stack is the answer: push, or pop if equal to the top."
+     },
+     {
+      "id": 2390,
+      "title": "Removing Stars From a String",
+      "slug": "removing-stars-from-a-string",
+      "rating": 1348,
+      "note": "Star = pop."
+     },
+     {
+      "id": 1544,
+      "title": "Make The String Great",
+      "slug": "make-the-string-great",
+      "rating": 1344,
+      "note": "Pop when the top is the same letter in the other case."
+     },
+     {
+      "id": 921,
+      "title": "Minimum Add to Make Parentheses Valid",
+      "slug": "minimum-add-to-make-parentheses-valid",
+      "rating": 1242,
+      "note": "Count unmatched openers and closers."
+     },
+     {
+      "id": 1249,
+      "title": "Minimum Remove to Make Valid Parentheses",
+      "slug": "minimum-remove-to-make-valid-parentheses",
+      "rating": 1657,
+      "note": "Remember the indexes of unmatched brackets, then delete them."
+     }
+    ]
+   },
+   {
+    "name": "Stack as state",
+    "exam": [
+     {
+      "id": 155,
+      "title": "Min Stack",
+      "slug": "min-stack",
+      "rating": 0,
+      "note": "Store (value, min so far) on each level."
+     },
+     {
+      "id": 150,
+      "title": "Evaluate Reverse Polish Notation",
+      "slug": "evaluate-reverse-polish-notation",
+      "rating": 0,
+      "note": "Numbers push. Operators pop two and push the result."
+     },
+     {
+      "id": 71,
+      "title": "Simplify Path",
+      "slug": "simplify-path",
+      "rating": 0,
+      "note": "Split by \"/\", \"..\" pops, \".\" is ignored."
+     },
+     {
+      "id": 735,
+      "title": "Asteroid Collision",
+      "slug": "asteroid-collision",
+      "rating": 0,
+      "note": "Collide while the top moves right and the new one moves left."
+     },
+     {
+      "id": 394,
+      "title": "Decode String",
+      "slug": "decode-string",
+      "rating": 0,
+      "note": "Push (current string, repeat count) when you see \"[\". Pop on \"]\"."
+     },
+     {
+      "id": 1209,
+      "title": "Remove All Adjacent Duplicates in String II",
+      "slug": "remove-all-adjacent-duplicates-in-string-ii",
+      "rating": 1542,
+      "note": "Store (char, count) on the stack."
+     },
+     {
+      "id": 856,
+      "title": "Score of Parentheses",
+      "slug": "score-of-parentheses",
+      "rating": 1563,
+      "note": "Push a 0 for each level. On \")\", score this level and add it to the parent."
+     }
+    ]
+   },
+   {
+    "name": "Monotonic stack: next greater / smaller",
+    "exam": [
+     {
+      "id": 496,
+      "title": "Next Greater Element I",
+      "slug": "next-greater-element-i",
+      "rating": 0,
+      "note": "Pop smaller elements: the new element is their next greater."
+     },
+     {
+      "id": 739,
+      "title": "Daily Temperatures",
+      "slug": "daily-temperatures",
+      "rating": 0,
+      "note": "The same, storing indexes to compute the distance."
+     },
+     {
+      "id": 503,
+      "title": "Next Greater Element II",
+      "slug": "next-greater-element-ii",
+      "rating": 0,
+      "note": "Circular: loop twice over the array."
+     },
+     {
+      "id": 1475,
+      "title": "Final Prices With a Special Discount in a Shop",
+      "slug": "final-prices-with-a-special-discount-in-a-shop",
+      "rating": 1212,
+      "note": "Next smaller-or-equal element to the right."
+     },
+     {
+      "id": 901,
+      "title": "Online Stock Span",
+      "slug": "online-stock-span",
+      "rating": 1709,
+      "note": "Store (price, span) and merge popped spans."
+     },
+     {
+      "id": 853,
+      "title": "Car Fleet",
+      "slug": "car-fleet",
+      "rating": 1678,
+      "note": "Sort by position. A slower car ahead blocks the cars behind it."
+     },
+     {
+      "id": 402,
+      "title": "Remove K Digits",
+      "slug": "remove-k-digits",
+      "rating": 0,
+      "note": "Keep the stack increasing, pop while you still have deletions."
+     },
+     {
+      "id": 316,
+      "title": "Remove Duplicate Letters",
+      "slug": "remove-duplicate-letters",
+      "rating": 0,
+      "note": "Like 402, but you can only pop a letter if it appears again later."
+     }
+    ]
+   },
+   {
+    "name": "Contribution of each element",
+    "exam": [
+     {
+      "id": 84,
+      "title": "Largest Rectangle in Histogram",
+      "slug": "largest-rectangle-in-histogram",
+      "rating": 0,
+      "note": "For each bar: how far can it extend left and right? Monotonic stack finds both."
+     },
+     {
+      "id": 85,
+      "title": "Maximal Rectangle",
+      "slug": "maximal-rectangle",
+      "rating": 0,
+      "note": "Each row is a histogram. Run 84 per row."
+     },
+     {
+      "id": 907,
+      "title": "Sum of Subarray Minimums",
+      "slug": "sum-of-subarray-minimums",
+      "rating": 1976,
+      "note": "Each element is the minimum of (left reach × right reach) subarrays."
+     },
+     {
+      "id": 2104,
+      "title": "Sum of Subarray Ranges",
+      "slug": "sum-of-subarray-ranges",
+      "rating": 1504,
+      "note": "Sum of maxima − sum of minima, both with 907's technique."
+     },
+     {
+      "id": 456,
+      "title": "132 Pattern",
+      "slug": "132-pattern",
+      "rating": 0,
+      "note": "Scan from the right keeping the best \"2\" with a stack."
+     }
+    ]
+   },
+   {
+    "name": "Expression parsing",
+    "exam": [
+     {
+      "id": 227,
+      "title": "Basic Calculator II",
+      "slug": "basic-calculator-ii",
+      "rating": 0,
+      "note": "Apply × and ÷ immediately, push + and − terms."
+     },
+     {
+      "id": 224,
+      "title": "Basic Calculator",
+      "slug": "basic-calculator",
+      "rating": 0,
+      "note": "Parentheses: push the running result and sign, pop on \")\"."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "linked-list",
+  "name": "Linked List",
+  "idea": "Pointers instead of indexes. Most problems are \"keep the right references before you overwrite one\".",
+  "triggers": [
+   "middle / cycle / nth from end → slow & fast pointers",
+   "reverse a part → three pointers prev/cur/next",
+   "building a new list → dummy head",
+   "O(1) access by key + order → hashmap + doubly linked list"
+  ],
+  "stages": [
+   {
+    "name": "Pointer basics",
+    "exam": [
+     {
+      "id": 206,
+      "title": "Reverse Linked List",
+      "slug": "reverse-linked-list",
+      "rating": 0,
+      "note": "prev / cur / next. Draw it on paper first."
+     },
+     {
+      "id": 21,
+      "title": "Merge Two Sorted Lists",
+      "slug": "merge-two-sorted-lists",
+      "rating": 0,
+      "note": "A dummy head removes the \"which list starts?\" special case."
+     },
+     {
+      "id": 203,
+      "title": "Remove Linked List Elements",
+      "slug": "remove-linked-list-elements",
+      "rating": 0,
+      "note": "A dummy head again, so you can delete the first node too."
+     },
+     {
+      "id": 83,
+      "title": "Remove Duplicates from Sorted List",
+      "slug": "remove-duplicates-from-sorted-list",
+      "rating": 0,
+      "note": "Skip next while it has the same value."
+     },
+     {
+      "id": 876,
+      "title": "Middle of the Linked List",
+      "slug": "middle-of-the-linked-list",
+      "rating": 1232,
+      "note": "Slow moves 1, fast moves 2. When fast ends, slow is in the middle."
+     },
+     {
+      "id": 141,
+      "title": "Linked List Cycle",
+      "slug": "linked-list-cycle",
+      "rating": 0,
+      "note": "Slow and fast meet if there is a cycle."
+     }
+    ]
+   },
+   {
+    "name": "Pointer tricks",
+    "exam": [
+     {
+      "id": 19,
+      "title": "Remove Nth Node From End of List",
+      "slug": "remove-nth-node-from-end-of-list",
+      "rating": 0,
+      "note": "Move fast n steps ahead, then move both together."
+     },
+     {
+      "id": 2095,
+      "title": "Delete the Middle Node of a Linked List",
+      "slug": "delete-the-middle-node-of-a-linked-list",
+      "rating": 1324,
+      "note": "Middle-finding with one step of delay, then delete."
+     },
+     {
+      "id": 160,
+      "title": "Intersection of Two Linked Lists",
+      "slug": "intersection-of-two-linked-lists",
+      "rating": 0,
+      "note": "Each pointer walks A then B, so both travel the same total length."
+     },
+     {
+      "id": 142,
+      "title": "Linked List Cycle II",
+      "slug": "linked-list-cycle-ii",
+      "rating": 0,
+      "note": "After they meet, restart one at the head: they meet again at the cycle start."
+     },
+     {
+      "id": 234,
+      "title": "Palindrome Linked List",
+      "slug": "palindrome-linked-list",
+      "rating": 0,
+      "note": "Find the middle, reverse the second half, compare."
+     },
+     {
+      "id": 328,
+      "title": "Odd Even Linked List",
+      "slug": "odd-even-linked-list",
+      "rating": 0,
+      "note": "Two chains (odd, even) and join them."
+     }
+    ]
+   },
+   {
+    "name": "Rewiring",
+    "exam": [
+     {
+      "id": 92,
+      "title": "Reverse Linked List II",
+      "slug": "reverse-linked-list-ii",
+      "rating": 0,
+      "note": "Reverse only positions left..right. Keep the node before the range."
+     },
+     {
+      "id": 24,
+      "title": "Swap Nodes in Pairs",
+      "slug": "swap-nodes-in-pairs",
+      "rating": 0,
+      "note": "Swap in pairs using a dummy head."
+     },
+     {
+      "id": 61,
+      "title": "Rotate List",
+      "slug": "rotate-list",
+      "rating": 0,
+      "note": "Make it a ring, then cut at the right place."
+     },
+     {
+      "id": 86,
+      "title": "Partition List",
+      "slug": "partition-list",
+      "rating": 0,
+      "note": "Two dummy lists: less than x and the rest."
+     },
+     {
+      "id": 143,
+      "title": "Reorder List",
+      "slug": "reorder-list",
+      "rating": 0,
+      "note": "Middle + reverse + merge alternately. Three skills combined."
+     },
+     {
+      "id": 82,
+      "title": "Remove Duplicates from Sorted List II",
+      "slug": "remove-duplicates-from-sorted-list-ii",
+      "rating": 0,
+      "note": "Skip whole runs of duplicates using a dummy head."
+     },
+     {
+      "id": 2,
+      "title": "Add Two Numbers",
+      "slug": "add-two-numbers",
+      "rating": 0,
+      "note": "Add digit by digit with a carry."
+     },
+     {
+      "id": 445,
+      "title": "Add Two Numbers II",
+      "slug": "add-two-numbers-ii",
+      "rating": 0,
+      "note": "Same addition, but digits are reversed: use stacks or reverse first."
+     }
+    ]
+   },
+   {
+    "name": "Harder lists",
+    "exam": [
+     {
+      "id": 138,
+      "title": "Copy List with Random Pointer",
+      "slug": "copy-list-with-random-pointer",
+      "rating": 0,
+      "note": "Map old nodes to new ones, or interleave copies in the list."
+     },
+     {
+      "id": 146,
+      "title": "LRU Cache",
+      "slug": "lru-cache",
+      "rating": 0,
+      "note": "Hashmap for lookup + doubly linked list for recency order."
+     },
+     {
+      "id": 148,
+      "title": "Sort List",
+      "slug": "sort-list",
+      "rating": 0,
+      "note": "Merge sort on a list: middle + sort halves + merge (21)."
+     },
+     {
+      "id": 23,
+      "title": "Merge k Sorted Lists",
+      "slug": "merge-k-sorted-lists",
+      "rating": 0,
+      "note": "Merge k lists with a min-heap, or merge pairs repeatedly."
+     },
+     {
+      "id": 25,
+      "title": "Reverse Nodes in k-Group",
+      "slug": "reverse-nodes-in-k-group",
+      "rating": 0,
+      "note": "Reverse k nodes at a time, link groups, keep the rest if shorter."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "trees",
+  "name": "Trees",
+  "idea": "Most tree problems are: \"what do I need from my left child and my right child to answer for myself?\"",
+  "triggers": [
+   "anything about every root-to-leaf path → DFS carrying state down",
+   "depth, height, diameter → DFS returning info up",
+   "per level / nearest → BFS with a queue",
+   "BST → inorder is sorted, go left or right",
+   "distance between nodes → treat the tree as a graph"
+  ],
+  "stages": [
+   {
+    "name": "Recursion basics",
+    "exam": [
+     {
+      "id": 104,
+      "title": "Maximum Depth of Binary Tree",
+      "slug": "maximum-depth-of-binary-tree",
+      "rating": 0,
+      "note": "depth(node) = 1 + max(depth(left), depth(right))."
+     },
+     {
+      "id": 226,
+      "title": "Invert Binary Tree",
+      "slug": "invert-binary-tree",
+      "rating": 0,
+      "note": "Swap children, recurse."
+     },
+     {
+      "id": 100,
+      "title": "Same Tree",
+      "slug": "same-tree",
+      "rating": 0,
+      "note": "Compare the two trees node by node."
+     },
+     {
+      "id": 101,
+      "title": "Symmetric Tree",
+      "slug": "symmetric-tree",
+      "rating": 0,
+      "note": "Is the left subtree a mirror of the right? A helper with two arguments."
+     },
+     {
+      "id": 111,
+      "title": "Minimum Depth of Binary Tree",
+      "slug": "minimum-depth-of-binary-tree",
+      "rating": 0,
+      "note": "Careful: a node with one child is not a leaf."
+     },
+     {
+      "id": 112,
+      "title": "Path Sum",
+      "slug": "path-sum",
+      "rating": 0,
+      "note": "Pass the remaining sum down."
+     },
+     {
+      "id": 110,
+      "title": "Balanced Binary Tree",
+      "slug": "balanced-binary-tree",
+      "rating": 0,
+      "note": "Return the height, or −1 to mean \"already unbalanced\"."
+     },
+     {
+      "id": 543,
+      "title": "Diameter of Binary Tree",
+      "slug": "diameter-of-binary-tree",
+      "rating": 0,
+      "note": "At each node, longest path = left height + right height. The answer is not what you return."
+     },
+     {
+      "id": 572,
+      "title": "Subtree of Another Tree",
+      "slug": "construct-string-from-binary-tree",
+      "rating": 0,
+      "note": "For each node, run \"same tree\" (100)."
+     }
+    ]
+   },
+   {
+    "name": "Level by level (BFS)",
+    "exam": [
+     {
+      "id": 102,
+      "title": "Binary Tree Level Order Traversal",
+      "slug": "binary-tree-level-order-traversal",
+      "rating": 0,
+      "note": "Queue, and process exactly len(queue) nodes per level."
+     },
+     {
+      "id": 637,
+      "title": "Average of Levels in Binary Tree",
+      "slug": "average-of-levels-in-binary-tree",
+      "rating": 0,
+      "note": "The same loop, average each level."
+     },
+     {
+      "id": 515,
+      "title": "Find Largest Value in Each Tree Row",
+      "slug": "find-largest-value-in-each-tree-row",
+      "rating": 0,
+      "note": "The same loop, max of each level."
+     },
+     {
+      "id": 199,
+      "title": "Binary Tree Right Side View",
+      "slug": "binary-tree-right-side-view",
+      "rating": 0,
+      "note": "The last node of each level."
+     },
+     {
+      "id": 103,
+      "title": "Binary Tree Zigzag Level Order Traversal",
+      "slug": "binary-tree-zigzag-level-order-traversal",
+      "rating": 0,
+      "note": "Level order, reversing every other level."
+     },
+     {
+      "id": 1161,
+      "title": "Maximum Level Sum of a Binary Tree",
+      "slug": "maximum-level-sum-of-a-binary-tree",
+      "rating": 1250,
+      "note": "Sum per level, keep the best."
+     },
+     {
+      "id": 662,
+      "title": "Maximum Width of Binary Tree",
+      "slug": "maximum-width-of-binary-tree",
+      "rating": 0,
+      "note": "Give nodes position indexes like a heap: 2i and 2i+1."
+     }
+    ]
+   },
+   {
+    "name": "Passing info up and down",
+    "exam": [
+     {
+      "id": 1448,
+      "title": "Count Good Nodes in Binary Tree",
+      "slug": "count-good-nodes-in-binary-tree",
+      "rating": 1360,
+      "note": "Pass the max so far down the path."
+     },
+     {
+      "id": 129,
+      "title": "Sum Root to Leaf Numbers",
+      "slug": "sum-root-to-leaf-numbers",
+      "rating": 0,
+      "note": "Pass the number built so far down."
+     },
+     {
+      "id": 113,
+      "title": "Path Sum II",
+      "slug": "path-sum-ii",
+      "rating": 0,
+      "note": "Backtracking on a tree: push, recurse, pop."
+     },
+     {
+      "id": 437,
+      "title": "Path Sum III",
+      "slug": "path-sum-iii",
+      "rating": 0,
+      "note": "Prefix sums along the current path (560 on a tree)."
+     },
+     {
+      "id": 236,
+      "title": "Lowest Common Ancestor of a Binary Tree",
+      "slug": "lowest-common-ancestor-of-a-binary-tree",
+      "rating": 0,
+      "note": "If p and q come from different sides, this node is the LCA."
+     },
+     {
+      "id": 1372,
+      "title": "Longest ZigZag Path in a Binary Tree",
+      "slug": "longest-zigzag-path-in-a-binary-tree",
+      "rating": 1713,
+      "note": "Return the zigzag length for both directions."
+     },
+     {
+      "id": 124,
+      "title": "Binary Tree Maximum Path Sum",
+      "slug": "binary-tree-maximum-path-sum",
+      "rating": 0,
+      "note": "Return the best one-sided path. Update the answer with both sides."
+     }
+    ]
+   },
+   {
+    "name": "Binary search trees",
+    "exam": [
+     {
+      "id": 700,
+      "title": "Search in a Binary Search Tree",
+      "slug": "search-in-a-binary-search-tree",
+      "rating": 0,
+      "note": "Go left or right. No need to visit both."
+     },
+     {
+      "id": 701,
+      "title": "Insert into a Binary Search Tree",
+      "slug": "insert-into-a-binary-search-tree",
+      "rating": 0,
+      "note": "Walk down to the empty spot."
+     },
+     {
+      "id": 98,
+      "title": "Validate Binary Search Tree",
+      "slug": "validate-binary-search-tree",
+      "rating": 0,
+      "note": "Pass a (low, high) range down."
+     },
+     {
+      "id": 230,
+      "title": "Kth Smallest Element in a BST",
+      "slug": "kth-smallest-element-in-a-bst",
+      "rating": 0,
+      "note": "Inorder traversal visits values in sorted order."
+     },
+     {
+      "id": 108,
+      "title": "Convert Sorted Array to Binary Search Tree",
+      "slug": "convert-sorted-array-to-binary-search-tree",
+      "rating": 0,
+      "note": "The middle element becomes the root."
+     },
+     {
+      "id": 450,
+      "title": "Delete Node in a BST",
+      "slug": "delete-node-in-a-bst",
+      "rating": 0,
+      "note": "Three cases: no child, one child, two children (use the successor)."
+     },
+     {
+      "id": 173,
+      "title": "Binary Search Tree Iterator",
+      "slug": "binary-search-tree-iterator",
+      "rating": 0,
+      "note": "Inorder traversal with your own stack, one step at a time."
+     }
+    ]
+   },
+   {
+    "name": "Building & reshaping",
+    "exam": [
+     {
+      "id": 105,
+      "title": "Construct Binary Tree from Preorder and Inorder Traversal",
+      "slug": "construct-binary-tree-from-preorder-and-inorder-traversal",
+      "rating": 0,
+      "note": "Preorder gives the root, inorder splits left and right."
+     },
+     {
+      "id": 106,
+      "title": "Construct Binary Tree from Inorder and Postorder Traversal",
+      "slug": "construct-binary-tree-from-inorder-and-postorder-traversal",
+      "rating": 0,
+      "note": "The same with postorder (root is at the end)."
+     },
+     {
+      "id": 114,
+      "title": "Flatten Binary Tree to Linked List",
+      "slug": "flatten-binary-tree-to-linked-list",
+      "rating": 0,
+      "note": "Flatten: preorder order using right pointers."
+     },
+     {
+      "id": 116,
+      "title": "Populating Next Right Pointers in Each Node",
+      "slug": "populating-next-right-pointers-in-each-node",
+      "rating": 0,
+      "note": "Use the level you've already linked to link the next one."
+     },
+     {
+      "id": 297,
+      "title": "Serialize and Deserialize Binary Tree",
+      "slug": "serialize-and-deserialize-binary-tree",
+      "rating": 0,
+      "note": "Preorder with null markers, then rebuild recursively."
+     },
+     {
+      "id": 863,
+      "title": "All Nodes Distance K in Binary Tree",
+      "slug": "all-nodes-distance-k-in-binary-tree",
+      "rating": 1663,
+      "note": "Add parent links, then BFS from the target."
+     },
+     {
+      "id": 2385,
+      "title": "Amount of Time for Binary Tree to Be Infected",
+      "slug": "amount-of-time-for-binary-tree-to-be-infected",
+      "rating": 1711,
+      "note": "The same as 863: tree → graph, then BFS."
+     },
+     {
+      "id": 968,
+      "title": "Binary Tree Cameras",
+      "slug": "binary-tree-cameras",
+      "rating": 2124,
+      "note": "Each node returns a state: covered / has camera / needs cover."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "heap",
+  "name": "Heaps / Priority Queue",
+  "idea": "When you repeatedly need \"the current best\" while things are added and removed, a heap gives it in log time.",
+  "triggers": [
+   "k largest / k smallest / k closest → heap of size k",
+   "repeatedly take max and modify → max-heap simulation",
+   "median of a stream → two heaps",
+   "merge k sorted things → heap of heads",
+   "schedule by time, pick best available → sort by time + heap"
+  ],
+  "stages": [
+   {
+    "name": "Basic heap use",
+    "exam": [
+     {
+      "id": 1046,
+      "title": "Last Stone Weight",
+      "slug": "last-stone-weight",
+      "rating": 1173,
+      "note": "Simulate with a max-heap: pop two, push the difference."
+     },
+     {
+      "id": 2558,
+      "title": "Take Gifts From the Richest Pile",
+      "slug": "take-gifts-from-the-richest-pile",
+      "rating": 1277,
+      "note": "Pop the max, push sqrt, k times."
+     },
+     {
+      "id": 703,
+      "title": "Kth Largest Element in a Stream",
+      "slug": "kth-largest-element-in-a-stream",
+      "rating": 0,
+      "note": "Keep a min-heap of size k: its top is the kth largest."
+     },
+     {
+      "id": 215,
+      "title": "Kth Largest Element in an Array",
+      "slug": "kth-largest-element-in-an-array",
+      "rating": 0,
+      "note": "The same size-k heap (or quickselect)."
+     },
+     {
+      "id": 973,
+      "title": "K Closest Points to Origin",
+      "slug": "k-closest-points-to-origin",
+      "rating": 1214,
+      "note": "Max-heap of size k by distance."
+     },
+     {
+      "id": 1962,
+      "title": "Remove Stones to Minimize the Total",
+      "slug": "remove-stones-to-minimize-the-total",
+      "rating": 1419,
+      "note": "Greedily halve the largest pile."
+     }
+    ]
+   },
+   {
+    "name": "Greedy with a heap",
+    "exam": [
+     {
+      "id": 767,
+      "title": "Reorganize String",
+      "slug": "reorganize-string",
+      "rating": 1681,
+      "note": "Always place the most frequent char that isn't the last one placed."
+     },
+     {
+      "id": 1405,
+      "title": "Longest Happy String",
+      "slug": "longest-happy-string",
+      "rating": 1821,
+      "note": "The same idea with a limit of two in a row."
+     },
+     {
+      "id": 621,
+      "title": "Task Scheduler",
+      "slug": "task-scheduler",
+      "rating": 0,
+      "note": "Most frequent tasks first, with idle slots (or the formula)."
+     },
+     {
+      "id": 2208,
+      "title": "Minimum Operations to Halve Array Sum",
+      "slug": "minimum-operations-to-halve-array-sum",
+      "rating": 1550,
+      "note": "Always halve the current largest number: a max-heap greedy."
+     }
+    ]
+   },
+   {
+    "name": "Two heaps / k-way",
+    "exam": [
+     {
+      "id": 295,
+      "title": "Find Median from Data Stream",
+      "slug": "find-median-from-data-stream",
+      "rating": 0,
+      "note": "Max-heap for the lower half, min-heap for the upper half, balance sizes."
+     },
+     {
+      "id": 373,
+      "title": "Find K Pairs with Smallest Sums",
+      "slug": "find-k-pairs-with-smallest-sums",
+      "rating": 0,
+      "note": "Start with (i, 0) pairs, push the next j when you pop."
+     },
+     {
+      "id": 1675,
+      "title": "Minimize Deviation in Array",
+      "slug": "minimize-deviation-in-array",
+      "rating": 2533,
+      "note": "Make all numbers even-max, then shrink the max with a heap."
+     }
+    ]
+   },
+   {
+    "name": "Sort by time + heap",
+    "exam": [
+     {
+      "id": 1834,
+      "title": "Single-Threaded CPU",
+      "slug": "single-threaded-cpu",
+      "rating": 1798,
+      "note": "Sort by arrival. Add arrived tasks to the heap, pick the shortest."
+     },
+     {
+      "id": 2402,
+      "title": "Meeting Rooms III",
+      "slug": "meeting-rooms-iii",
+      "rating": 2093,
+      "note": "Two heaps: free rooms by number, busy rooms by end time."
+     },
+     {
+      "id": 1642,
+      "title": "Furthest Building You Can Reach",
+      "slug": "furthest-building-you-can-reach",
+      "rating": 1962,
+      "note": "Use ladders on the biggest climbs: a min-heap of ladder climbs."
+     },
+     {
+      "id": 871,
+      "title": "Minimum Number of Refueling Stops",
+      "slug": "minimum-number-of-refueling-stops",
+      "rating": 2074,
+      "note": "Pass stations, and only \"refuel\" from the biggest you've passed when needed."
+     },
+     {
+      "id": 502,
+      "title": "IPO",
+      "slug": "ipo",
+      "rating": 0,
+      "note": "Sort by capital. Unlock projects, take the best profit."
+     },
+     {
+      "id": 630,
+      "title": "Course Schedule III",
+      "slug": "course-schedule-iii",
+      "rating": 0,
+      "note": "Sort by deadline. If over time, drop the longest course taken."
+     },
+     {
+      "id": 2542,
+      "title": "Maximum Subsequence Score",
+      "slug": "maximum-subsequence-score",
+      "rating": 2056,
+      "note": "Sort by the multiplier, keep the k largest sums with a heap."
+     },
+     {
+      "id": 857,
+      "title": "Minimum Cost to Hire K Workers",
+      "slug": "minimum-cost-to-hire-k-workers",
+      "rating": 2260,
+      "note": "Sort by wage/quality ratio, keep the k smallest qualities."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "backtracking",
+  "name": "Backtracking",
+  "idea": "Build a choice step by step, undo it, try the next. The skill is drawing the decision tree first.",
+  "triggers": [
+   "\"all subsets/combinations/permutations\" → backtracking",
+   "n ≤ ~15 and \"every way\" → try everything with pruning",
+   "grid word path → DFS with visited marks undone after",
+   "duplicates in input → sort + skip equal siblings"
+  ],
+  "stages": [
+   {
+    "name": "Subsets",
+    "exam": [
+     {
+      "id": 78,
+      "title": "Subsets",
+      "slug": "subsets",
+      "rating": 0,
+      "note": "At each index: take it or skip it. That's the whole tree."
+     },
+     {
+      "id": 90,
+      "title": "Subsets II",
+      "slug": "subsets-ii",
+      "rating": 0,
+      "note": "Sort, then skip equal values at the same tree level."
+     },
+     {
+      "id": 1863,
+      "title": "Sum of All Subset XOR Totals",
+      "slug": "sum-of-all-subset-xor-totals",
+      "rating": 1372,
+      "note": "Subsets again, but carry the XOR."
+     }
+    ]
+   },
+   {
+    "name": "Combinations",
+    "exam": [
+     {
+      "id": 77,
+      "title": "Combinations",
+      "slug": "combinations",
+      "rating": 0,
+      "note": "Choose k from n: start each level from the next number."
+     },
+     {
+      "id": 17,
+      "title": "Letter Combinations of a Phone Number",
+      "slug": "letter-combinations-of-a-phone-number",
+      "rating": 0,
+      "note": "One level per digit, branch over its letters."
+     },
+     {
+      "id": 39,
+      "title": "Combination Sum",
+      "slug": "combination-sum",
+      "rating": 0,
+      "note": "You may reuse a number: recurse from the same index."
+     },
+     {
+      "id": 40,
+      "title": "Combination Sum II",
+      "slug": "combination-sum-ii",
+      "rating": 0,
+      "note": "No reuse + duplicates: 90's skip rule with a target."
+     },
+     {
+      "id": 216,
+      "title": "Combination Sum III",
+      "slug": "combination-sum-iii",
+      "rating": 0,
+      "note": "Fixed count k and target sum together."
+     }
+    ]
+   },
+   {
+    "name": "Permutations",
+    "exam": [
+     {
+      "id": 46,
+      "title": "Permutations",
+      "slug": "permutations",
+      "rating": 0,
+      "note": "A used[] array: each level picks any unused number."
+     },
+     {
+      "id": 47,
+      "title": "Permutations II",
+      "slug": "permutations-ii",
+      "rating": 0,
+      "note": "Sort + skip a value if the same value before it is unused."
+     }
+    ]
+   },
+   {
+    "name": "Choices with constraints",
+    "exam": [
+     {
+      "id": 22,
+      "title": "Generate Parentheses",
+      "slug": "generate-parentheses",
+      "rating": 0,
+      "note": "Add \"(\" while opens < n, add \")\" while closes < opens."
+     },
+     {
+      "id": 131,
+      "title": "Palindrome Partitioning",
+      "slug": "palindrome-partitioning",
+      "rating": 0,
+      "note": "At each start index, try every palindromic prefix."
+     },
+     {
+      "id": 93,
+      "title": "Restore IP Addresses",
+      "slug": "restore-ip-addresses",
+      "rating": 0,
+      "note": "Each level takes 1–3 digits, and must be a valid octet."
+     },
+     {
+      "id": 79,
+      "title": "Word Search",
+      "slug": "word-search",
+      "rating": 0,
+      "note": "Grid DFS: mark visited, recurse, unmark."
+     },
+     {
+      "id": 1219,
+      "title": "Path with Maximum Gold",
+      "slug": "path-with-maximum-gold",
+      "rating": 1663,
+      "note": "79 again, but you maximise the gold collected."
+     },
+     {
+      "id": 2305,
+      "title": "Fair Distribution of Cookies",
+      "slug": "fair-distribution-of-cookies",
+      "rating": 1887,
+      "note": "Give each cookie bag to some child. Prune with the current best."
+     }
+    ]
+   },
+   {
+    "name": "Hard search",
+    "exam": [
+     {
+      "id": 51,
+      "title": "N-Queens",
+      "slug": "n-queens",
+      "rating": 0,
+      "note": "Place one queen per row. Track columns and both diagonals."
+     },
+     {
+      "id": 52,
+      "title": "N-Queens II",
+      "slug": "n-queens-ii",
+      "rating": 0,
+      "note": "The same search, but count."
+     },
+     {
+      "id": 698,
+      "title": "Partition to K Equal Sum Subsets",
+      "slug": "partition-to-k-equal-sum-subsets",
+      "rating": 0,
+      "note": "Fill k buckets one at a time. Sort descending and prune hard."
+     },
+     {
+      "id": 473,
+      "title": "Matchsticks to Square",
+      "slug": "matchsticks-to-square",
+      "rating": 0,
+      "note": "698 with k = 4."
+     },
+     {
+      "id": 37,
+      "title": "Sudoku Solver",
+      "slug": "sudoku-solver",
+      "rating": 0,
+      "note": "Try digits in empty cells with row/column/box sets."
+     },
+     {
+      "id": 212,
+      "title": "Word Search II",
+      "slug": "word-search-ii",
+      "rating": 0,
+      "note": "Word Search with a trie so all words are searched at once."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "graphs",
+  "name": "Graphs: BFS & DFS",
+  "idea": "A grid or a list of connections is a graph. DFS explores everything connected. BFS explores in distance order, so it finds shortest paths when every step costs 1.",
+  "triggers": [
+   "islands / regions / connected parts → DFS or BFS flood fill",
+   "minimum steps, each step costs 1 → BFS",
+   "spreading from many sources at once → multi-source BFS",
+   "\"is it possible to split into two groups\" → bipartite colouring",
+   "state = position + extra info → BFS over (position, info)"
+  ],
+  "stages": [
+   {
+    "name": "Grid flood fill",
+    "exam": [
+     {
+      "id": 733,
+      "title": "Flood Fill",
+      "slug": "flood-fill",
+      "rating": 0,
+      "note": "DFS from one cell, change matching neighbours."
+     },
+     {
+      "id": 200,
+      "title": "Number of Islands",
+      "slug": "number-of-islands",
+      "rating": 0,
+      "note": "For each unvisited land cell: count it and flood the whole island."
+     },
+     {
+      "id": 695,
+      "title": "Max Area of Island",
+      "slug": "max-area-of-island",
+      "rating": 0,
+      "note": "The same, but return the size from the flood."
+     },
+     {
+      "id": 463,
+      "title": "Island Perimeter",
+      "slug": "island-perimeter",
+      "rating": 0,
+      "note": "Count edges that touch water or the border."
+     },
+     {
+      "id": 1020,
+      "title": "Number of Enclaves",
+      "slug": "number-of-enclaves",
+      "rating": 1615,
+      "note": "Flood from the border first, then count what's left."
+     },
+     {
+      "id": 1254,
+      "title": "Number of Closed Islands",
+      "slug": "number-of-closed-islands",
+      "rating": 1659,
+      "note": "The same border trick: islands touching the border don't count."
+     },
+     {
+      "id": 130,
+      "title": "Surrounded Regions",
+      "slug": "surrounded-regions",
+      "rating": 0,
+      "note": "Mark border-connected O's as safe, flip the rest."
+     },
+     {
+      "id": 417,
+      "title": "Pacific Atlantic Water Flow",
+      "slug": "pacific-atlantic-water-flow",
+      "rating": 0,
+      "note": "Flood backwards from each ocean, then intersect."
+     }
+    ]
+   },
+   {
+    "name": "Graph traversal",
+    "exam": [
+     {
+      "id": 1971,
+      "title": "Find if Path Exists in Graph",
+      "slug": "find-if-path-exists-in-graph",
+      "rating": 0,
+      "note": "Build an adjacency list, then DFS/BFS from the source."
+     },
+     {
+      "id": 997,
+      "title": "Find the Town Judge",
+      "slug": "find-the-town-judge",
+      "rating": 1202,
+      "note": "In-degree and out-degree are enough. No traversal needed."
+     },
+     {
+      "id": 841,
+      "title": "Keys and Rooms",
+      "slug": "keys-and-rooms",
+      "rating": 1412,
+      "note": "DFS from room 0 and check everything was visited."
+     },
+     {
+      "id": 547,
+      "title": "Number of Provinces",
+      "slug": "number-of-provinces",
+      "rating": 0,
+      "note": "Count connected components."
+     },
+     {
+      "id": 1466,
+      "title": "Reorder Routes to Make All Paths Lead to the City Zero",
+      "slug": "reorder-routes-to-make-all-paths-lead-to-the-city-zero",
+      "rating": 1634,
+      "note": "Store edge directions, count edges pointing away from 0."
+     },
+     {
+      "id": 133,
+      "title": "Clone Graph",
+      "slug": "clone-graph",
+      "rating": 0,
+      "note": "Map old node → new node while you DFS."
+     }
+    ]
+   },
+   {
+    "name": "BFS shortest path",
+    "exam": [
+     {
+      "id": 994,
+      "title": "Rotting Oranges",
+      "slug": "rotting-oranges",
+      "rating": 1433,
+      "note": "Multi-source BFS: start the queue with all rotten oranges."
+     },
+     {
+      "id": 542,
+      "title": "01 Matrix",
+      "slug": "01-matrix",
+      "rating": 0,
+      "note": "Multi-source BFS from all zeros."
+     },
+     {
+      "id": 1091,
+      "title": "Shortest Path in Binary Matrix",
+      "slug": "shortest-path-in-binary-matrix",
+      "rating": 1658,
+      "note": "BFS on a grid with 8 directions."
+     },
+     {
+      "id": 1926,
+      "title": "Nearest Exit from Entrance in Maze",
+      "slug": "nearest-exit-from-entrance-in-maze",
+      "rating": 1638,
+      "note": "BFS until you reach a border cell."
+     },
+     {
+      "id": 752,
+      "title": "Open the Lock",
+      "slug": "open-the-lock",
+      "rating": 1878,
+      "note": "Each state is a 4-digit string. Neighbours turn one wheel."
+     },
+     {
+      "id": 433,
+      "title": "Minimum Genetic Mutation",
+      "slug": "minimum-genetic-mutation",
+      "rating": 0,
+      "note": "The same as 752 with genes."
+     },
+     {
+      "id": 127,
+      "title": "Word Ladder",
+      "slug": "word-ladder",
+      "rating": 0,
+      "note": "The same shape with words. Use wildcard keys to find neighbours fast."
+     },
+     {
+      "id": 909,
+      "title": "Snakes and Ladders",
+      "slug": "snakes-and-ladders",
+      "rating": 2020,
+      "note": "Turn the board into numbers, then BFS over squares."
+     }
+    ]
+   },
+   {
+    "name": "Colouring & cycles",
+    "exam": [
+     {
+      "id": 785,
+      "title": "Is Graph Bipartite?",
+      "slug": "is-graph-bipartite",
+      "rating": 1625,
+      "note": "Colour with BFS: a neighbour with the same colour means not bipartite."
+     },
+     {
+      "id": 886,
+      "title": "Possible Bipartition",
+      "slug": "possible-bipartition",
+      "rating": 1795,
+      "note": "Build the graph from dislikes, then run 785."
+     },
+     {
+      "id": 802,
+      "title": "Find Eventual Safe States",
+      "slug": "find-eventual-safe-states",
+      "rating": 1962,
+      "note": "Safe = cannot reach a cycle. Use 3 colours or reverse topological order."
+     }
+    ]
+   },
+   {
+    "name": "BFS over richer states",
+    "exam": [
+     {
+      "id": 1293,
+      "title": "Shortest Path in a Grid with Obstacles Elimination",
+      "slug": "shortest-path-in-a-grid-with-obstacles-elimination",
+      "rating": 1967,
+      "note": "The state is (row, col, removals left)."
+     },
+     {
+      "id": 864,
+      "title": "Shortest Path to Get All Keys",
+      "slug": "shortest-path-to-get-all-keys",
+      "rating": 2259,
+      "note": "The state is (row, col, keys held as a bitmask)."
+     },
+     {
+      "id": 847,
+      "title": "Shortest Path Visiting All Nodes",
+      "slug": "shortest-path-visiting-all-nodes",
+      "rating": 2201,
+      "note": "The state is (node, set of visited nodes as a bitmask)."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "advanced-graphs",
+  "name": "Topological Sort, Union-Find, Dijkstra",
+  "idea": "Three graph tools: order things with dependencies, merge groups quickly, find cheapest paths when steps have different costs.",
+  "triggers": [
+   "prerequisites / \"order of tasks\" → topological sort",
+   "\"are these connected?\" with edges added over time → union-find",
+   "weighted shortest path → Dijkstra",
+   "cheapest network connecting everything → minimum spanning tree"
+  ],
+  "stages": [
+   {
+    "name": "Topological sort",
+    "exam": [
+     {
+      "id": 207,
+      "title": "Course Schedule",
+      "slug": "course-schedule",
+      "rating": 0,
+      "note": "Kahn's algorithm: repeatedly take nodes with in-degree 0. Leftovers mean a cycle."
+     },
+     {
+      "id": 210,
+      "title": "Course Schedule II",
+      "slug": "course-schedule-ii",
+      "rating": 0,
+      "note": "The same, and record the order."
+     },
+     {
+      "id": 2115,
+      "title": "Find All Possible Recipes from Given Supplies",
+      "slug": "find-all-possible-recipes-from-given-supplies",
+      "rating": 1679,
+      "note": "Recipes depend on ingredients. Topological sort on names."
+     },
+     {
+      "id": 1462,
+      "title": "Course Schedule IV",
+      "slug": "course-schedule-iv",
+      "rating": 1693,
+      "note": "Topological order + propagate \"reachable\" sets."
+     },
+     {
+      "id": 310,
+      "title": "Minimum Height Trees",
+      "slug": "minimum-height-trees",
+      "rating": 0,
+      "note": "Peel leaves layer by layer. The last layer is the answer."
+     },
+     {
+      "id": 329,
+      "title": "Longest Increasing Path in a Matrix",
+      "slug": "longest-increasing-path-in-a-matrix",
+      "rating": 0,
+      "note": "DFS with memo on the grid. Increasing paths form a DAG."
+     }
+    ]
+   },
+   {
+    "name": "Union-find",
+    "exam": [
+     {
+      "id": 684,
+      "title": "Redundant Connection",
+      "slug": "redundant-connection",
+      "rating": 0,
+      "note": "Add edges one by one: the first one joining an existing group is the answer."
+     },
+     {
+      "id": 1319,
+      "title": "Number of Operations to Make Network Connected",
+      "slug": "number-of-operations-to-make-network-connected",
+      "rating": 1633,
+      "note": "Components − 1 cables needed, if there are enough cables."
+     },
+     {
+      "id": 990,
+      "title": "Satisfiability of Equality Equations",
+      "slug": "satisfiability-of-equality-equations",
+      "rating": 1638,
+      "note": "Union all \"==\" first, then check \"!=\"."
+     },
+     {
+      "id": 947,
+      "title": "Most Stones Removed with Same Row or Column",
+      "slug": "most-stones-removed-with-same-row-or-column",
+      "rating": 2035,
+      "note": "Union stones in the same row or column. Answer = stones − groups."
+     },
+     {
+      "id": 721,
+      "title": "Accounts Merge",
+      "slug": "accounts-merge",
+      "rating": 0,
+      "note": "Union accounts that share an email."
+     },
+     {
+      "id": 1202,
+      "title": "Smallest String With Swaps",
+      "slug": "smallest-string-with-swaps",
+      "rating": 1855,
+      "note": "Union swappable indexes, sort the characters inside each group."
+     }
+    ]
+   },
+   {
+    "name": "Dijkstra",
+    "exam": [
+     {
+      "id": 743,
+      "title": "Network Delay Time",
+      "slug": "network-delay-time",
+      "rating": 0,
+      "note": "The template: a min-heap of (distance, node)."
+     },
+     {
+      "id": 1514,
+      "title": "Path with Maximum Probability",
+      "slug": "path-with-maximum-probability",
+      "rating": 1846,
+      "note": "Maximise probability: a max-heap version."
+     },
+     {
+      "id": 1631,
+      "title": "Path With Minimum Effort",
+      "slug": "path-with-minimum-effort",
+      "rating": 1948,
+      "note": "The path cost is the max step, not the sum. Dijkstra still works."
+     },
+     {
+      "id": 778,
+      "title": "Swim in Rising Water",
+      "slug": "swim-in-rising-water",
+      "rating": 2097,
+      "note": "The same shape as 1631 with time."
+     },
+     {
+      "id": 787,
+      "title": "Cheapest Flights Within K Stops",
+      "slug": "cheapest-flights-within-k-stops",
+      "rating": 1786,
+      "note": "At most k stops: Bellman-Ford with k+1 rounds."
+     },
+     {
+      "id": 1976,
+      "title": "Number of Ways to Arrive at Destination",
+      "slug": "number-of-ways-to-arrive-at-destination",
+      "rating": 2095,
+      "note": "Dijkstra + count the ways to reach each node at its best distance."
+     }
+    ]
+   },
+   {
+    "name": "Spanning trees & more",
+    "exam": [
+     {
+      "id": 1584,
+      "title": "Min Cost to Connect All Points",
+      "slug": "min-cost-to-connect-all-points",
+      "rating": 1858,
+      "note": "Connect all points cheaply: Prim's or Kruskal's."
+     },
+     {
+      "id": 1489,
+      "title": "Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree",
+      "slug": "find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree",
+      "rating": 2572,
+      "note": "Run Kruskal's with an edge forced in or left out."
+     },
+     {
+      "id": 399,
+      "title": "Evaluate Division",
+      "slug": "evaluate-division",
+      "rating": 0,
+      "note": "A weighted graph of ratios. DFS multiplies along the path."
+     },
+     {
+      "id": 332,
+      "title": "Reconstruct Itinerary",
+      "slug": "reconstruct-itinerary",
+      "rating": 0,
+      "note": "Eulerian path: Hierholzer's algorithm with sorted neighbours."
+     },
+     {
+      "id": 1192,
+      "title": "Critical Connections in a Network",
+      "slug": "critical-connections-in-a-network",
+      "rating": 2085,
+      "note": "Bridges: Tarjan's low-link values."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "greedy",
+  "name": "Greedy & Intervals",
+  "idea": "Make the locally best choice, but only after you can explain why it never hurts. Intervals almost always start with sorting.",
+  "triggers": [
+   "overlapping intervals → sort by start (merge) or by end (choose the most)",
+   "\"minimum number of jumps/steps\" → track the farthest reach",
+   "pick a subset that maximises something → sort by the deciding attribute",
+   "\"max subarray sum\" → Kadane"
+  ],
+  "stages": [
+   {
+    "name": "Simple greedy",
+    "exam": [
+     {
+      "id": 455,
+      "title": "Assign Cookies",
+      "slug": "assign-cookies",
+      "rating": 0,
+      "note": "Sort both. Give the smallest cookie that satisfies the least greedy child."
+     },
+     {
+      "id": 860,
+      "title": "Lemonade Change",
+      "slug": "lemonade-change",
+      "rating": 1286,
+      "note": "Give change with the biggest bills first."
+     },
+     {
+      "id": 605,
+      "title": "Can Place Flowers",
+      "slug": "can-place-flowers",
+      "rating": 0,
+      "note": "Plant whenever both neighbours are empty."
+     },
+     {
+      "id": 1005,
+      "title": "Maximize Sum Of Array After K Negations",
+      "slug": "maximize-sum-of-array-after-k-negations",
+      "rating": 1275,
+      "note": "Flip the most negative numbers first."
+     },
+     {
+      "id": 121,
+      "title": "Best Time to Buy and Sell Stock",
+      "slug": "best-time-to-buy-and-sell-stock",
+      "rating": 0,
+      "note": "Track the lowest price so far."
+     },
+     {
+      "id": 122,
+      "title": "Best Time to Buy and Sell Stock II",
+      "slug": "best-time-to-buy-and-sell-stock-ii",
+      "rating": 0,
+      "note": "Take every upward step."
+     }
+    ]
+   },
+   {
+    "name": "Reach & balance",
+    "exam": [
+     {
+      "id": 55,
+      "title": "Jump Game",
+      "slug": "jump-game",
+      "rating": 0,
+      "note": "Track the farthest index you can reach."
+     },
+     {
+      "id": 45,
+      "title": "Jump Game II",
+      "slug": "jump-game-ii",
+      "rating": 0,
+      "note": "BFS by levels: each jump covers the range reachable from the current one."
+     },
+     {
+      "id": 134,
+      "title": "Gas Station",
+      "slug": "gas-station",
+      "rating": 0,
+      "note": "If the tank goes negative, the start must be after this point."
+     },
+     {
+      "id": 846,
+      "title": "Hand of Straights",
+      "slug": "hand-of-straights",
+      "rating": 1565,
+      "note": "Always start a group at the smallest card left."
+     },
+     {
+      "id": 678,
+      "title": "Valid Parenthesis String",
+      "slug": "valid-parenthesis-string",
+      "rating": 0,
+      "note": "Track the range of possible open-bracket counts."
+     },
+     {
+      "id": 135,
+      "title": "Candy",
+      "slug": "candy",
+      "rating": 0,
+      "note": "Two passes: left-to-right, then right-to-left."
+     }
+    ]
+   },
+   {
+    "name": "Intervals",
+    "exam": [
+     {
+      "id": 56,
+      "title": "Merge Intervals",
+      "slug": "merge-intervals",
+      "rating": 0,
+      "note": "Sort by start, extend the last merged interval or start a new one."
+     },
+     {
+      "id": 57,
+      "title": "Insert Interval",
+      "slug": "insert-interval",
+      "rating": 0,
+      "note": "Add the ones before, merge the overlapping ones, add the rest."
+     },
+     {
+      "id": 435,
+      "title": "Non-overlapping Intervals",
+      "slug": "non-overlapping-intervals",
+      "rating": 0,
+      "note": "Sort by end. Keep the interval that ends first."
+     },
+     {
+      "id": 452,
+      "title": "Minimum Number of Arrows to Burst Balloons",
+      "slug": "minimum-number-of-arrows-to-burst-balloons",
+      "rating": 0,
+      "note": "The same as 435: arrows = intervals you keep."
+     },
+     {
+      "id": 1288,
+      "title": "Remove Covered Intervals",
+      "slug": "remove-covered-intervals",
+      "rating": 1375,
+      "note": "Sort by start ascending, end descending."
+     },
+     {
+      "id": 2406,
+      "title": "Divide Intervals Into Minimum Number of Groups",
+      "slug": "divide-intervals-into-minimum-number-of-groups",
+      "rating": 1713,
+      "note": "Groups = the max number of intervals overlapping at once."
+     },
+     {
+      "id": 1851,
+      "title": "Minimum Interval to Include Each Query",
+      "slug": "minimum-interval-to-include-each-query",
+      "rating": 2286,
+      "note": "Sort queries and intervals, use a heap of interval sizes."
+     }
+    ]
+   },
+   {
+    "name": "Classic greedy proofs",
+    "exam": [
+     {
+      "id": 763,
+      "title": "Partition Labels",
+      "slug": "partition-labels",
+      "rating": 1443,
+      "note": "The last occurrence of each letter decides where a part can end."
+     },
+     {
+      "id": 53,
+      "title": "Maximum Subarray",
+      "slug": "maximum-subarray",
+      "rating": 0,
+      "note": "Kadane: drop the running sum when it goes negative."
+     },
+     {
+      "id": 918,
+      "title": "Maximum Sum Circular Subarray",
+      "slug": "maximum-sum-circular-subarray",
+      "rating": 1777,
+      "note": "Circular = total − minimum subarray (careful when all negative)."
+     },
+     {
+      "id": 1029,
+      "title": "Two City Scheduling",
+      "slug": "two-city-scheduling",
+      "rating": 1348,
+      "note": "Sort by the cost difference between the two cities."
+     },
+     {
+      "id": 649,
+      "title": "Dota2 Senate",
+      "slug": "dota2-senate",
+      "rating": 0,
+      "note": "Two queues of indexes: the earlier senator bans the other."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dp-1d",
+  "name": "Dynamic Programming (1D)",
+  "idea": "If the answer for n is built from answers for smaller n, write the recurrence, then fill a table. The hard part is choosing what dp[i] means.",
+  "triggers": [
+   "\"number of ways\" → DP",
+   "\"min/max cost to reach the end\" → DP",
+   "take or skip each item → DP over index",
+   "coins/items reusable → unbounded knapsack",
+   "each item once with a sum target → 0/1 knapsack",
+   "\"longest increasing subsequence\" → LIS"
+  ],
+  "stages": [
+   {
+    "name": "Your first recurrences",
+    "exam": [
+     {
+      "id": 509,
+      "title": "Fibonacci Number",
+      "slug": "fibonacci-number",
+      "rating": 0,
+      "note": "dp[i] = dp[i−1] + dp[i−2]. Then do it with two variables."
+     },
+     {
+      "id": 70,
+      "title": "Climbing Stairs",
+      "slug": "climbing-stairs",
+      "rating": 0,
+      "note": "The same recurrence: the last step was 1 or 2."
+     },
+     {
+      "id": 1137,
+      "title": "N-th Tribonacci Number",
+      "slug": "n-th-tribonacci-number",
+      "rating": 1143,
+      "note": "Three previous values instead of two."
+     },
+     {
+      "id": 746,
+      "title": "Min Cost Climbing Stairs",
+      "slug": "min-cost-climbing-stairs",
+      "rating": 1358,
+      "note": "dp[i] = cost[i] + min(dp[i−1], dp[i−2])."
+     },
+     {
+      "id": 198,
+      "title": "House Robber",
+      "slug": "house-robber",
+      "rating": 0,
+      "note": "Rob house i or skip it: dp[i] = max(dp[i−1], dp[i−2] + nums[i])."
+     },
+     {
+      "id": 213,
+      "title": "House Robber II",
+      "slug": "house-robber-ii",
+      "rating": 0,
+      "note": "Circular: run 198 twice, without the first or without the last."
+     },
+     {
+      "id": 740,
+      "title": "Delete and Earn",
+      "slug": "delete-and-earn",
+      "rating": 0,
+      "note": "Group equal values, then it's House Robber on values."
+     }
+    ]
+   },
+   {
+    "name": "DP over strings",
+    "exam": [
+     {
+      "id": 91,
+      "title": "Decode Ways",
+      "slug": "decode-ways",
+      "rating": 0,
+      "note": "dp[i] = ways for the first i characters: one-digit and two-digit last pieces."
+     },
+     {
+      "id": 139,
+      "title": "Word Break",
+      "slug": "word-break",
+      "rating": 0,
+      "note": "dp[i] = can the first i characters be split? Try every last word."
+     },
+     {
+      "id": 5,
+      "title": "Longest Palindromic Substring",
+      "slug": "longest-palindromic-substring",
+      "rating": 0,
+      "note": "Expand around each centre, or dp[i][j] = is s[i..j] a palindrome."
+     },
+     {
+      "id": 647,
+      "title": "Palindromic Substrings",
+      "slug": "palindromic-substrings",
+      "rating": 0,
+      "note": "The same centres, but count."
+     }
+    ]
+   },
+   {
+    "name": "Knapsack",
+    "exam": [
+     {
+      "id": 322,
+      "title": "Coin Change",
+      "slug": "coin-change",
+      "rating": 0,
+      "note": "Unbounded: dp[a] = 1 + min over coins of dp[a − coin]."
+     },
+     {
+      "id": 279,
+      "title": "Perfect Squares",
+      "slug": "perfect-squares",
+      "rating": 0,
+      "note": "The same as 322 with squares as coins."
+     },
+     {
+      "id": 518,
+      "title": "Coin Change 2",
+      "slug": "coin-change-2",
+      "rating": 0,
+      "note": "Count combinations: loop coins on the outside."
+     },
+     {
+      "id": 377,
+      "title": "Combination Sum IV",
+      "slug": "combination-sum-iv",
+      "rating": 0,
+      "note": "Count orderings: loop amounts on the outside. Compare with 518!"
+     },
+     {
+      "id": 416,
+      "title": "Partition Equal Subset Sum",
+      "slug": "partition-equal-subset-sum",
+      "rating": 0,
+      "note": "0/1 knapsack: can a subset reach total / 2? Loop the sum backwards."
+     },
+     {
+      "id": 494,
+      "title": "Target Sum",
+      "slug": "target-sum",
+      "rating": 0,
+      "note": "Turn +/− into \"subset sum = (total + target) / 2\"."
+     },
+     {
+      "id": 1049,
+      "title": "Last Stone Weight II",
+      "slug": "last-stone-weight-ii",
+      "rating": 2092,
+      "note": "The same split-into-two-halves as 416."
+     },
+     {
+      "id": 474,
+      "title": "Ones and Zeroes",
+      "slug": "ones-and-zeroes",
+      "rating": 0,
+      "note": "A knapsack with two capacities (zeros and ones)."
+     }
+    ]
+   },
+   {
+    "name": "Longest increasing subsequence",
+    "exam": [
+     {
+      "id": 300,
+      "title": "Longest Increasing Subsequence",
+      "slug": "longest-increasing-subsequence",
+      "rating": 0,
+      "note": "dp[i] = LIS ending at i. Then the O(n log n) version with binary search."
+     },
+     {
+      "id": 673,
+      "title": "Number of Longest Increasing Subsequence",
+      "slug": "number-of-longest-increasing-subsequence",
+      "rating": 0,
+      "note": "Track the length and the count at each index."
+     },
+     {
+      "id": 368,
+      "title": "Largest Divisible Subset",
+      "slug": "largest-divisible-subset",
+      "rating": 0,
+      "note": "Sort, then LIS where \"divides\" replaces \"less than\"."
+     },
+     {
+      "id": 354,
+      "title": "Russian Doll Envelopes",
+      "slug": "russian-doll-envelopes",
+      "rating": 0,
+      "note": "Sort by width (and height descending on ties), then LIS on heights."
+     },
+     {
+      "id": 1964,
+      "title": "Find the Longest Valid Obstacle Course at Each Position",
+      "slug": "find-the-longest-valid-obstacle-course-at-each-position",
+      "rating": 1933,
+      "note": "LIS with \"≤\", with binary search for every prefix."
+     }
+    ]
+   },
+   {
+    "name": "State machines",
+    "exam": [
+     {
+      "id": 152,
+      "title": "Maximum Product Subarray",
+      "slug": "maximum-product-subarray",
+      "rating": 0,
+      "note": "Track both the max and the min ending here (a negative flips them)."
+     },
+     {
+      "id": 309,
+      "title": "Best Time to Buy and Sell Stock with Cooldown",
+      "slug": "best-time-to-buy-and-sell-stock-with-cooldown",
+      "rating": 0,
+      "note": "States: holding, sold today (cooldown), resting."
+     },
+     {
+      "id": 714,
+      "title": "Best Time to Buy and Sell Stock with Transaction Fee",
+      "slug": "best-time-to-buy-and-sell-stock-with-transaction-fee",
+      "rating": 0,
+      "note": "Two states, subtract the fee on a sale."
+     },
+     {
+      "id": 123,
+      "title": "Best Time to Buy and Sell Stock III",
+      "slug": "best-time-to-buy-and-sell-stock-iii",
+      "rating": 0,
+      "note": "Four states: buy1, sell1, buy2, sell2."
+     },
+     {
+      "id": 188,
+      "title": "Best Time to Buy and Sell Stock IV",
+      "slug": "best-time-to-buy-and-sell-stock-iv",
+      "rating": 0,
+      "note": "Generalise 123 to k transactions."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dp-2d",
+  "name": "Dynamic Programming (2D)",
+  "idea": "When the state needs two numbers (two positions, a range i..j, a position + a count), the table becomes 2D. Same rules: define dp, recurrence, order of filling.",
+  "triggers": [
+   "grid paths → dp[r][c] from top/left",
+   "two strings compared → dp[i][j] over prefixes",
+   "substring/range of one string → interval dp[i][j]",
+   "\"burst / cut / merge in some order\" → interval DP picking the last action",
+   "small n (≤ 20) with subsets → bitmask DP"
+  ],
+  "stages": [
+   {
+    "name": "Grid DP",
+    "exam": [
+     {
+      "id": 62,
+      "title": "Unique Paths",
+      "slug": "unique-paths",
+      "rating": 0,
+      "note": "dp[r][c] = dp[r−1][c] + dp[r][c−1]."
+     },
+     {
+      "id": 63,
+      "title": "Unique Paths II",
+      "slug": "unique-paths-ii",
+      "rating": 0,
+      "note": "The same with blocked cells set to 0."
+     },
+     {
+      "id": 64,
+      "title": "Minimum Path Sum",
+      "slug": "minimum-path-sum",
+      "rating": 0,
+      "note": "min instead of +, plus the cell's cost."
+     },
+     {
+      "id": 120,
+      "title": "Triangle",
+      "slug": "triangle",
+      "rating": 0,
+      "note": "Go from the bottom row up."
+     },
+     {
+      "id": 931,
+      "title": "Minimum Falling Path Sum",
+      "slug": "minimum-falling-path-sum",
+      "rating": 1573,
+      "note": "Three cells from the row above."
+     },
+     {
+      "id": 221,
+      "title": "Maximal Square",
+      "slug": "maximal-square",
+      "rating": 0,
+      "note": "The square ending here = 1 + min(top, left, top-left)."
+     }
+    ]
+   },
+   {
+    "name": "Two strings",
+    "exam": [
+     {
+      "id": 1143,
+      "title": "Longest Common Subsequence",
+      "slug": "longest-common-subsequence",
+      "rating": 0,
+      "note": "LCS: match → diagonal + 1, otherwise max(top, left). The parent of the whole family."
+     },
+     {
+      "id": 583,
+      "title": "Delete Operation for Two Strings",
+      "slug": "delete-operation-for-two-strings",
+      "rating": 0,
+      "note": "Deletions = len1 + len2 − 2 × LCS."
+     },
+     {
+      "id": 712,
+      "title": "Minimum ASCII Delete Sum for Two Strings",
+      "slug": "minimum-ascii-delete-sum-for-two-strings",
+      "rating": 0,
+      "note": "The same as 583, but weighted by ASCII values."
+     },
+     {
+      "id": 72,
+      "title": "Edit Distance",
+      "slug": "edit-distance",
+      "rating": 0,
+      "note": "Edit distance: insert / delete / replace = three neighbours."
+     },
+     {
+      "id": 97,
+      "title": "Interleaving String",
+      "slug": "interleaving-string",
+      "rating": 0,
+      "note": "dp[i][j] = can the first i of s1 and j of s2 make the first i+j of s3?"
+     },
+     {
+      "id": 115,
+      "title": "Distinct Subsequences",
+      "slug": "distinct-subsequences",
+      "rating": 0,
+      "note": "Count ways: match → use it or skip it."
+     },
+     {
+      "id": 1092,
+      "title": "Shortest Common Supersequence ",
+      "slug": "shortest-common-supersequence",
+      "rating": 1977,
+      "note": "Build LCS, then walk the table to construct the answer."
+     }
+    ]
+   },
+   {
+    "name": "Interval DP",
+    "exam": [
+     {
+      "id": 516,
+      "title": "Longest Palindromic Subsequence",
+      "slug": "longest-palindromic-subsequence",
+      "rating": 0,
+      "note": "dp[i][j] over the range: ends match → inside + 2."
+     },
+     {
+      "id": 1312,
+      "title": "Minimum Insertion Steps to Make a String Palindrome",
+      "slug": "minimum-insertion-steps-to-make-a-string-palindrome",
+      "rating": 1787,
+      "note": "Insertions = n − longest palindromic subsequence."
+     },
+     {
+      "id": 1039,
+      "title": "Minimum Score Triangulation of Polygon",
+      "slug": "minimum-score-triangulation-of-polygon",
+      "rating": 2130,
+      "note": "Choose the triangle on edge (i, j): split into two smaller polygons."
+     },
+     {
+      "id": 375,
+      "title": "Guess Number Higher or Lower II",
+      "slug": "guess-number-higher-or-lower-ii",
+      "rating": 0,
+      "note": "Pick the guess k in the range, pay k + the worse side."
+     },
+     {
+      "id": 312,
+      "title": "Burst Balloons",
+      "slug": "burst-balloons",
+      "rating": 0,
+      "note": "Choose which balloon bursts last in (i, j)."
+     },
+     {
+      "id": 1547,
+      "title": "Minimum Cost to Cut a Stick",
+      "slug": "minimum-cost-to-cut-a-stick",
+      "rating": 2116,
+      "note": "The same \"choose the last cut\" structure as 312."
+     }
+    ]
+   },
+   {
+    "name": "Pattern matching",
+    "exam": [
+     {
+      "id": 10,
+      "title": "Regular Expression Matching",
+      "slug": "regular-expression-matching",
+      "rating": 0,
+      "note": "\"*\" means zero copies (skip two) or one more copy (stay)."
+     },
+     {
+      "id": 44,
+      "title": "Wildcard Matching",
+      "slug": "wildcard-matching",
+      "rating": 0,
+      "note": "\"*\" matches empty (skip) or one more char (stay)."
+     }
+    ]
+   },
+   {
+    "name": "Trees & bitmasks",
+    "exam": [
+     {
+      "id": 337,
+      "title": "House Robber III",
+      "slug": "house-robber-iii",
+      "rating": 0,
+      "note": "Tree DP: return (rob this node, skip this node)."
+     },
+     {
+      "id": 1986,
+      "title": "Minimum Number of Work Sessions to Finish the Tasks",
+      "slug": "minimum-number-of-work-sessions-to-finish-the-tasks",
+      "rating": 1995,
+      "note": "Bitmask DP over which tasks are done."
+     },
+     {
+      "id": 1494,
+      "title": "Parallel Courses II",
+      "slug": "parallel-courses-ii",
+      "rating": 2082,
+      "note": "Bitmask DP over courses taken (with prerequisites)."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "bits",
+  "name": "Bit Manipulation",
+  "idea": "Numbers are bit arrays. XOR cancels pairs, AND checks bits, shifts multiply or divide by two.",
+  "triggers": [
+   "\"every element appears twice except one\" → XOR everything",
+   "count set bits → n & (n−1) removes the lowest one",
+   "subsets of a small set → bitmask",
+   "maximise XOR → greedily from the highest bit (often with a trie)"
+  ],
+  "stages": [
+   {
+    "name": "Bit basics",
+    "exam": [
+     {
+      "id": 191,
+      "title": "Number of 1 Bits",
+      "slug": "number-of-1-bits",
+      "rating": 0,
+      "note": "n & (n−1) drops the lowest set bit. Count how many times."
+     },
+     {
+      "id": 231,
+      "title": "Power of Two",
+      "slug": "power-of-two",
+      "rating": 0,
+      "note": "A power of two has exactly one set bit."
+     },
+     {
+      "id": 338,
+      "title": "Counting Bits",
+      "slug": "counting-bits",
+      "rating": 0,
+      "note": "bits[i] = bits[i >> 1] + (i & 1)."
+     },
+     {
+      "id": 190,
+      "title": "Reverse Bits",
+      "slug": "reverse-bits",
+      "rating": 0,
+      "note": "Shift bits out of n into the result."
+     },
+     {
+      "id": 136,
+      "title": "Single Number",
+      "slug": "single-number",
+      "rating": 0,
+      "note": "XOR everything: pairs cancel out."
+     },
+     {
+      "id": 268,
+      "title": "Missing Number",
+      "slug": "missing-number",
+      "rating": 0,
+      "note": "XOR the indexes with the values."
+     }
+    ]
+   },
+   {
+    "name": "Combining bits",
+    "exam": [
+     {
+      "id": 2433,
+      "title": "Find The Original Array of Prefix Xor",
+      "slug": "find-the-original-array-of-prefix-xor",
+      "rating": 1367,
+      "note": "prefix[i] ^ prefix[i−1] gives the original array."
+     },
+     {
+      "id": 1318,
+      "title": "Minimum Flips to Make a OR b Equal to c",
+      "slug": "minimum-flips-to-make-a-or-b-equal-to-c",
+      "rating": 1383,
+      "note": "Check bit by bit what flips are needed."
+     },
+     {
+      "id": 201,
+      "title": "Bitwise AND of Numbers Range",
+      "slug": "bitwise-and-of-numbers-range",
+      "rating": 0,
+      "note": "The answer is the common prefix of left and right."
+     },
+     {
+      "id": 371,
+      "title": "Sum of Two Integers",
+      "slug": "sum-of-two-integers",
+      "rating": 0,
+      "note": "Sum without +: XOR for sum, AND+shift for carry."
+     }
+    ]
+   },
+   {
+    "name": "Counting bits per position",
+    "exam": [
+     {
+      "id": 137,
+      "title": "Single Number II",
+      "slug": "single-number-ii",
+      "rating": 0,
+      "note": "Count each bit position mod 3."
+     },
+     {
+      "id": 260,
+      "title": "Single Number III",
+      "slug": "single-number-iii",
+      "rating": 0,
+      "note": "XOR all, split by any set bit, XOR each group."
+     },
+     {
+      "id": 2275,
+      "title": "Largest Combination With Bitwise AND Greater Than Zero",
+      "slug": "largest-combination-with-bitwise-and-greater-than-zero",
+      "rating": 1642,
+      "note": "The best bit position: count how many numbers have it."
+     },
+     {
+      "id": 421,
+      "title": "Maximum XOR of Two Numbers in an Array",
+      "slug": "maximum-xor-of-two-numbers-in-an-array",
+      "rating": 0,
+      "note": "Build the answer greedily from the top bit with a set or trie."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "trie",
+  "name": "Trie",
+  "idea": "A tree of characters, so many words that share prefixes share storage, and prefix questions take O(word length).",
+  "triggers": [
+   "\"starts with\" / autocomplete → trie",
+   "search many words in a grid → trie + DFS",
+   "replace with the shortest root → trie walk",
+   "max XOR pair → binary trie"
+  ],
+  "stages": [
+   {
+    "name": "Building tries",
+    "exam": [
+     {
+      "id": 208,
+      "title": "Implement Trie (Prefix Tree)",
+      "slug": "implement-trie-prefix-tree",
+      "rating": 0,
+      "note": "Each node: children + an end-of-word flag."
+     },
+     {
+      "id": 14,
+      "title": "Longest Common Prefix",
+      "slug": "longest-common-prefix",
+      "rating": 0,
+      "note": "Walk the trie while there's only one child (or just compare strings)."
+     },
+     {
+      "id": 720,
+      "title": "Longest Word in Dictionary",
+      "slug": "longest-word-in-dictionary",
+      "rating": 0,
+      "note": "Build the trie, then DFS only through end-of-word nodes."
+     }
+    ]
+   },
+   {
+    "name": "Using tries",
+    "exam": [
+     {
+      "id": 211,
+      "title": "Design Add and Search Words Data Structure",
+      "slug": "design-add-and-search-words-data-structure",
+      "rating": 0,
+      "note": "\".\" means try every child: DFS on the trie."
+     },
+     {
+      "id": 648,
+      "title": "Replace Words",
+      "slug": "replace-words",
+      "rating": 0,
+      "note": "Walk each word until you hit the first end-of-word flag."
+     },
+     {
+      "id": 1268,
+      "title": "Search Suggestions System",
+      "slug": "search-suggestions-system",
+      "rating": 1573,
+      "note": "Sort the words, or store the top 3 at each trie node."
+     },
+     {
+      "id": 677,
+      "title": "Map Sum Pairs",
+      "slug": "map-sum-pairs",
+      "rating": 0,
+      "note": "Store sums at each node along the path."
+     }
+    ]
+   },
+   {
+    "name": "Hard tries",
+    "exam": [
+     {
+      "id": 212,
+      "title": "Word Search II",
+      "slug": "word-search-ii",
+      "rating": 0,
+      "note": "Build the trie of words, DFS the grid along trie edges."
+     },
+     {
+      "id": 421,
+      "title": "Maximum XOR of Two Numbers in an Array",
+      "slug": "maximum-xor-of-two-numbers-in-an-array",
+      "rating": 0,
+      "note": "A binary trie: for each number, walk the opposite bit when possible."
+     },
+     {
+      "id": 1707,
+      "title": "Maximum XOR With an Element From Array",
+      "slug": "maximum-xor-with-an-element-from-array",
+      "rating": 2359,
+      "note": "Sort queries offline, insert numbers ≤ limit, then 421."
+     },
+     {
+      "id": 336,
+      "title": "Palindrome Pairs",
+      "slug": "palindrome-pairs",
+      "rating": 0,
+      "note": "For each word, look up reversed pieces that form a palindrome."
+     }
+    ]
+   }
+  ]
+ }
+]

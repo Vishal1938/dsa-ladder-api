@@ -1,0 +1,29 @@
+{
+ "slug": "vowel-count-queries",
+ "topic": "prefix-sum",
+ "stage": 4,
+ "order": 22,
+ "title": "Vowel Count Queries",
+ "difficulty": "Easy",
+ "whatsNew": "Prefix sums of a yes/no property: count how many positions so far satisfy it.",
+ "function": {
+  "name": "vowelCounts",
+  "returns": "int[]",
+  "params": [
+   {
+    "name": "s",
+    "type": "String"
+   },
+   {
+    "name": "queries",
+    "type": "int[][]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Turn s into an array of 1s (vowel) and 0s (not). What are the queries now?",
+  "count[i + 1] = count[i] + (s[i] is a vowel ? 1 : 0). Answer = count[r + 1] − count[l]."
+ ],
+ "trigger": "“How many positions in a range satisfy X?” → prefix count of X."
+}

@@ -1,0 +1,26 @@
+{
+ "slug": "balanced-moves",
+ "topic": "prefix-sum",
+ "stage": 1,
+ "order": 13,
+ "title": "Longest Balanced Walk",
+ "difficulty": "Medium",
+ "whatsNew": "Transform first: turn L into −1 and R into +1. “Equal counts” becomes “sum 0”.",
+ "function": {
+  "name": "longestBalanced",
+  "returns": "int",
+  "params": [
+   {
+    "name": "moves",
+    "type": "String"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Can you turn “same number of L and R” into a statement about a sum?",
+  "Let L = −1 and R = +1. A balanced stretch is a subarray with sum 0, which is Longest Subarray With Sum k with k = 0.",
+  "Store the first index of each running position, seeded with {0: −1}."
+ ],
+ "trigger": "Equal counts of two kinds → map them to −1/+1, look for sum 0."
+}

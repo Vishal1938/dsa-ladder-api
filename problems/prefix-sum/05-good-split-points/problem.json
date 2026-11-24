@@ -1,0 +1,26 @@
+{
+ "slug": "good-split-points",
+ "topic": "prefix-sum",
+ "stage": 0,
+ "order": 5,
+ "title": "Good Split Points",
+ "difficulty": "Easy",
+ "whatsNew": "Every split needs a left sum and a right sum; both come from one running prefix and the total.",
+ "function": {
+  "name": "countSplits",
+  "returns": "int",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "There are n − 1 cuts. For each you need the left sum and the right sum. Can you avoid re-adding everything for every cut?",
+  "Walk left to right keeping left = sum of nums[0..i]. The right sum is total − left.",
+  "Sums can reach 10^10, so use long."
+ ],
+ "trigger": "Compare prefix vs suffix at every cut → running prefix + total."
+}

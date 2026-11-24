@@ -1,0 +1,25 @@
+{
+ "slug": "peak-visitors",
+ "topic": "prefix-sum",
+ "stage": 3,
+ "order": 19,
+ "title": "Peak Visitors",
+ "difficulty": "Medium",
+ "whatsNew": "Each visit is a range update of +1. The busiest moment is the maximum of the running sum.",
+ "function": {
+  "name": "peakVisitors",
+  "returns": "int",
+  "params": [
+   {
+    "name": "visits",
+    "type": "int[][]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Each visitor adds 1 to a range of minutes. Which technique applies many range additions cheaply?",
+  "+1 at arrive, −1 at leave (not leave + 1, because the range is half-open). The running sum is the head-count."
+ ],
+ "trigger": "Max overlap of many intervals → difference array (or sorted start/end events)."
+}

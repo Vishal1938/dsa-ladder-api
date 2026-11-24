@@ -1,0 +1,29 @@
+{
+ "slug": "neighbourhood-sums",
+ "topic": "prefix-sum",
+ "stage": 2,
+ "order": 16,
+ "title": "Neighbourhood Sums",
+ "difficulty": "Medium",
+ "whatsNew": "Every cell asks one rectangle question. Clamp the rectangle to the grid, then reuse Grid Region Sums.",
+ "function": {
+  "name": "neighbourhoodSum",
+  "returns": "long[][]",
+  "params": [
+   {
+    "name": "grid",
+    "type": "int[][]"
+   },
+   {
+    "name": "k",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Each output cell is a rectangle sum. Which rectangle, and what happens at the borders?",
+  "Rows max(0, r − k)..min(rows − 1, r + k), same for columns. Then one 2D prefix lookup per cell."
+ ],
+ "trigger": "A sum around every cell → 2D prefix + clamped rectangles."
+}
