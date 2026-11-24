@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: dsa-ladder
+  # Local development uses an in-memory H2 database. The "prod" profile (application-prod.yml) uses PostgreSQL.
+  datasource:
+    url: jdbc:h2:mem:dsaladder;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: ${PORT:8080}
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+app:
+  # Folder with topics.json and the problem books (relative to the repository root).
+  problems-dir: ${PROBLEMS_DIR:problems}
+  jwt-secret: ${JWT_SECRET:dev-only-secret-change-me-dev-only-secret-change-me}
+  jwt-ttl-hours: 168
+  cors-origins: ${CORS_ORIGINS:http://localhost:5173}
+  judge:
+    memory-mb: 256
+    max-concurrent: ${JUDGE_MAX_CONCURRENT:2}
+    queue-wait-seconds: 20
+    # Command prepended to every submission run, e.g. "prlimit --nproc=64 --fsize=2097152 --". Empty = none.
+    sandbox-prefix: ${JUDGE_SANDBOX_PREFIX:}
+    runs-per-minute: 20
+    submits-per-minute: 10

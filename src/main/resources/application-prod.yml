@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+app:
+  problems-dir: ${PROBLEMS_DIR:/app/problems}
+  jwt-secret: ${JWT_SECRET}
+  judge:
+    sandbox-prefix: ${JUDGE_SANDBOX_PREFIX:prlimit --fsize=4194304 --nofile=256 --core=0 --}
