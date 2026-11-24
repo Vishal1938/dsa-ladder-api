@@ -7,5 +7,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public record AppProperties(String problemsDir, String jwtSecret, int jwtTtlHours, String corsOrigins, JudgeProps judge) {
 
     public record JudgeProps(int memoryMb, int maxConcurrent, int queueWaitSeconds, String sandboxPrefix,
-                             int runsPerMinute, int submitsPerMinute) {}
+                             int runsPerMinute, int submitsPerMinute, int checksPerMinute) {}
 }

@@ -33,6 +33,13 @@ public final class Dtos {
 
     public record SubmitRequest(String code) {}
 
+    public record CheckRequest(String code) {}
+
+    /** A compiler message with 1-based positions and an exclusive end, for the editor to underline. */
+    public record DiagnosticDto(int startLine, int startColumn, int endLine, int endColumn, String severity, String message) {}
+
+    public record CheckResponse(List<DiagnosticDto> diagnostics) {}
+
     public record CaseDto(int index, boolean passed, boolean hidden, String input, String expected, String actual,
                           String stdout, Long runtimeMicros) {}
 

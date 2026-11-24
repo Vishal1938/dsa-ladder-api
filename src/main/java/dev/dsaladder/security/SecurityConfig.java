@@ -32,7 +32,7 @@ public class SecurityConfig {
                     .requestMatchers("/api/auth/register", "/api/auth/login", "/actuator/health").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/topics", "/api/topics/*", "/api/problems/*").permitAll()
                     // Anyone can run and submit; only signed-in users get their submissions saved.
-                    .requestMatchers(HttpMethod.POST, "/api/problems/*/run", "/api/problems/*/submit").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/api/problems/*/run", "/api/problems/*/submit", "/api/problems/*/check").permitAll()
                     .anyRequest().authenticated())
             .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
             .addFilterBefore(new JwtAuthFilter(jwt), UsernamePasswordAuthenticationFilter.class);

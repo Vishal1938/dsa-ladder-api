@@ -139,6 +139,19 @@ public final class JudgeCli {
                 Map<String, Object> req = Json.obj(Json.parse(line));
                 Problem p = store.problem((String) req.get("slug"));
                 String code = (String) req.get("code");
+                if ("check".equals(req.get("mode"))) {
+                    List<Object> ds = new ArrayList<>();
+                    for (Judge.CompileIssue d : judge.diagnose(p.function(), code)) {
+                        Map<String, Object> dm = new LinkedHashMap<>();
+                        dm.put("startLine", d.startLine()); dm.put("startColumn", d.startColumn());
+                        dm.put("endLine", d.endLine()); dm.put("endColumn", d.endColumn());
+                        dm.put("severity", d.severity()); dm.put("message", d.message());
+                        ds.add(dm);
+                    }
+                    System.out.println(Json.stringify(Map.of("diagnostics", ds)));
+                    System.out.flush();
+                    continue;
+                }
                 Verdict v = "submit".equals(req.get("mode"))
                         ? judge.judge(p.function(), code, p.allTests(), p.compare(), p.timeLimitMs(), true)
                         : judge.judge(p.function(), code, p.sampleTests(), p.compare(), p.timeLimitMs(), false);

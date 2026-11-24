@@ -62,6 +62,36 @@ class JudgeTest {
         assertEquals("hi\n", v.cases().get(0).stdout());
     }
 
+    /** Four-line source so positions are interesting: line 3, column 9 is the start of the body. */
+    private List<Judge.CompileIssue> diagnose(String body) {
+        return judge.diagnose(sum, "class Solution {\n    public long total(int[] nums) {\n        " + body + "\n    }\n}\n");
+    }
+
+    @Test
+    void diagnosePositionsUnknownSymbol() {
+        List<Judge.CompileIssue> issues = diagnose("return totl;");
+        assertEquals(1, issues.size(), issues.toString());
+        Judge.CompileIssue i = issues.get(0);
+        assertEquals(3, i.startLine(), issues.toString());
+        assertEquals(16, i.startColumn(), issues.toString());
+        assertEquals("error", i.severity());
+        assertTrue(i.message().contains("cannot find symbol"), i.message());
+    }
+
+    @Test
+    void diagnoseReportsSignatureMismatch() {
+        List<Judge.CompileIssue> issues = judge.diagnose(sum,
+                "class Solution {\n    public long sumOf(int[] nums) {\n        return 0;\n    }\n}\n");
+        assertEquals(1, issues.size(), issues.toString());
+        assertEquals("error", issues.get(0).severity());
+        assertTrue(issues.get(0).message().contains("long total(int[] nums)"), issues.get(0).message());
+    }
+
+    @Test
+    void diagnoseFindsNothingInValidCode() {
+        assertEquals(List.of(), diagnose("long s = 0; for (int x : nums) s += x; return s;"));
+    }
+
     @Test
     void unorderedDeepCompare() {
         assertTrue(Compare.UNORDERED_DEEP.equal(Json.parse("[[1,2],[3]]"), Json.parse("[[3],[2,1]]")));

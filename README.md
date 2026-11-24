@@ -58,6 +58,7 @@ java -cp build/cli dev.dsaladder.cli.JudgeCli crosscheck problems  # reference v
 | GET | `/api/problems/{slug}` | optional | Statement, examples, hints, starter code |
 | POST | `/api/problems/{slug}/run` | optional | `{code, inputs?}` → verdict on examples or custom inputs |
 | POST | `/api/problems/{slug}/submit` | optional | `{code}` → verdict on all tests; saved when signed in |
+| POST | `/api/problems/{slug}/check` | optional | `{code}` → `{diagnostics}`: compile errors with positions, nothing runs |
 | GET | `/api/problems/{slug}/submissions` | required | Your submissions |
 | POST | `/api/auth/register` · `/api/auth/login` | – | `{token, user}` |
 | GET | `/api/auth/me` · `/api/me/stats` | required | Current user, progress |

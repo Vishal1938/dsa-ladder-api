@@ -35,3 +35,5 @@ app:
     sandbox-prefix: ${JUDGE_SANDBOX_PREFIX:}
     runs-per-minute: 20
     submits-per-minute: 10
+    # Compile-only checks for the editor's red underlines: cheap, so the editor may ask often.
+    checks-per-minute: 120

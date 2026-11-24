@@ -1,5 +1,8 @@
 package dev.dsaladder.api;
 
+import dev.dsaladder.api.Dtos.CheckRequest;
+import dev.dsaladder.api.Dtos.CheckResponse;
+import dev.dsaladder.api.Dtos.DiagnosticDto;
 import dev.dsaladder.api.Dtos.ExampleDto;
 import dev.dsaladder.api.Dtos.ParamDto;
 import dev.dsaladder.api.Dtos.ProblemDetail;
@@ -75,6 +78,16 @@ public class ProblemController {
         Problem p = find(slug);
         if (req.code() == null) throw new ApiException(HttpStatus.BAD_REQUEST, "code is required");
         return VerdictDto.of(judge.run(p, req.code(), req.inputs(), callerKey(http)), null, false);
+    }
+
+    /** Compile only, for the editor's live error underlines. Never runs the code. */
+    @PostMapping("/{slug}/check")
+    public CheckResponse check(@PathVariable String slug, @RequestBody CheckRequest req, HttpServletRequest http) {
+        Problem p = find(slug);
+        if (req.code() == null) throw new ApiException(HttpStatus.BAD_REQUEST, "code is required");
+        return new CheckResponse(judge.check(p, req.code(), callerKey(http)).stream()
+                .map(d -> new DiagnosticDto(d.startLine(), d.startColumn(), d.endLine(), d.endColumn(), d.severity(), d.message()))
+                .toList());
     }
 
     @PostMapping("/{slug}/submit")

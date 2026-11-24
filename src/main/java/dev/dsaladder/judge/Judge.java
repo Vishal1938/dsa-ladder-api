@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 /**
@@ -34,6 +36,13 @@ public final class Judge {
     public record TestCase(List<Object> args, Object expected, boolean hidden) {}
 
     public record Compiled(boolean ok, Path dir, String output) {}
+
+    /**
+     * One compiler message positioned in the user's source, for the editor to underline.
+     * Lines and columns are 1-based and the end is exclusive, matching what code editors expect.
+     * (Not called {@code Diagnostic}: that name is taken by {@link javax.tools.Diagnostic}.)
+     */
+    public record CompileIssue(int startLine, int startColumn, int endLine, int endColumn, String severity, String message) {}
 
     /** Raw outcome of executing compiled code on a list of inputs. */
     public record RunOutput(List<Object> results, List<Long> nanos, List<String> stdout, Integer errorAt, String error,
@@ -59,10 +68,24 @@ public final class Judge {
 
     // ------------------------------------------------------------------ compile
 
+    private static final Pattern PACKAGE_DECL = Pattern.compile("(?m)^\\s*package\\s+[\\w.]+\\s*;");
+
+    /**
+     * Neutralises a {@code package x.y;} declaration (the harness needs {@code Solution} in the default package)
+     * by overwriting it with spaces rather than deleting it, so every later character keeps its line and column.
+     */
+    static String stripPackage(String code) {
+        Matcher m = PACKAGE_DECL.matcher(code);
+        if (!m.find()) return code;
+        char[] out = code.toCharArray();
+        for (int i = m.start(); i < m.end(); i++) if (out[i] != '\n' && out[i] != '\r') out[i] = ' ';
+        return new String(out);
+    }
+
     public Compiled compile(FunctionSpec spec, String userCode) {
         if (userCode == null || userCode.isBlank()) return new Compiled(false, null, "Your code is empty.");
         if (userCode.length() > cfg.maxSourceChars()) return new Compiled(false, null, "Your code is too long (max " + cfg.maxSourceChars() + " characters).");
-        String code = userCode.replaceFirst("(?m)^\\s*package\\s+[\\w.]+\\s*;", "");
+        String code = stripPackage(userCode);
         JavaCompiler javac = ToolProvider.getSystemJavaCompiler();
         if (javac == null) return new Compiled(false, null, "INTERNAL: no Java compiler available (run the backend on a JDK, not a JRE).");
         Path dir;
@@ -101,6 +124,107 @@ public final class Judge {
                     + "\nwith exactly this name, parameter types and return type.";
         }
         return user.toString().strip();
+    }
+
+    // ------------------------------------------------------------------ diagnose (compile only)
+
+    /**
+     * Compiles the user's code and returns the compiler messages with source positions, so an editor can
+     * underline them while the user types. Compile only: no JVM is started and no user code ever runs.
+     */
+    public List<CompileIssue> diagnose(FunctionSpec spec, String userCode) {
+        if (userCode == null || userCode.isBlank()) return List.of();
+        if (userCode.length() > cfg.maxSourceChars()) {
+            return List.of(new CompileIssue(1, 1, 1, 2, "error", "Your code is too long (max " + cfg.maxSourceChars() + " characters)."));
+        }
+        JavaCompiler javac = ToolProvider.getSystemJavaCompiler();
+        if (javac == null) return List.of();  // a JRE: run/submit reports this properly, the editor just shows nothing
+        String code = stripPackage(userCode);
+        Path dir = null;
+        try {
+            dir = Files.createTempDirectory("check-");
+            Files.writeString(dir.resolve("Solution.java"), code);
+            String harness = HARNESS.replace("/*__CALL__*/", spec.callSource()).replace("/*__TYPES__*/", TYPES);
+            Files.writeString(dir.resolve("JudgeMain.java"), harness);
+            DiagnosticCollector<JavaFileObject> diags = new DiagnosticCollector<>();
+            try (StandardJavaFileManager fm = javac.getStandardFileManager(diags, Locale.ENGLISH, StandardCharsets.UTF_8)) {
+                var units = fm.getJavaFileObjects(dir.resolve("Solution.java").toFile(), dir.resolve("JudgeMain.java").toFile());
+                List<String> opts = List.of("-d", dir.toString(), "-encoding", "UTF-8", "-proc:none", "-Xlint:none", "-Xmaxerrs", "50");
+                javac.getTask(null, fm, diags, opts, null, units).call();
+            }
+            return issues(diags, code, spec);
+        } catch (IOException e) {
+            return List.of();
+        } finally {
+            cleanup(dir);
+        }
+    }
+
+    private static List<CompileIssue> issues(DiagnosticCollector<JavaFileObject> diags, String code, FunctionSpec spec) {
+        int[] lineStarts = lineStarts(code);
+        List<CompileIssue> out = new ArrayList<>();
+        boolean userError = false, harnessError = false;
+        for (Diagnostic<? extends JavaFileObject> d : diags.getDiagnostics()) {
+            boolean error = d.getKind() == Diagnostic.Kind.ERROR;
+            if (!error && d.getKind() != Diagnostic.Kind.WARNING) continue;
+            String file = d.getSource() == null ? "" : Path.of(d.getSource().toUri()).getFileName().toString();
+            if (!file.equals("Solution.java")) {
+                harnessError |= error;
+                continue;
+            }
+            userError |= error;
+            out.add(span(d, code, lineStarts, error ? "error" : "warning"));
+        }
+        // The harness only fails to compile when it cannot call the method the problem asked for.
+        if (!userError && harnessError) {
+            int at = code.indexOf("class Solution");
+            out.add(wholeLine(at < 0 ? 1 : lineCol(lineStarts, at, code.length())[0], code, lineStarts, "error",
+                    "Keep the class named Solution with the method  public " + spec.signature()
+                            + "  (same name, parameter types and return type)."));
+        }
+        return out;
+    }
+
+    private static CompileIssue span(Diagnostic<? extends JavaFileObject> d, String code, int[] lineStarts, String severity) {
+        String message = d.getMessage(Locale.ENGLISH);
+        long start = d.getStartPosition() == Diagnostic.NOPOS ? d.getPosition() : d.getStartPosition();
+        long end = d.getEndPosition() == Diagnostic.NOPOS ? d.getPosition() : d.getEndPosition();
+        if (start == Diagnostic.NOPOS) return wholeLine((int) d.getLineNumber(), code, lineStarts, severity, message);
+        int[] s = lineCol(lineStarts, (int) start, code.length());
+        int[] e = lineCol(lineStarts, (int) Math.max(start, end), code.length());
+        // javac spans some messages ("';' expected") to the start of the next token, which can be lines away.
+        if (e[0] != s[0] || e[1] <= s[1]) e = new int[]{s[0], s[1] + 1};
+        return new CompileIssue(s[0], s[1], e[0], e[1], severity, message);
+    }
+
+    /** An issue covering all of {@code line} (1-based), used when javac gives no usable character offsets. */
+    private static CompileIssue wholeLine(int line, String code, int[] lineStarts, String severity, String message) {
+        int l = Math.min(Math.max(line, 1), lineStarts.length);
+        int from = lineStarts[l - 1];
+        int to = l < lineStarts.length ? lineStarts[l] : code.length();
+        while (to > from && (code.charAt(to - 1) == '\n' || code.charAt(to - 1) == '\r')) to--;
+        return new CompileIssue(l, 1, l, Math.max(2, to - from + 1), severity, message);
+    }
+
+    /** Character offset of the start of each line. */
+    private static int[] lineStarts(String code) {
+        List<Integer> starts = new ArrayList<>();
+        starts.add(0);
+        for (int i = 0; i < code.length(); i++) if (code.charAt(i) == '\n') starts.add(i + 1);
+        int[] a = new int[starts.size()];
+        for (int i = 0; i < a.length; i++) a[i] = starts.get(i);
+        return a;
+    }
+
+    /** 1-based {line, column} of a character offset. */
+    private static int[] lineCol(int[] lineStarts, int offset, int length) {
+        int off = Math.min(Math.max(offset, 0), length);
+        int lo = 0, hi = lineStarts.length - 1;
+        while (lo < hi) {
+            int mid = (lo + hi + 1) / 2;
+            if (lineStarts[mid] <= off) lo = mid; else hi = mid - 1;
+        }
+        return new int[]{lo + 1, off - lineStarts[lo] + 1};
     }
 
     // ------------------------------------------------------------------ run

@@ -31,8 +31,10 @@ public class JudgeService {
 
     private final Judge judge;
     private final Semaphore slots;
+    /** Compile-only checks don't start a JVM, so they get their own small pool instead of competing with runs. */
+    private final Semaphore checkSlots = new Semaphore(2, true);
     private final int waitSeconds;
-    private final int runsPerMinute, submitsPerMinute;
+    private final int runsPerMinute, submitsPerMinute, checksPerMinute;
     private final Map<String, Deque<Long>> recent = new ConcurrentHashMap<>();
     private final Map<String, Judge.Compiled> referenceCache = new ConcurrentHashMap<>();
 
@@ -42,6 +44,7 @@ public class JudgeService {
         this.waitSeconds = props.judge().queueWaitSeconds();
         this.runsPerMinute = props.judge().runsPerMinute();
         this.submitsPerMinute = props.judge().submitsPerMinute();
+        this.checksPerMinute = props.judge().checksPerMinute() == 0 ? 120 : props.judge().checksPerMinute();
     }
 
     /** "Run": the sample cases, or the user's own inputs (expected answers come from the reference solution). */
@@ -55,6 +58,24 @@ public class JudgeService {
     public Verdict submit(Problem p, String code, String callerKey) {
         rateLimit("submit:" + callerKey, submitsPerMinute);
         return withSlot(() -> judge.judge(p.function(), code, p.allTests(), p.compare(), p.timeLimitMs(), true));
+    }
+
+    /** "Check": compile the code and report where the errors are. Never runs the code. */
+    public List<Judge.CompileIssue> check(Problem p, String code, String callerKey) {
+        rateLimit("check:" + callerKey, checksPerMinute);
+        boolean got;
+        try {
+            got = checkSlots.tryAcquire(5, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new ApiException(HttpStatus.SERVICE_UNAVAILABLE, "Interrupted");
+        }
+        if (!got) throw new ApiException(HttpStatus.SERVICE_UNAVAILABLE, "The compiler is busy. Try again in a few seconds.");
+        try {
+            return judge.diagnose(p.function(), code);
+        } finally {
+            checkSlots.release();
+        }
     }
 
     private List<Judge.TestCase> customCases(Problem p, List<List<String>> inputs) {

@@ -39,6 +39,16 @@
 and **custom test inputs**: inputs typed in the Testcase tab are type-checked against the method signature and their
 expected answers are produced by running the problem's reference solution.
 
+### Live compile checks
+
+`POST /api/problems/{slug}/check` is step 2 on its own: `Judge.diagnose` compiles the code and returns each compiler
+message with 1-based start/end line and column (end exclusive), so the editor can underline errors while the user
+types. **No process is started and no user code runs** — the only risk is compile time, so the endpoint gets its own
+rate limit (`app.judge.checks-per-minute`, default 120) and its own two-permit pool rather than competing with runs
+for the judge's JVM slots. A check takes roughly 0.2–0.5 s. A `package` declaration is blanked out with spaces instead
+of being deleted, so the positions still line up with what the user sees. When only the generated harness fails to
+compile, the method signature doesn't match, and that is reported as one error on the `class Solution` line.
+
 ## Problem verification
 
 At start-up (and in CI via `JudgeCli check`), every problem is loaded and its reference solution is run on every test:
@@ -109,6 +119,7 @@ database documents, so content changes are reviewed like code.
 | GET | `/api/problems/{slug}` | optional | Statement, examples, hints, starter code, sample inputs |
 | POST | `/api/problems/{slug}/run` | optional | `{code, inputs?}` → verdict on examples or custom inputs |
 | POST | `/api/problems/{slug}/submit` | optional | `{code}` → verdict on all tests; saved when signed in |
+| POST | `/api/problems/{slug}/check` | optional | `{code}` → `{diagnostics}`: compile errors with positions; compiles only |
 | GET | `/api/problems/{slug}/submissions` | required | Your last 30 submissions for the problem |
 | POST | `/api/auth/register`, `/api/auth/login` | – | → `{token, user}` (JWT, HS256) |
 | GET | `/api/auth/me`, `/api/me/stats` | required | Current user, progress summary |

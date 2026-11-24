@@ -65,6 +65,17 @@ class ApiIntegrationTest {
     }
 
     @Test
+    void checkIsPublicAndPositionsCompileErrors() throws Exception {
+        String req = json.writeValueAsString(Map.of("code", "class Solution { public long[] runningTotal(int[] nums){ return x } }"));
+        mvc.perform(post("/api/problems/running-total/check").contentType(MediaType.APPLICATION_JSON).content(req))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.diagnostics.length()").value(1))
+                .andExpect(jsonPath("$.diagnostics[0].startLine").value(1))
+                .andExpect(jsonPath("$.diagnostics[0].severity").value("error"))
+                .andExpect(jsonPath("$.diagnostics[0].message").value("';' expected"));
+    }
+
+    @Test
     void runWithCustomInput() throws Exception {
         String req = json.writeValueAsString(Map.of(
                 "code", "class Solution { public long[] runningTotal(int[] nums) { return new long[nums.length]; } }",
