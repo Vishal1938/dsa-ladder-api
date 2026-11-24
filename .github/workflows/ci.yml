@@ -1,0 +1,31 @@
+name: CI
+on:
+  push:
+  pull_request:
+
+jobs:
+  problems:
+    name: Verify problem books
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: "21" }
+      - name: Compile the judge and CLI (no dependencies)
+        run: |
+          mkdir -p build/cli
+          javac -d build/cli $(find src/main/java/dev/dsaladder/judge src/main/java/dev/dsaladder/problems src/main/java/dev/dsaladder/cli -name '*.java')
+          cp -r src/main/resources/judge build/cli/
+      - name: Every reference solution passes its tests within the limit
+        run: java -cp build/cli dev.dsaladder.cli.JudgeCli check problems
+      - name: Reference and brute-force solutions agree on random inputs
+        run: java -cp build/cli dev.dsaladder.cli.JudgeCli crosscheck problems
+
+  build:
+    name: Build + tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: "21", cache: maven }
+      - run: mvn -B verify
