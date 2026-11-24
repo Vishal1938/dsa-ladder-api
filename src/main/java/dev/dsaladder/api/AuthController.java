@@ -26,7 +26,7 @@ public class AuthController {
 
     public record LoginRequest(@NotBlank String email, @NotBlank String password) {}
 
-    public record UserDto(Long id, String email, String displayName) {
+    public record UserDto(String id, String email, String displayName) {
         static UserDto of(AppUser u) { return new UserDto(u.getId(), u.getEmail(), u.getDisplayName()); }
     }
 

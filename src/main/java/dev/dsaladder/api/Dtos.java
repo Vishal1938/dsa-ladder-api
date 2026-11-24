@@ -37,15 +37,15 @@ public final class Dtos {
                           String stdout, Long runtimeMicros) {}
 
     public record VerdictDto(String status, int passed, int total, long runtimeMs, String compileOutput, String error,
-                             List<CaseDto> cases, Long submissionId, boolean saved) {
-        public static VerdictDto of(Verdict v, Long submissionId, boolean saved) {
+                             List<CaseDto> cases, String submissionId, boolean saved) {
+        public static VerdictDto of(Verdict v, String submissionId, boolean saved) {
             return new VerdictDto(v.status().name(), v.passed(), v.total(), v.runtimeMs(), v.compileOutput(), v.error(),
                     v.cases().stream().map(c -> new CaseDto(c.index(), c.passed(), c.hidden(), c.input(), c.expected(),
                             c.actual(), c.stdout(), c.runtimeMicros())).toList(), submissionId, saved);
         }
     }
 
-    public record SubmissionDto(Long id, String problemSlug, String status, int passed, int total, long runtimeMs,
+    public record SubmissionDto(String id, String problemSlug, String status, int passed, int total, long runtimeMs,
                                 Instant createdAt, String code) {}
 
     public record Stats(int solved, int attempted, int totalProblems, Map<String, Integer> solvedByTopic, List<SubmissionDto> recent) {}

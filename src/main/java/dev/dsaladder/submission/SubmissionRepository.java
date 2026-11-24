@@ -1,21 +1,13 @@
 package dev.dsaladder.submission;
 
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface SubmissionRepository extends JpaRepository<Submission, Long> {
+public interface SubmissionRepository extends MongoRepository<Submission, String>, SubmissionRepositoryCustom {
 
-    List<Submission> findByUserIdAndProblemSlugOrderByCreatedAtDesc(Long userId, String problemSlug, Pageable page);
+    List<Submission> findByUserIdAndProblemSlugOrderByCreatedAtDesc(String userId, String problemSlug, Pageable page);
 
-    List<Submission> findByUserIdOrderByCreatedAtDesc(Long userId, Pageable page);
-
-    @Query("select distinct s.problemSlug from Submission s where s.userId = :userId and s.status = 'ACCEPTED'")
-    List<String> solvedSlugs(@Param("userId") Long userId);
-
-    @Query("select distinct s.problemSlug from Submission s where s.userId = :userId")
-    List<String> attemptedSlugs(@Param("userId") Long userId);
+    List<Submission> findByUserIdOrderByCreatedAtDesc(String userId, Pageable page);
 }

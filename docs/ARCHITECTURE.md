@@ -1,7 +1,7 @@
 # Architecture
 
 ```
- Browser (dsa-ladder-web)  ──HTTPS /api──▶  Spring Boot API (this repo)  ──▶  PostgreSQL (users, submissions)
+ Browser (dsa-ladder-web)  ──HTTPS /api──▶  Spring Boot API (this repo)  ──▶  MongoDB (users, submissions)
                                                   │
                                                   ├── ProblemStore   (problems/ loaded + verified at start-up)
                                                   └── Judge          (javac in-process, run in a separate JVM per submission)
@@ -71,11 +71,34 @@ use `nsjail` as the sandbox prefix (network namespace + seccomp). See *Roadmap* 
 
 ## Data model
 
-* `app_user(id, email unique, password_hash (BCrypt), display_name, created_at)`
-* `submission(id, user_id, problem_slug, topic, status, passed, total, runtime_ms, code, created_at)`
+Two MongoDB collections. `_id` is an `ObjectId`, exposed in the API as its 24-character hex string.
+
+**`users`**
+
+| Field | Notes |
+|---|---|
+| `_id` | `ObjectId`; the JWT subject |
+| `email` | lower-cased on register; **unique index** |
+| `passwordHash` | BCrypt |
+| `displayName`, `createdAt` | |
+
+**`submissions`**
+
+| Field | Notes |
+|---|---|
+| `_id` | `ObjectId` |
+| `userId` | the user's id as a string (no join; documents are read per user) |
+| `problemSlug`, `topic` | |
+| `status` | `ACCEPTED`, `WRONG_ANSWER`, … |
+| `passed`, `total`, `runtimeMs`, `code`, `createdAt` | |
+
+Compound indexes: `{userId, problemSlug}` serves the per-problem history and the distinct-slug progress
+queries; `{userId, createdAt: -1}` serves the recent-submissions list. Both are declared on the document class
+and created at start-up (`spring.data.mongodb.auto-index-creation=true`).
 
 Progress ("solved") is derived from submissions: a problem is solved when the user has an `ACCEPTED` submission.
-Problems themselves are files, not database rows, so content changes are reviewed like code.
+`SubmissionRepositoryCustomImpl` runs the two `distinct` commands behind this. Problems themselves are files, not
+database documents, so content changes are reviewed like code.
 
 ## API
 

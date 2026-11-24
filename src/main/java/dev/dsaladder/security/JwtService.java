@@ -31,7 +31,7 @@ public class JwtService {
     public String issue(AppUser user) {
         Instant now = Instant.now();
         return Jwts.builder()
-                .subject(String.valueOf(user.getId()))
+                .subject(user.getId())
                 .claim("email", user.getEmail())
                 .issuedAt(Date.from(now))
                 .expiration(Date.from(now.plus(ttl)))
@@ -42,7 +42,7 @@ public class JwtService {
     public Optional<AuthUser> verify(String token) {
         try {
             Claims c = Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
-            return Optional.of(new AuthUser(Long.parseLong(c.getSubject()), c.get("email", String.class)));
+            return Optional.of(new AuthUser(c.getSubject(), c.get("email", String.class)));
         } catch (JwtException | IllegalArgumentException e) {
             return Optional.empty();
         }

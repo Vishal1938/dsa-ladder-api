@@ -1,16 +1,16 @@
-# Local stack: PostgreSQL + the API on http://localhost:8080
+# Local stack: MongoDB + the API on http://localhost:8080
 #   cp .env.example .env && docker compose up --build
+# Just the database (API from `mvn spring-boot:run`):
+#   docker compose up -d mongo
 services:
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: dsaladder
-      POSTGRES_USER: dsaladder
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dsaladder}
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - mongodata:/data/db
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U dsaladder"]
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
       interval: 5s
       retries: 10
 
@@ -19,13 +19,11 @@ services:
     ports:
       - "8080:8080"
     environment:
-      DATABASE_URL: jdbc:postgresql://db:5432/dsaladder
-      DATABASE_USER: dsaladder
-      DATABASE_PASSWORD: ${POSTGRES_PASSWORD:-dsaladder}
+      MONGODB_URI: mongodb://mongo:27017/dsaladder
       JWT_SECRET: ${JWT_SECRET:-change-me-to-a-long-random-string-of-32+-chars}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173}
     depends_on:
-      db:
+      mongo:
         condition: service_healthy
     # Hardening for the code runner (see docs/ARCHITECTURE.md → Security model)
     read_only: true
@@ -38,4 +36,4 @@ services:
     mem_limit: 1536m
 
 volumes:
-  pgdata:
+  mongodata:

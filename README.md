@@ -23,15 +23,18 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for how judging, verification a
 
 ## Tech
 
-Java 21 · Spring Boot 3 (Web, Security, Data JPA, Validation, Actuator) · PostgreSQL (H2 in dev) · JJWT · JUnit 5 · Docker · GitHub Actions
+Java 21 · Spring Boot 3 (Web, Security, Data MongoDB, Validation, Actuator) · MongoDB · JJWT · JUnit 5 · Testcontainers · Docker · GitHub Actions
 
 ## Run locally
 
 ```bash
-mvn spring-boot:run                 # http://localhost:8080, in-memory H2, problems from ./problems
-# or with PostgreSQL in Docker:
+docker compose up -d mongo          # MongoDB on localhost:27017
+mvn spring-boot:run                 # http://localhost:8080, problems from ./problems
+# or the whole stack in Docker:
 cp .env.example .env && docker compose up --build
 ```
+
+The default connection string is `mongodb://localhost:27017/dsaladder`; set `MONGODB_URI` to point somewhere else.
 
 Try it: `curl localhost:8080/api/topics`
 
@@ -40,7 +43,7 @@ Then start the frontend from dsa-ladder-web (`npm run dev`); it proxies `/api` t
 ## Tests
 
 ```bash
-mvn verify                                                    # judge unit tests + API integration tests
+mvn verify                                                    # judge unit tests + API integration tests (needs Docker: MongoDB testcontainer)
 mkdir -p build/cli && javac -d build/cli $(find src/main/java/dev/dsaladder/{judge,problems,cli} -name '*.java') \
   && cp -r src/main/resources/judge build/cli/
 java -cp build/cli dev.dsaladder.cli.JudgeCli check problems       # every problem verified

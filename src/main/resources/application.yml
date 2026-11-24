@@ -1,15 +1,13 @@
 spring:
   application:
     name: dsa-ladder
-  # Local development uses an in-memory H2 database. The "prod" profile (application-prod.yml) uses PostgreSQL.
-  datasource:
-    url: jdbc:h2:mem:dsaladder;DB_CLOSE_DELAY=-1
-    username: sa
-    password: ""
-  jpa:
-    hibernate:
-      ddl-auto: update
-    open-in-view: false
+  # Local development talks to MongoDB on localhost (`docker compose up -d mongo`).
+  # The "prod" profile (application-prod.yml) requires MONGODB_URI.
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/dsaladder}
+      # Create the indexes declared on the documents at start-up.
+      auto-index-creation: true
   jackson:
     default-property-inclusion: non_null
 

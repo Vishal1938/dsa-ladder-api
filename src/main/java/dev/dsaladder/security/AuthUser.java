@@ -6,7 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import java.util.Optional;
 
 /** The authenticated principal stored in the security context. */
-public record AuthUser(Long id, String email) {
+public record AuthUser(String id, String email) {
 
     /** The signed-in user for the current request, if any. */
     public static Optional<AuthUser> current() {
