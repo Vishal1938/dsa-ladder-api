@@ -1,0 +1,30 @@
+{
+ "slug": "top-k-frequent",
+ "topic": "hashing",
+ "stage": 1,
+ "order": 10,
+ "title": "Top k Most Frequent",
+ "difficulty": "Medium",
+ "whatsNew": "Counting first turns “most frequent” into plain ordering: group by value, then order the groups.",
+ "function": {
+  "name": "topKFrequent",
+  "returns": "int[]",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   },
+   {
+    "name": "k",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "What is the first thing you need before you can talk about “most frequent” at all?",
+  "Once you have the counts, how many things are left to put in order — n, or something usually much smaller?",
+  "Two ids with the same count must come out in a fixed order. Where does that rule belong?"
+ ],
+ "trigger": "“Top k by frequency” → frequency map first, then order the distinct values."
+}

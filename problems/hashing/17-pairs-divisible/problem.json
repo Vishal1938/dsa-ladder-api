@@ -1,0 +1,30 @@
+{
+ "slug": "pairs-divisible",
+ "topic": "hashing",
+ "stage": 3,
+ "order": 17,
+ "title": "Pairs With a Divisible Sum",
+ "difficulty": "Medium",
+ "whatsNew": "Don't store the value, store what the question cares about: its remainder.",
+ "function": {
+  "name": "pairsDivisible",
+  "returns": "long",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   },
+   {
+    "name": "m",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Two numbers that differ by a multiple of m behave identically here. What is the only thing about a number that matters?",
+  "If the element you are looking at leaves remainder r, what remainder must its partner leave?",
+  "In Java, −7 % 5 is −2. How do you get remainders that land between 0 and m − 1?"
+ ],
+ "trigger": "“Sum divisible by m” → count remainders and pair r with (m − r) % m."
+}

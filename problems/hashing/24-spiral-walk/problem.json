@@ -1,0 +1,26 @@
+{
+ "slug": "spiral-walk",
+ "topic": "hashing",
+ "stage": 4,
+ "order": 24,
+ "title": "Spiral Walk",
+ "difficulty": "Medium",
+ "whatsNew": "Four boundaries are enough state: read the outer ring, shrink them, repeat.",
+ "function": {
+  "name": "spiralOrder",
+  "returns": "List<Integer>",
+  "params": [
+   {
+    "name": "matrix",
+    "type": "int[][]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "After the first row is done, which rows are still in play? After the last column is done, which columns?",
+  "How many numbers describe “what is left to clean” at any moment?",
+  "A single leftover row or column is the case that trips most people up — what stops you from reading it twice?"
+ ],
+ "trigger": "“Visit a matrix ring by ring” → keep top/bottom/left/right and move them inwards."
+}

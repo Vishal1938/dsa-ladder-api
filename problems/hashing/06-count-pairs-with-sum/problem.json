@@ -1,0 +1,30 @@
+{
+ "slug": "count-pairs-with-sum",
+ "topic": "hashing",
+ "stage": 0,
+ "order": 6,
+ "title": "Count Pairs With a Given Sum",
+ "difficulty": "Medium",
+ "whatsNew": "Finding one pair becomes counting them all: ask the map how many partners you have already passed, not just whether one exists.",
+ "function": {
+  "name": "countPairsWithSum",
+  "returns": "long",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   },
+   {
+    "name": "target",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "In Pair With a Given Sum you stopped at the first partner. What do you need instead if you must not stop?",
+  "For the element at j, how many valid partners sit to its left?",
+  "Could the answer be bigger than an int when all 100,000 prices are equal?"
+ ],
+ "trigger": "“Count pairs with sum T” → frequency map of what you passed, add count[target − x]."
+}

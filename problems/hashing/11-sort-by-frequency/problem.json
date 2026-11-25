@@ -1,0 +1,26 @@
+{
+ "slug": "sort-by-frequency",
+ "topic": "hashing",
+ "stage": 1,
+ "order": 11,
+ "title": "Sort Letters by Frequency",
+ "difficulty": "Medium",
+ "whatsNew": "Same counting, but now the whole answer is the ordering: write each group out as a run of repeats.",
+ "function": {
+  "name": "frequencySort",
+  "returns": "String",
+  "params": [
+   {
+    "name": "s",
+    "type": "String"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "The output has exactly the same letters as the input. So what is really being decided?",
+  "How many different groups can there be, however long the text is?",
+  "Two letters with the same count need a fixed order — where do you apply that rule?"
+ ],
+ "trigger": "“Output ordered by how often things occur” → count, order the distinct keys, then expand."
+}

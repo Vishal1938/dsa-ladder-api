@@ -1,0 +1,26 @@
+{
+ "slug": "smallest-missing-positive",
+ "topic": "hashing",
+ "stage": 2,
+ "order": 15,
+ "title": "Smallest Missing Positive",
+ "difficulty": "Hard",
+ "whatsNew": "The values are no longer promised to be 1..n, so first move each useful value into its own slot, then read the slots in order.",
+ "function": {
+  "name": "firstMissingPositive",
+  "returns": "int",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "With n numbers in hand, how large can the answer possibly be? Which values can you therefore ignore completely?",
+  "Only values from 1 to n matter, and there are exactly n slots. Where would you like value v to sit?",
+  "Swapping a value into its own slot hands you another value to place. How do you make sure that loop cannot run forever?"
+ ],
+ "trigger": "Smallest missing positive with O(1) extra memory → swap each value v into slot v − 1, then find the first wrong slot."
+}

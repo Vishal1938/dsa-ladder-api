@@ -1,0 +1,30 @@
+{
+ "slug": "same-letters",
+ "topic": "hashing",
+ "stage": 1,
+ "order": 7,
+ "title": "Same Letters",
+ "difficulty": "Easy",
+ "whatsNew": "A word's letter tally is a key: two words are rearrangements of each other exactly when their tallies match.",
+ "function": {
+  "name": "sameLetters",
+  "returns": "boolean",
+  "params": [
+   {
+    "name": "a",
+    "type": "String"
+   },
+   {
+    "name": "b",
+    "type": "String"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Which cheap check rules out most pairs before you look at a single letter?",
+  "Crossing letters off one copy works, but searching for each letter costs a whole pass. What could you compare instead of the words themselves?",
+  "There are 26 letters. How big does the summary of a word need to be?"
+ ],
+ "trigger": "“Are these two words rearrangements?” → compare the 26 letter counts, not the letters."
+}

@@ -1,0 +1,30 @@
+{
+ "slug": "letter-budget",
+ "topic": "hashing",
+ "stage": 0,
+ "order": 5,
+ "title": "Letter Budget",
+ "difficulty": "Easy",
+ "whatsNew": "Counting with a budget: tally up what you have, then spend it one letter at a time.",
+ "function": {
+  "name": "canBuild",
+  "returns": "boolean",
+  "params": [
+   {
+    "name": "note",
+    "type": "String"
+   },
+   {
+    "name": "letters",
+    "type": "String"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Does the order of the magnets in the bag matter at all? What about the order of the letters in the note?",
+  "There are only 26 different letters. What would you store for each of them?",
+  "Which direction is easier: counting what you need and comparing, or counting what you have and spending it?"
+ ],
+ "trigger": "“Can X be built from the letters of Y?” → one tally of 26 counts, decrement while you spend."
+}

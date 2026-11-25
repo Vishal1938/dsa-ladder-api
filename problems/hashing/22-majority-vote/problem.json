@@ -1,0 +1,26 @@
+{
+ "slug": "majority-vote",
+ "topic": "hashing",
+ "stage": 4,
+ "order": 22,
+ "title": "Majority Vote",
+ "difficulty": "Easy",
+ "whatsNew": "You can drop the map entirely: one candidate and one counter survive, because a real majority outlasts every cancellation.",
+ "function": {
+  "name": "majority",
+  "returns": "int",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Imagine pairing up two votes for different candidates and throwing both away. Who is left at the end?",
+  "How much do you have to remember to run that pairing while walking the array once?",
+  "What should happen to your counter when it reaches zero?"
+ ],
+ "trigger": "“A value occurring more than half the time” → keep one candidate and one counter (Boyer–Moore voting)."
+}

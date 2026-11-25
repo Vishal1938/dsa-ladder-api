@@ -1,0 +1,30 @@
+{
+ "slug": "pattern-match",
+ "topic": "hashing",
+ "stage": 1,
+ "order": 9,
+ "title": "Does the Sentence Follow the Pattern?",
+ "difficulty": "Easy",
+ "whatsNew": "A key can map back: the pairing has to hold in both directions, or two letters could end up sharing one word.",
+ "function": {
+  "name": "followsPattern",
+  "returns": "boolean",
+  "params": [
+   {
+    "name": "pattern",
+    "type": "String"
+   },
+   {
+    "name": "sentence",
+    "type": "String"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "First: how many words must the sentence have?",
+  "Suppose you only record “letter a means dog”. Which wrong sentence would you then accept?",
+  "How many lookup tables do you need so that no two letters can claim the same word?"
+ ],
+ "trigger": "“One-to-one pairing between two sequences” → two maps, one each way."
+}

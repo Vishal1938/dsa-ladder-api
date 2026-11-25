@@ -1,0 +1,30 @@
+{
+ "slug": "pair-with-sum",
+ "topic": "hashing",
+ "stage": 0,
+ "order": 3,
+ "title": "Pair With a Given Sum",
+ "difficulty": "Easy",
+ "whatsNew": "A set only remembers that you saw a value; a map also remembers where, which is what lets you return indexes.",
+ "function": {
+  "name": "pairWithSum",
+  "returns": "int[]",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   },
+   {
+    "name": "target",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Fix the second index j. There is only one value that could sit at i — which one?",
+  "So while walking j from left to right, what should you have stored about every index before j?",
+  "If the same value occurs twice to the left of j, which of the two indexes do you want to keep in the map?"
+ ],
+ "trigger": "“Find a pair adding up to T” → map value → first index, then look up target − x."
+}

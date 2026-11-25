@@ -1,0 +1,26 @@
+{
+ "slug": "matching-row-column",
+ "topic": "hashing",
+ "stage": 1,
+ "order": 12,
+ "title": "Matching Row and Column",
+ "difficulty": "Medium",
+ "whatsNew": "A whole row can be the key: squash each row into one hashable value and look the columns up.",
+ "function": {
+  "name": "equalPairs",
+  "returns": "int",
+  "params": [
+   {
+    "name": "grid",
+    "type": "int[][]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Comparing every row with every column costs n steps per pair. How many pairs are there?",
+  "Letter Groups turned a word into a key. What is the key here?",
+  "If two different rows read the same, how many column matches does each of them contribute?"
+ ],
+ "trigger": "“Match whole rows against whole columns” → hash each row, then look up each column."
+}

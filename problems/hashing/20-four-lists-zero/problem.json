@@ -1,0 +1,38 @@
+{
+ "slug": "four-lists-zero",
+ "topic": "hashing",
+ "stage": 3,
+ "order": 20,
+ "title": "One From Each of Four Lists",
+ "difficulty": "Medium",
+ "whatsNew": "Split the work in half: hash every sum the first two lists can make, then look its negative up from the other two.",
+ "function": {
+  "name": "fourSumCount",
+  "returns": "long",
+  "params": [
+   {
+    "name": "a",
+    "type": "int[]"
+   },
+   {
+    "name": "b",
+    "type": "int[]"
+   },
+   {
+    "name": "c",
+    "type": "int[]"
+   },
+   {
+    "name": "d",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Trying every tuple means a loop per list. How many steps is that for lists of 1000?",
+  "If you already knew the sum of the first two picks, what single number would you need to find in the other two lists?",
+  "How many different sums can the first two lists make, and could you afford to store them all?"
+ ],
+ "trigger": "“Pick one from each of four lists so the sum is T” → split 2 + 2 and hash the sums of one half."
+}

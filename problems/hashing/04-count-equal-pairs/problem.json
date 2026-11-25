@@ -1,0 +1,26 @@
+{
+ "slug": "count-equal-pairs",
+ "topic": "hashing",
+ "stage": 0,
+ "order": 4,
+ "title": "Count Equal Pairs",
+ "difficulty": "Medium",
+ "whatsNew": "From “does it repeat?” to “how often?”: a map of counts, where each new copy pairs with every earlier copy.",
+ "function": {
+  "name": "countEqualPairs",
+  "returns": "long",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "If a value has already been written down 3 times and a fourth person writes it, how many new twin pairs appear?",
+  "Walking left to right, should you add to the answer before or after recording the current value?",
+  "How large can the answer get when all 100,000 numbers are equal — does it still fit in an int?"
+ ],
+ "trigger": "“Count pairs of equal elements” → frequency map, add the count so far before increasing it."
+}

@@ -16,7 +16,7 @@
 | `src/main/java/dev/dsaladder/problems` | Loads and verifies problem books (also dependency-free). |
 | `src/main/java/dev/dsaladder/cli` | `JudgeCli`: `check`, `crosscheck`, `judge`, `export`, `serve`. Used by CI and problem authors. |
 | `src/main/java/dev/dsaladder/{api,service,security,user,submission,config}` | The Spring Boot application. |
-| `tools/book_prefix_sum.py` | Authoring source for the Prefix Sums book (generates the problem folders). |
+| `tools/book_*.py` | Authoring source for each problem book (generates the problem folders). |
 
 ## How judging works
 

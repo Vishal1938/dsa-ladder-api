@@ -1,0 +1,27 @@
+{
+ "slug": "letter-groups",
+ "topic": "hashing",
+ "stage": 1,
+ "order": 8,
+ "title": "Letter Groups",
+ "difficulty": "Medium",
+ "whatsNew": "One comparison becomes one lookup: use the letter tally as a map key and equal keys land in the same bucket.",
+ "function": {
+  "name": "groupAnagrams",
+  "returns": "List<List<String>>",
+  "params": [
+   {
+    "name": "words",
+    "type": "String[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Comparing every word with every other word is the obvious plan. What makes it slow when almost every word is in a group of its own?",
+  "Same Letters compared two tallies. Could a tally itself be used to look a group up?",
+  "What kind of value can be a HashMap key — and how would you turn a tally into one?"
+ ],
+ "trigger": "“Group things that are equal up to rearrangement” → map a canonical key (sorted word / letter tally) to a bucket.",
+ "compare": "UNORDERED_DEEP"
+}

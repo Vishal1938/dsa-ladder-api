@@ -1,0 +1,26 @@
+{
+ "slug": "repeated-numbers",
+ "topic": "hashing",
+ "stage": 2,
+ "order": 14,
+ "title": "Repeated Numbers",
+ "difficulty": "Medium",
+ "whatsNew": "The same marks read the other way round: arriving at a slot that is already marked means you have met this value before.",
+ "function": {
+  "name": "findRepeated",
+  "returns": "List<Integer>",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Missing Numbers marked slot v − 1 the first time it met v. What does it mean if that slot is already marked?",
+  "Can you record the repeats without a second array?",
+  "A value that shows up three times will be noticed twice — how do you make sure it is reported only once?"
+ ],
+ "trigger": "Values are 1..n and you want the repeats → mark slot v − 1; arriving at a marked slot means a repeat."
+}

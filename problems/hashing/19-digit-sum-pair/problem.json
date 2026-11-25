@@ -1,0 +1,26 @@
+{
+ "slug": "digit-sum-pair",
+ "topic": "hashing",
+ "stage": 3,
+ "order": 19,
+ "title": "Best Pair With Equal Digit Sums",
+ "difficulty": "Medium",
+ "whatsNew": "The key can be computed from the value, and each group only needs its best candidate kept.",
+ "function": {
+  "name": "maxPairSameDigitSum",
+  "returns": "int",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Tickets only compete with tickets that share their digit sum. How would you put them into groups?",
+  "How many different digit sums are even possible here?",
+  "Inside one group, how many tickets do you actually have to remember?"
+ ],
+ "trigger": "“Best pair sharing a derived property” → group by the computed key, keep only the best per group."
+}

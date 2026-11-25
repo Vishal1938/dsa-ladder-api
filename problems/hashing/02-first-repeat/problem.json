@@ -1,0 +1,25 @@
+{
+ "slug": "first-repeat",
+ "topic": "hashing",
+ "stage": 0,
+ "order": 2,
+ "title": "First Repeat",
+ "difficulty": "Easy",
+ "whatsNew": "Same set, but you now report which value repeats — the first one you bump into going left to right.",
+ "function": {
+  "name": "firstRepeat",
+  "returns": "int",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "You want the earliest position at which a repeat finishes, not the smallest repeated value. In which order should you walk the array?",
+  "While walking, what single question do you need answered about everything to the left of you?"
+ ],
+ "trigger": "“The first value that repeats” → scan once, asking a set about each value before adding it."
+}

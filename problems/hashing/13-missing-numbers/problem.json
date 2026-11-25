@@ -1,0 +1,26 @@
+{
+ "slug": "missing-numbers",
+ "topic": "hashing",
+ "stage": 2,
+ "order": 13,
+ "title": "Missing Numbers",
+ "difficulty": "Easy",
+ "whatsNew": "When every value is between 1 and n, the array itself is the hash table: slot v − 1 belongs to value v.",
+ "function": {
+  "name": "findMissing",
+  "returns": "List<Integer>",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Searching the array for each of 1, 2, …, n costs a whole pass per number. Where could you leave a mark instead?",
+  "Value v has a natural home in the array. Which index is it?",
+  "You must mark a slot without losing the number stored in it — what can you change about a positive number and still read it back?"
+ ],
+ "trigger": "Values are 1..n and you want the missing ones → mark slot v − 1 in place, for example by flipping its sign."
+}

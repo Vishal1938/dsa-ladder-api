@@ -1,0 +1,25 @@
+{
+ "slug": "seen-before",
+ "topic": "hashing",
+ "stage": 0,
+ "order": 1,
+ "title": "Seen Before?",
+ "difficulty": "Easy",
+ "whatsNew": "The base idea of the whole topic: a hash set answers “have I met this already?” in one step.",
+ "function": {
+  "name": "hasDuplicate",
+  "returns": "boolean",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Comparing every badge with every other badge takes about n²/2 comparisons. What would you need to remember instead, so that one look is enough?",
+  "What does a HashSet tell you when you try to add something that is already in it?"
+ ],
+ "trigger": "“Have I seen this value before?” → a hash set you add to as you walk."
+}

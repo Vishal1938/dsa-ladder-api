@@ -1,0 +1,26 @@
+{
+ "slug": "longest-run",
+ "topic": "hashing",
+ "stage": 2,
+ "order": 16,
+ "title": "Longest Run of Consecutive Values",
+ "difficulty": "Medium",
+ "whatsNew": "A set turns “is x − 1 here?” into a single question, so you can count each run only from its first value.",
+ "function": {
+  "name": "longestConsecutive",
+  "returns": "int",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Sorting works, but you are in the hashing chapter. What can a set tell you about a single value in one step?",
+  "If you walk upwards from every value, you count the same run over and over. Which values are worth starting from?",
+  "How do you recognise the first value of a run?"
+ ],
+ "trigger": "“Longest stretch of consecutive values” → a set, and only count upwards from values whose predecessor is absent."
+}

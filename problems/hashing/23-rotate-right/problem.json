@@ -1,0 +1,31 @@
+{
+ "slug": "rotate-right",
+ "topic": "hashing",
+ "stage": 4,
+ "order": 23,
+ "title": "Rotate Right",
+ "difficulty": "Medium",
+ "whatsNew": "Two cheap observations do the whole job: k only matters modulo n, and a rotation is three reversals.",
+ "function": {
+  "name": "rotate",
+  "returns": "void",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   },
+   {
+    "name": "k",
+    "type": "int"
+   }
+  ],
+  "outputArg": 0
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "What does shifting by exactly one full length do? So how many genuinely different values of k are there?",
+  "Write the array before and after a shift. Which two blocks of numbers swap places?",
+  "Reversing the whole array puts the right block first, but backwards. What fixes that?"
+ ],
+ "trigger": "“Rotate an array in place” → reduce k modulo n, then reverse the whole array and each of the two parts."
+}

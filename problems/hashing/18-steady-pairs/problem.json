@@ -1,0 +1,26 @@
+{
+ "slug": "steady-pairs",
+ "topic": "hashing",
+ "stage": 3,
+ "order": 18,
+ "title": "Steady Pairs",
+ "difficulty": "Medium",
+ "whatsNew": "Rearrange the condition until each side mentions only one index — then it is just “count equal keys” again.",
+ "function": {
+  "name": "countSteadyPairs",
+  "returns": "long",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "The condition mixes both indexes. Can you move things around so that the left side only mentions i and the right side only mentions j?",
+  "Once both sides are the same expression of a single index, what are you counting?",
+  "Which earlier problem in this ladder has it just turned into?"
+ ],
+ "trigger": "A condition tying i to j → rewrite it as f(i) = f(j), then count equal keys."
+}

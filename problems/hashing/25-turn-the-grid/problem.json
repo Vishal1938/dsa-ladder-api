@@ -1,0 +1,27 @@
+{
+ "slug": "turn-the-grid",
+ "topic": "hashing",
+ "stage": 4,
+ "order": 25,
+ "title": "Turn the Grid",
+ "difficulty": "Medium",
+ "whatsNew": "A quarter turn in place is two easy moves you already know: mirror along the diagonal, then reverse each row.",
+ "function": {
+  "name": "rotateImage",
+  "returns": "void",
+  "params": [
+   {
+    "name": "matrix",
+    "type": "int[][]"
+   }
+  ],
+  "outputArg": 0
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Where does the value at row r, column c end up after a quarter turn clockwise?",
+  "Mirroring the grid along its main diagonal is an easy in-place move. How close does that get you?",
+  "After the mirror, compare each row with what you actually want — what single operation is left?"
+ ],
+ "trigger": "“Rotate a square matrix 90° in place” → transpose, then reverse every row."
+}

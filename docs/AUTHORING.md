@@ -14,9 +14,11 @@ Supported parameter/return types: `int long double boolean char String`, their a
 `List<Integer> List<Long> List<String> List<List<Integer>> List<List<String>>`, `ListNode`, `TreeNode` (level-order arrays with `null`).
 For in-place problems use `"returns": "void", "outputArg": <index>`.
 
-Generator kinds (`TestGen`): `int`, `const`, `intArray`, `bits`, `intMatrix`, `string`, `ranges` (of an array/string argument),
-`rects` (of a matrix argument), `updates`, `intervals`, `trips`. `ranges`/`rects`/`updates` accept `"wide": true` for
-near-full ranges, which is what makes naive per-query loops time out.
+Generator kinds (`TestGen`): `int`, `const`, `intArray`, `choiceArray`, `bits`, `intMatrix`, `gridWithEqualLines`,
+`string`, `wordArray`, `ranges` (of an array/string argument), `rects` (of a matrix argument), `updates`, `intervals`,
+`trips`, `shuffleOf` and `sentenceFor` (both of an earlier string argument). Sizes are `"n"` or `"nMin"`/`"nMax"`.
+`ranges`/`rects`/`updates` accept `"wide": true` for near-full ranges, which is what makes naive per-query loops time out;
+`intArray` accepts `"maxIsN": true` (with an optional `"maxOffset"`) for the "values are 1..n" problems.
 
 ## Rules of thumb for a good ladder
 

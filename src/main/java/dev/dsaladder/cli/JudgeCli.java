@@ -35,8 +35,14 @@ public final class JudgeCli {
                 Verdict v = judge.judge(p.function(), p.referenceSolution(), p.allTests(), p.compare(), p.timeLimitMs(), true);
                 System.out.printf("  %-30s stage %d  %3d tests (%d samples)  reference %s in %d ms (limit %d)%n", p.slug(), p.stage() + 1, p.allTests().size(), p.sampleTests().size(), v.status(), v.runtimeMs(), p.timeLimitMs());
                 if (v.status() != Verdict.Status.ACCEPTED) store.errors().add(p.slug() + ": reference gets " + v.status() + " under the time limit (" + v.runtimeMs() + " ms)");
+                // An empty starter body cannot return a value, so it must fail to compile - except for in-place (void)
+                // problems, where it compiles fine and instead has to get the examples wrong.
                 Verdict s = judge.judge(p.function(), p.function().starterCode(), p.sampleTests(), p.compare(), p.timeLimitMs(), true);
-                if (s.status() != Verdict.Status.COMPILE_ERROR) store.errors().add(p.slug() + ": starter code unexpectedly compiles");
+                if ("void".equals(p.function().returns())) {
+                    if (s.status() == Verdict.Status.ACCEPTED) store.errors().add(p.slug() + ": the empty starter code already passes the examples");
+                } else if (s.status() != Verdict.Status.COMPILE_ERROR) {
+                    store.errors().add(p.slug() + ": starter code unexpectedly compiles");
+                }
             }
             System.out.printf("%d problems loaded in %d ms%n", store.problems().size(), System.currentTimeMillis() - t0);
             if (!store.errors().isEmpty()) {
