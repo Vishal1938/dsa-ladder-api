@@ -1,0 +1,30 @@
+{
+ "slug": "pair-in-sorted",
+ "topic": "two-pointers",
+ "stage": 0,
+ "order": 4,
+ "title": "Pair With a Given Sum, Sorted",
+ "difficulty": "Easy",
+ "whatsNew": "Because the input is sorted, one comparison rules out a whole row of pairs at once.",
+ "function": {
+  "name": "hasPairWithSum",
+  "returns": "boolean",
+  "params": [
+   {
+    "name": "sorted",
+    "type": "int[]"
+   },
+   {
+    "name": "target",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Start with the cheapest and the dearest item. What does their total tell you?",
+  "If that total is too small, which of the two items can you rule out completely — and why is that safe?",
+  "How many steps does each pointer take in total?"
+ ],
+ "trigger": "“Sorted array, find a pair with a given sum” → one pointer at each end; too small moves left up, too big moves right down."
+}

@@ -1,0 +1,30 @@
+{
+ "slug": "appears-in-order",
+ "topic": "two-pointers",
+ "stage": 1,
+ "order": 12,
+ "title": "Does the Word Appear in Order?",
+ "difficulty": "Easy",
+ "whatsNew": "Two sequences, one pointer each: advance the word's pointer only on a match.",
+ "function": {
+  "name": "appearsInOrder",
+  "returns": "boolean",
+  "params": [
+   {
+    "name": "text",
+    "type": "String"
+   },
+   {
+    "name": "word",
+    "type": "String"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Walk through the text one letter at a time. What is the only thing you need to remember about the word?",
+  "When the current text letter is the one you are looking for, what changes? And when it is not?",
+  "Is it ever worth skipping a letter of the text that does match what you need?"
+ ],
+ "trigger": "“Is one sequence hidden inside another, in order?” → a pointer in each, and only the small one waits for a match."
+}

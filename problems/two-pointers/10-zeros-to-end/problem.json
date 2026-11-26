@@ -1,0 +1,27 @@
+{
+ "slug": "zeros-to-end",
+ "topic": "two-pointers",
+ "stage": 1,
+ "order": 10,
+ "title": "Zeros to the End",
+ "difficulty": "Easy",
+ "whatsNew": "Same writer index, except now you have to go back and fill the slots it left behind.",
+ "function": {
+  "name": "moveZeros",
+  "returns": "void",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ],
+  "outputArg": 0
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Pretend for a moment that you only had to collect the non-zero values at the front. Which problem is that?",
+  "After the writer has placed every non-zero value, what do you know about the rest of the array?",
+  "How many zeros should there be, and do you need to have counted them?"
+ ],
+ "trigger": "“Push some values to one end, keeping the others in order” → collect the keepers with a writer, then fill the tail."
+}

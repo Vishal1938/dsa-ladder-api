@@ -1,0 +1,26 @@
+{
+ "slug": "sorted-squares",
+ "topic": "two-pointers",
+ "stage": 0,
+ "order": 3,
+ "title": "Squares of a Sorted List",
+ "difficulty": "Easy",
+ "whatsNew": "The largest square is always at one of the two ends, so you can fill the answer from the back.",
+ "function": {
+  "name": "sortedSquares",
+  "returns": "int[]",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Squaring destroys the order, but not completely. Which reading has the largest square, and where in the list is it?",
+  "If you know the largest square, which slot of the answer does it belong in?",
+  "After taking a value from one end, what is left to consider?"
+ ],
+ "trigger": "“Sorted input, but the measure peaks at the ends” → compare the two ends and fill the answer backwards."
+}

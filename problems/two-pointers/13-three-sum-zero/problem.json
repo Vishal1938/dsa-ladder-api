@@ -1,0 +1,27 @@
+{
+ "slug": "three-sum-zero",
+ "topic": "two-pointers",
+ "stage": 2,
+ "order": 13,
+ "title": "Triples That Cancel Out",
+ "difficulty": "Medium",
+ "whatsNew": "Sort, fix one number, and run the sorted pair search on the rest; skipping equal neighbours at both levels keeps the triples distinct.",
+ "function": {
+  "name": "threeSumZero",
+  "returns": "List<List<Integer>>",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Checking every triple is three nested loops. If the list were sorted, which earlier problem could handle the inner two?",
+  "After fixing the first number, what exactly are you looking for in the rest of the list?",
+  "Equal values next to each other would produce the same triple twice. Where do you have to guard against that?"
+ ],
+ "trigger": "“Find triples with a given sum” → sort, fix one, two pointers on the rest, and skip equal neighbours.",
+ "compare": "UNORDERED_DEEP"
+}

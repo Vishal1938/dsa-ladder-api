@@ -1,0 +1,26 @@
+{
+ "slug": "clean-palindrome",
+ "topic": "two-pointers",
+ "stage": 0,
+ "order": 2,
+ "title": "Palindrome After Cleaning",
+ "difficulty": "Easy",
+ "whatsNew": "The pointers no longer move on every step: each one first walks past the characters that do not count.",
+ "function": {
+  "name": "isCleanPalindrome",
+  "returns": "boolean",
+  "params": [
+   {
+    "name": "s",
+    "type": "String"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "If you only had letters and digits, where would the two pointers start?",
+  "What should a pointer do when it lands on a space or a comma — compare it, or something else?",
+  "Could the two pointers cross while they are skipping junk, and what does that mean for the answer?"
+ ],
+ "trigger": "“Palindrome ignoring some characters” → a pointer at each end, each skipping what does not count."
+}

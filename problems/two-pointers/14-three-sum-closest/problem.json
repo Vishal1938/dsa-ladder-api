@@ -1,0 +1,30 @@
+{
+ "slug": "three-sum-closest",
+ "topic": "two-pointers",
+ "stage": 2,
+ "order": 14,
+ "title": "Triple Closest to a Target",
+ "difficulty": "Medium",
+ "whatsNew": "The same sorted loop, but instead of looking for an exact hit you keep the closest sum you have seen.",
+ "function": {
+  "name": "threeSumClosest",
+  "returns": "int",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   },
+   {
+    "name": "target",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Sorting lets you walk two pointers inwards. What tells you which pointer to move when the sum is too small?",
+  "You are no longer looking for one particular sum. What do you have to carry along as you walk?",
+  "Two totals can be the same distance from the target on opposite sides. Which one does the statement ask for?"
+ ],
+ "trigger": "“Closest sum rather than an exact sum” → the same sorted two-pointer sweep, tracking the best distance."
+}

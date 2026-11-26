@@ -1,0 +1,27 @@
+{
+ "slug": "reverse-in-place",
+ "topic": "two-pointers",
+ "stage": 0,
+ "order": 1,
+ "title": "Reverse in Place",
+ "difficulty": "Easy",
+ "whatsNew": "The template for the whole stage: one pointer at each end, swap them, and step both inwards.",
+ "function": {
+  "name": "reverseChars",
+  "returns": "void",
+  "params": [
+   {
+    "name": "s",
+    "type": "char[]"
+   }
+  ],
+  "outputArg": 0
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Which slot does the first letter have to end up in? And the second?",
+  "If you swap those two letters straight away, which part of the rail is still unfinished?",
+  "How do you know when the two slots you are swapping have met?"
+ ],
+ "trigger": "“Reverse / mirror a sequence in place” → a pointer at each end, swap and step inwards."
+}

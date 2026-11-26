@@ -1,0 +1,30 @@
+{
+ "slug": "remove-value",
+ "topic": "two-pointers",
+ "stage": 1,
+ "order": 7,
+ "title": "Remove a Value",
+ "difficulty": "Easy",
+ "whatsNew": "Both pointers now walk the same way: a reader that visits everything and a writer that only advances on a keeper.",
+ "function": {
+  "name": "removeValue",
+  "returns": "int[]",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   },
+   {
+    "name": "val",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Deleting an entry and shifting the rest left costs a whole pass each time. Could you instead decide, for each entry, where it finally belongs?",
+  "Keep a count of how many entries you have kept so far. What is that count also telling you?",
+  "Why is it safe to write to a slot you have not read yet — or have you always read it already?"
+ ],
+ "trigger": "“Remove / compact / filter in place, order preserved” → a reader index and a writer index moving the same way."
+}

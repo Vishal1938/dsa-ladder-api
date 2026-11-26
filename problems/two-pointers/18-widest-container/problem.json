@@ -1,0 +1,26 @@
+{
+ "slug": "widest-container",
+ "topic": "two-pointers",
+ "stage": 3,
+ "order": 18,
+ "title": "Widest Container",
+ "difficulty": "Medium",
+ "whatsNew": "Start at the widest pair and always move the shorter wall: the taller one cannot help while the short one caps the height.",
+ "function": {
+  "name": "maxWater",
+  "returns": "long",
+  "params": [
+   {
+    "name": "heights",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Start with the two outermost walls. What is the only way to make the width bigger?",
+  "Since width can only shrink, the height has to grow to compensate. Which of the two walls is holding the height back?",
+  "Why is it safe to discard the shorter wall and never look at it again?"
+ ],
+ "trigger": "“Best pair where the value depends on the weaker end” → start at both ends and always move the weaker one."
+}

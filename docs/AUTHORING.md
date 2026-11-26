@@ -15,10 +15,12 @@ Supported parameter/return types: `int long double boolean char String`, their a
 For in-place problems use `"returns": "void", "outputArg": <index>`.
 
 Generator kinds (`TestGen`): `int`, `const`, `intArray`, `choiceArray`, `bits`, `intMatrix`, `gridWithEqualLines`,
-`string`, `wordArray`, `ranges` (of an array/string argument), `rects` (of a matrix argument), `updates`, `intervals`,
-`trips`, `shuffleOf` and `sentenceFor` (both of an earlier string argument). Sizes are `"n"` or `"nMin"`/`"nMax"`.
-`ranges`/`rects`/`updates` accept `"wide": true` for near-full ranges, which is what makes naive per-query loops time out;
-`intArray` accepts `"maxIsN": true` (with an optional `"maxOffset"`) for the "values are 1..n" problems.
+`string`, `wordArray`, `nearPalindrome`, `sortedWithBuffer`, `disjointIntervals`, `ranges` (of an array/string argument),
+`rects` (of a matrix argument), `updates`, `intervals`, `trips`, and `shuffleOf` / `sentenceFor` / `subsequenceOf` /
+`insertBackspacePairs` (all of an earlier string argument). Sizes are `"n"` or `"nMin"`/`"nMax"`.
+`ranges`/`rects`/`updates` accept `"wide": true` for near-full ranges, which is what makes naive per-query loops time out.
+`intArray` accepts `"maxIsN": true` (with an optional `"maxOffset"`) for the "values are 1..n" problems, plus
+`"sorted": true` and `"distinct": true`.
 
 ## Rules of thumb for a good ladder
 

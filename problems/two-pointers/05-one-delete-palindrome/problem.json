@@ -1,0 +1,26 @@
+{
+ "slug": "one-delete-palindrome",
+ "topic": "two-pointers",
+ "stage": 0,
+ "order": 5,
+ "title": "Palindrome After One Deletion",
+ "difficulty": "Medium",
+ "whatsNew": "At the first mismatch you do not give up: you try skipping the left character, and then the right one.",
+ "function": {
+  "name": "almostPalindrome",
+  "returns": "boolean",
+  "params": [
+   {
+    "name": "s",
+    "type": "String"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Walk two pointers inwards as usual. What have you learnt the moment they disagree?",
+  "At that point exactly one of the two characters has to go. How many possibilities is that?",
+  "Each possibility leaves a plain “is this stretch a palindrome?” question. How expensive is answering it?"
+ ],
+ "trigger": "“Palindrome allowing one edit” → two pointers, and at the first mismatch test both skips."
+}

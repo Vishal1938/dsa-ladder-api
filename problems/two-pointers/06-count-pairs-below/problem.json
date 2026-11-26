@@ -1,0 +1,30 @@
+{
+ "slug": "count-pairs-below",
+ "topic": "two-pointers",
+ "stage": 0,
+ "order": 6,
+ "title": "Count Pairs Below a Total",
+ "difficulty": "Medium",
+ "whatsNew": "When a pair fits, every pair between the two pointers fits as well, so you count r − l of them in one step.",
+ "function": {
+  "name": "countPairsBelow",
+  "returns": "long",
+  "params": [
+   {
+    "name": "sorted",
+    "type": "int[]"
+   },
+   {
+    "name": "target",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Put a pointer at each end. If the lightest and the heaviest parcel fit together, what do you know about the lightest paired with anything in between?",
+  "So how many pairs can you tick off without checking them one at a time?",
+  "And if that pair does not fit, which parcel can never be part of a pair with anything that is left?"
+ ],
+ "trigger": "“Count pairs under a limit in a sorted array” → two pointers, and add r − l whenever the pair fits."
+}

@@ -1,0 +1,30 @@
+{
+ "slug": "closest-pair-two-lists",
+ "topic": "two-pointers",
+ "stage": 4,
+ "order": 24,
+ "title": "Closest Pair From Two Lists",
+ "difficulty": "Medium",
+ "whatsNew": "With both lists sorted, moving the pointer at the smaller value is the only move that can close the gap.",
+ "function": {
+  "name": "minAbsDifference",
+  "returns": "long",
+  "params": [
+   {
+    "name": "a",
+    "type": "int[]"
+   },
+   {
+    "name": "b",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Comparing every reading with every other one is a pair of nested loops. What would sorting both lists buy you?",
+  "You are looking at one reading from each list and the smaller one is from a. Could any later reading of b ever be closer to it?",
+  "So which pointer should move, and what happens to the gap if you move the other one instead?"
+ ],
+ "trigger": "“Closest pair across two lists” → sort both, then advance whichever side is currently smaller."
+}

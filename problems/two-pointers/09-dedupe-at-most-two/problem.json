@@ -1,0 +1,26 @@
+{
+ "slug": "dedupe-at-most-two",
+ "topic": "two-pointers",
+ "stage": 1,
+ "order": 9,
+ "title": "Keep at Most Two of Each",
+ "difficulty": "Medium",
+ "whatsNew": "Look two slots back in the kept part instead of one, and the same loop keeps two copies instead of one.",
+ "function": {
+  "name": "dedupeAtMostTwo",
+  "returns": "int[]",
+  "params": [
+   {
+    "name": "sorted",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "In the previous problem the writer compared with the last entry it kept. What question is it really asking?",
+  "If you are allowed two copies, how far back in the kept part do you have to look to know you already have two?",
+  "Why does that one comparison work without counting anything?"
+ ],
+ "trigger": "“Keep at most k copies of each value in sorted data” → writer index, compare with the value k slots back."
+}

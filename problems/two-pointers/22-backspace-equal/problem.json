@@ -1,0 +1,30 @@
+{
+ "slug": "backspace-equal",
+ "topic": "two-pointers",
+ "stage": 4,
+ "order": 22,
+ "title": "Same After Backspaces",
+ "difficulty": "Easy",
+ "whatsNew": "Walking both strings from the back lets a counter absorb the backspaces, so you compare one real character at a time with no extra memory.",
+ "function": {
+  "name": "backspaceEqual",
+  "returns": "boolean",
+  "params": [
+   {
+    "name": "a",
+    "type": "String"
+   },
+   {
+    "name": "b",
+    "type": "String"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Reading forwards, you cannot tell whether a character survives until you have seen what comes after it. Which direction removes that problem?",
+  "Going backwards, what should you do when you meet a backspace, and what when you meet a letter while backspaces are still owed?",
+  "What has to be true when one string runs out before the other?"
+ ],
+ "trigger": "“Compare two sequences with deletions” → walk both from the back, carrying a skip count."
+}

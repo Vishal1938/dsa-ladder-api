@@ -1,0 +1,30 @@
+{
+ "slug": "max-pair-removals",
+ "topic": "two-pointers",
+ "stage": 2,
+ "order": 17,
+ "title": "Most Pairs Removed",
+ "difficulty": "Medium",
+ "whatsNew": "A match now consumes both pointers at once, because each value can only be spent one time.",
+ "function": {
+  "name": "maxPairRemovals",
+  "returns": "int",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   },
+   {
+    "name": "k",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Sort the cards. Starting from the two ends, what does a total that is too small tell you?",
+  "What has to happen to both pointers when you do find a total of exactly k?",
+  "Why can you never regret discarding a pair as soon as you find one?"
+ ],
+ "trigger": "“Remove pairs with an exact sum, as many as possible” → sort, then two pointers that both step in on a match."
+}

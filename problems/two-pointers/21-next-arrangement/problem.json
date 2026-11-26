@@ -1,0 +1,27 @@
+{
+ "slug": "next-arrangement",
+ "topic": "two-pointers",
+ "stage": 3,
+ "order": 21,
+ "title": "Next Arrangement",
+ "difficulty": "Medium",
+ "whatsNew": "Scanning from the right finds the one position worth changing, and the tail after it is already descending, so reversing it is enough.",
+ "function": {
+  "name": "nextPermutation",
+  "returns": "void",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ],
+  "outputArg": 0
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "If the numbers decrease all the way from left to right, there is nothing bigger to go to. What is the answer then?",
+  "Otherwise, scanning from the right, you reach a position that is smaller than its neighbour. Why is that the leftmost position that has to change?",
+  "Once that position holds its new value, the rest must be as small as possible. What do you already know about the order of the rest?"
+ ],
+ "trigger": "“Next arrangement in order” → from the right find the dip, swap with its next larger value, reverse the tail."
+}

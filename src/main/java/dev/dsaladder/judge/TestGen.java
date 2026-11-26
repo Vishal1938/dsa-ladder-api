@@ -1,9 +1,12 @@
 package dev.dsaladder.judge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.SplittableRandom;
 
 /**
@@ -44,6 +47,10 @@ public final class TestGen {
         return v == null ? 0 : ((Number) v).doubleValue();
     }
 
+    private static void sortAscending(List<Object> l) {
+        l.sort((p, q) -> Long.compare((Long) p, (Long) q));
+    }
+
     private static String word(String alphabet, int len, SplittableRandom r) {
         StringBuilder sb = new StringBuilder(len);
         for (int k = 0; k < len; k++) sb.append(alphabet.charAt(r.nextInt(alphabet.length())));
@@ -79,8 +86,98 @@ public final class TestGen {
                         : Boolean.TRUE.equals(m.get("maxIsN")) ? n + i(m, "maxOffset", 0)
                         : i(m, "max", 0);
                 List<Object> l = new ArrayList<>(n);
-                for (int k = 0; k < n; k++) l.add(between(r, lo, hi));
+                if (Boolean.TRUE.equals(m.get("distinct"))) {
+                    if ((long) hi - lo + 1 < n) throw new IllegalArgumentException("intArray: \"distinct\" needs max - min + 1 >= n");
+                    Set<Long> used = new HashSet<>();
+                    while (l.size() < n) {
+                        long v = between(r, lo, hi);
+                        if (used.add(v)) l.add(v);
+                    }
+                } else {
+                    for (int k = 0; k < n; k++) l.add(between(r, lo, hi));
+                }
+                if (Boolean.TRUE.equals(m.get("sorted"))) sortAscending(l);
                 return l;
+            }
+            case "sortedWithBuffer": {
+                // m sorted values followed by n zeros: the shape of "merge b into the free space at the end of a".
+                int head = i(m, "m", 0), tail = i(m, "n", 0);
+                List<Object> l = new ArrayList<>(head + tail);
+                for (int k = 0; k < head; k++) l.add(between(r, i(m, "min", 0), i(m, "max", 0)));
+                sortAscending(l);
+                for (int k = 0; k < tail; k++) l.add(0L);
+                return l;
+            }
+            case "disjointIntervals": {
+                int n = i(m, "n", 1), maxGap = i(m, "maxGap", 10), maxLen = i(m, "maxLen", 10);
+                List<Object> l = new ArrayList<>(n);
+                long at = 0;
+                for (int k = 0; k < n; k++) {
+                    at += r.nextInt(maxGap + 1);
+                    long end = at + r.nextInt(maxLen + 1);
+                    l.add(List.of(at, end));
+                    at = end + 1;                       // never overlap the interval just emitted
+                }
+                return l;
+            }
+            case "nearPalindrome": {
+                // A palindrome, then `flips` positions changed, then optional junk characters sprinkled in.
+                int n = size(m, r);
+                String alpha = (String) m.getOrDefault("alphabet", "abcdefghijklmnopqrstuvwxyz");
+                char[] cs = new char[n];
+                for (int k = 0; k < (n + 1) / 2; k++) {
+                    char c = alpha.charAt(r.nextInt(alpha.length()));
+                    cs[k] = c;
+                    cs[n - 1 - k] = c;
+                }
+                for (int f = i(m, "flips", 0); f > 0 && n > 0; f--) cs[r.nextInt(n)] = alpha.charAt(r.nextInt(alpha.length()));
+                String noise = (String) m.getOrDefault("noise", "");
+                if (noise.isEmpty()) return new String(cs);
+                StringBuilder sb = new StringBuilder(2 * n + 1);
+                for (int k = 0; k <= n; k++) {
+                    if (r.nextInt(3) == 0) sb.append(noise.charAt(r.nextInt(noise.length())));
+                    if (k < n) sb.append(cs[k]);
+                }
+                return sb.toString();
+            }
+            case "subsequenceOf": {
+                String src = (String) prev.get(i(m, "of", 0));
+                int need = Math.min(i(m, "len", 0), src.length());
+                StringBuilder sb = new StringBuilder(need);
+                for (int k = 0; k < src.length() && need > 0; k++) {
+                    if (r.nextInt(src.length() - k) < need) {    // uniform subset, left to right
+                        sb.append(src.charAt(k));
+                        need--;
+                    }
+                }
+                if (sb.length() > 0 && r.nextDouble() < probability(m, "flip")) {
+                    String alpha = (String) m.getOrDefault("alphabet", "abcdefghijklmnopqrstuvwxyz");
+                    sb.setCharAt(r.nextInt(sb.length()), alpha.charAt(r.nextInt(alpha.length())));
+                }
+                return sb.toString();
+            }
+            case "insertBackspacePairs": {
+                // "x#" means "type x, then backspace", so inserting such pairs leaves the typed result unchanged.
+                // The positions are chosen in the original string, so no pair is ever inserted inside another one.
+                String src = (String) prev.get(i(m, "of", 0));
+                int count = i(m, "count", 0);
+                String alpha = (String) m.getOrDefault("alphabet", "abcdefghijklmnopqrstuvwxyz");
+                int[] at = new int[count];
+                for (int k = 0; k < count; k++) at[k] = r.nextInt(src.length() + 1);
+                Arrays.sort(at);
+                StringBuilder sb = new StringBuilder(src.length() + 2 * count);
+                int next = 0;
+                for (int k = 0; k <= src.length(); k++) {
+                    while (next < count && at[next] == k) {
+                        sb.append(alpha.charAt(r.nextInt(alpha.length()))).append('#');
+                        next++;
+                    }
+                    if (k < src.length()) sb.append(src.charAt(k));
+                }
+                if (sb.length() > 0 && r.nextDouble() < probability(m, "flip")) {
+                    sb.setCharAt(r.nextInt(sb.length()), alpha.charAt(r.nextInt(alpha.length())));
+                }
+                return sb.toString();
             }
             case "choiceArray": {
                 int n = size(m, r);

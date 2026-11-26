@@ -1,0 +1,26 @@
+{
+ "slug": "dedupe-sorted",
+ "topic": "two-pointers",
+ "stage": 1,
+ "order": 8,
+ "title": "Dedupe a Sorted List",
+ "difficulty": "Easy",
+ "whatsNew": "The writer's rule becomes a comparison with what it wrote last, instead of with a fixed value.",
+ "function": {
+  "name": "dedupeSorted",
+  "returns": "int[]",
+  "params": [
+   {
+    "name": "sorted",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Because the list is sorted, where are all the copies of one value?",
+  "The writer index points just past the entries you have decided to keep. Which single one of them do you need to look at?",
+  "What should the writer do with the very first entry?"
+ ],
+ "trigger": "“Drop duplicates from sorted data, in place” → writer index, keep a value only if it differs from the last kept one."
+}

@@ -13,10 +13,10 @@ The React frontend lives in **dsa-ladder-web**.
 - **Judge** (`src/main/java/dev/dsaladder/judge`, no dependencies): generates a harness for each problem's method
   signature, compiles submissions in-process with `javax.tools`, runs them in a separate JVM with time, memory and output
   limits, and returns LeetCode-style verdicts with the failing case, line numbers for runtime errors and captured `System.out`.
-- **Problem books** (`problems/`): two books of original problems, Arrays & Hashing (25 problems in 5 stages) and
-  Prefix Sums (23 problems in 5 stages). Big hidden tests are generated deterministically from short specs and sized so
-  O(n²) solutions get *Time Limit Exceeded*. Every reference solution is verified at start-up, and a brute-force solution
-  must agree with it on ~17,500 random inputs (`JudgeCli crosscheck`).
+- **Problem books** (`problems/`): three books of original problems — Arrays & Hashing (25 problems), Two Pointers
+  (24 problems) and Prefix Sums (23 problems), each a ladder of 5 stages. Big hidden tests are generated deterministically
+  from short specs and sized so O(n²) solutions get *Time Limit Exceeded*. Every reference solution is verified at
+  start-up, and a brute-force solution must agree with it on ~27,200 random inputs (`JudgeCli crosscheck`).
 - **API**: topics/ladders, problems, run (with custom inputs), submit, JWT auth, submission history and progress.
 - **Hardening**: concurrency limit and per-user rate limits on the judge, `prlimit` sandbox prefix, non-root read-only container.
 
@@ -70,7 +70,7 @@ java -cp build/cli dev.dsaladder.cli.JudgeCli crosscheck problems  # reference v
 
 ## Roadmap
 
-Problem books for the other 15 ladders · per-run network isolation with nsjail · spaced review · Python/C++ in the judge
+Problem books for the other 14 ladders · per-run network isolation with nsjail · spaced review · Python/C++ in the judge
 
 ---
 Problem statements are original. Final-exam lists link to LeetCode; no LeetCode content is copied.

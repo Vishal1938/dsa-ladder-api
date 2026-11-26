@@ -1,0 +1,27 @@
+{
+ "slug": "three-colors",
+ "topic": "two-pointers",
+ "stage": 3,
+ "order": 20,
+ "title": "Three Colours in One Pass",
+ "difficulty": "Medium",
+ "whatsNew": "Three pointers split the array into settled 0s, settled 1s, an unknown middle and settled 2s, so one pass sorts it with no counting.",
+ "function": {
+  "name": "sortColors",
+  "returns": "void",
+  "params": [
+   {
+    "name": "nums",
+    "type": "int[]"
+   }
+  ],
+  "outputArg": 0
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Imagine the array split into four zones: finished 0s, finished 1s, parts you have not looked at, and finished 2s. Where are the boundaries?",
+  "You pick up the first unknown part. What do you do with it if it is a 0? A 1? A 2?",
+  "One of those three cases must not advance your reading position. Which one, and why?"
+ ],
+ "trigger": "“Sort values from a tiny fixed set in one in-place pass” → a pointer per boundary (the Dutch flag split)."
+}

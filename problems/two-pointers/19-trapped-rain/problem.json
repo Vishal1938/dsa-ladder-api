@@ -1,0 +1,26 @@
+{
+ "slug": "trapped-rain",
+ "topic": "two-pointers",
+ "stage": 3,
+ "order": 19,
+ "title": "Trapped Rain",
+ "difficulty": "Hard",
+ "whatsNew": "The water over one position depends on the tallest wall on each side, and the side with the smaller running maximum is already decided.",
+ "function": {
+  "name": "trappedRain",
+  "returns": "long",
+  "params": [
+   {
+    "name": "heights",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Write down, for one position, exactly which two numbers decide how deep the water is there.",
+  "Walking in from both ends, you know the tallest block seen so far on each side. Which of those two is certainly the true maximum for its side?",
+  "So which pointer is safe to settle and move on?"
+ ],
+ "trigger": "“Each position depends on a maximum from both sides” → two pointers carrying a running maximum each."
+}

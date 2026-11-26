@@ -1,0 +1,30 @@
+{
+ "slug": "min-boats",
+ "topic": "two-pointers",
+ "stage": 2,
+ "order": 16,
+ "title": "Fewest Boats",
+ "difficulty": "Medium",
+ "whatsNew": "A greedy rule after sorting: the heaviest passenger shares with the lightest if they fit, and otherwise rides alone.",
+ "function": {
+  "name": "minBoats",
+  "returns": "int",
+  "params": [
+   {
+    "name": "weights",
+    "type": "int[]"
+   },
+   {
+    "name": "limit",
+    "type": "int"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Think about the heaviest passenger. Who is the best possible companion for them?",
+  "If even the lightest passenger cannot share with the heaviest one, what does that settle?",
+  "Once you have dealt with the heaviest passenger, what does the rest of the problem look like?"
+ ],
+ "trigger": "“Pair items up under a limit, fewest groups” → sort, then pair the two ends greedily."
+}

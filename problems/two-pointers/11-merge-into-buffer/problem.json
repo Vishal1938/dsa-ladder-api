@@ -1,0 +1,35 @@
+{
+ "slug": "merge-into-buffer",
+ "topic": "two-pointers",
+ "stage": 1,
+ "order": 11,
+ "title": "Merge Into the Free Space",
+ "difficulty": "Easy",
+ "whatsNew": "Writing from the back instead of the front, so the writer never lands on a value you still have to read.",
+ "function": {
+  "name": "mergeInto",
+  "returns": "void",
+  "params": [
+   {
+    "name": "a",
+    "type": "int[]"
+   },
+   {
+    "name": "m",
+    "type": "int"
+   },
+   {
+    "name": "b",
+    "type": "int[]"
+   }
+  ],
+  "outputArg": 0
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Merging from the front means writing into slot 0, which still holds a reading you need. Where else could the first write go?",
+  "Which of the two logs holds the largest remaining reading, and which slot does it belong in?",
+  "When one log runs out, is there anything left to do for the other?"
+ ],
+ "trigger": "“Merge into an array that already holds one of the inputs” → walk and write from the back."
+}

@@ -1,0 +1,30 @@
+{
+ "slug": "interval-overlaps",
+ "topic": "two-pointers",
+ "stage": 4,
+ "order": 23,
+ "title": "Where Two Timetables Overlap",
+ "difficulty": "Medium",
+ "whatsNew": "One pointer per list: intersect the pair you are looking at, then advance whichever interval finishes first.",
+ "function": {
+  "name": "intervalIntersections",
+  "returns": "int[][]",
+  "params": [
+   {
+    "name": "a",
+    "type": "int[][]"
+   },
+   {
+    "name": "b",
+    "type": "int[][]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Take the first interval of each list. What are the start and the end of the period they share, if any?",
+  "If they do not overlap at all, which of the two can you throw away?",
+  "After dealing with a pair, one of the two intervals might still overlap the next interval of the other list. Which one?"
+ ],
+ "trigger": "“Intersect two sorted interval lists” → a pointer in each, advancing the one that ends first."
+}

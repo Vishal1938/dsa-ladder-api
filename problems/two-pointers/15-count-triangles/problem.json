@@ -1,0 +1,26 @@
+{
+ "slug": "count-triangles",
+ "topic": "two-pointers",
+ "stage": 2,
+ "order": 15,
+ "title": "Count Possible Triangles",
+ "difficulty": "Medium",
+ "whatsNew": "Fix the largest side instead of the smallest, and a pair that works tells you r − l pairs work at once.",
+ "function": {
+  "name": "countTriangles",
+  "returns": "long",
+  "params": [
+   {
+    "name": "sides",
+    "type": "int[]"
+   }
+  ]
+ },
+ "timeLimitMs": 1000,
+ "hints": [
+  "Sort the sticks. If you already know which stick is the longest of the three, how many of the three conditions still need checking?",
+  "With the longest stick fixed, you need two shorter ones that together beat it. Where do you put the two pointers?",
+  "When the pair at l and r is long enough, what can you say about l paired with everything between l and r?"
+ ],
+ "trigger": "“Count triples satisfying an inequality” → sort, fix the largest, then count pairs with two pointers."
+}
